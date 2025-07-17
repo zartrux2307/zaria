@@ -1,0 +1,91 @@
+{
+  "name": "zar-shm",
+  "prefix": "5555",
+  "size": 4096,
+  "solution_buffer_size": 4096,
+  "use_sample_data": false,
+  "logging": {
+    "level": "INFO",
+    "format": "%(asctime)s - %(levelname)s - %(message)s"
+  },
+  "ia": {
+    "feature_columns": ["nonce", "entropy", "uniqueness", "zero_density", "pattern_score", "is_valid"],
+    "proxy_host": "127.0.0.1",
+    "proxy_port": 5555,
+    "worker_name": "x",
+    "generation_strategies": ["range", "ml", "adaptive", "hybrid", "entropy", "sequence"],
+    "nonces_per_second": 500,
+    "num_rangos": 10,
+    "top_rangos": 3,
+    "max_nonce": 4294967295,
+    "update_interval": 3600,
+    "min_entropy": 0.85,
+    "min_uniqueness": 0.8,
+    "max_zero_density": 0.15,
+    "min_pattern_score": 0.8,
+    "adaptive_window": 500000,
+    "decay_factor": 0.9,
+    "ml_fallback": true,
+    "quality_filter": true
+  },
+  "wallet": "44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc",
+  "pool": {
+    "url": "pool.hashvault.pro:443",
+    "user": "44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc",
+    "pass": "x",
+    "rig-id": null,
+    "nicehash": false,
+    "keepalive": false,
+    "enabled": true,
+    "tls": true,
+    "tls-fingerprint": "420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14",
+    "daemon": false,
+    "self-select": null
+  },
+  "sequence_params": {
+    "prime_base": 15485867,
+    "xor_mask": 2863355227288772495,
+    "entropy_min": 0.88,
+    "zero_density_max": 0.12,
+    "pattern_min": 0.85,
+    "max_attempts": 100,
+    "optimization_rules": {
+      "max_zero_run": 6,
+      "periodic_patterns": [
+        "0101010101010101",
+        "0011001100110011",
+        "0000111100001111"
+      ],
+      "entropy_threshold": 0.9
+    }
+  },
+  "paths": {
+    "data_dir": "C:/zarturxia/src/iazar/data",
+    "config_dir": "C:/zarturxia/src/iazar/config",
+    "model_dir": "C:/zarturxia/src/iazar/models",
+    "sequence_dir": "C:/zarturxia/src/iazar/sequences"
+  },
+  "generator_weights": {
+    "range": 0.30,
+    "ml": 0.25,
+    "entropy": 0.15,
+    "sequence": 0.10,
+    "adaptive": 0.15,
+    "random": 0.05
+  },
+  "performance_settings": {
+    "rebalance_interval": 300,
+    "performance_window": 1000,
+    "min_weight": 0.05,
+    "max_weight": 0.40
+  },
+  "randomx_params": {
+    "max_zero_run": 6,
+    "min_transition_ratio": 0.5,
+    "pattern_penalties": {
+      "periodic": 0.25,
+      "long_zero": 0.05
+    },
+    "transition_bonus": 0.5
+  }
+}

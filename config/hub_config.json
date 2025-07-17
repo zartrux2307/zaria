@@ -1,0 +1,5 @@
+{
+  "hub_endpoint": "tcp://hub.zartrux.mining:5555",
+  "sync_interval": 30,
+  "max_nodes": 100
+}

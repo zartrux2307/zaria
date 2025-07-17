@@ -1,0 +1,5 @@
+{
+    "window_size": 100,
+    "forecast_steps": 50,
+    "columns": ["nonce", "entropy"]
+}

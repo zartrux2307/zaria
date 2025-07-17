@@ -1,0 +1,42 @@
+{
+  "shm": {
+    "name": "zar-shm",
+    "prefix": "5555",
+    "size": 4096,
+    "solution_buffer_size": 4096
+  },
+  "wallet": "44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc",
+  "pool": {
+    "host": "127.0.0.1",
+    "port": 3333
+  },
+  "prefix": "5555",
+  "logging": {
+    "level": "INFO",
+    "format": "%(asctime)s - %(levelname)s - %(message)s"
+  },
+  "ia": {
+    "feature_columns": [
+      "nonce",
+      "entropy",
+      "uniqueness",
+      "zero_density",
+      "pattern_score",
+      "is_valid"
+    ]
+  },
+  "zartrux_shared": {
+    "name": "zartrux_shared",
+    "enabled": true,
+    "size": 4096,
+    "polling_interval": 0.001,
+    "timeout": 1.0,
+    "segments": {
+      "blob": 152,
+      "target": 8,
+      "seed": 32,
+      "status": 1,
+      "nonce": 4
+    }
+  }
+}
