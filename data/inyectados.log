@@ -1,0 +1,22 @@
+[2025-07-08 16:00:24][    INFO][inject_nonces_from_ia:227] === Inicio de inyección de nonces ===
+[2025-07-08 16:00:24][    INFO][inject_nonces_from_ia:233] Bloqueo adquirido
+[2025-07-08 16:00:24][    INFO][inject_nonces_from_ia: 79] Backup creado: src\iazar\data\backups\nonces_exitosos_20250708_160024.csv
+[2025-07-08 16:00:24][ WARNING][inject_nonces_from_ia: 87] Archivo JSON no encontrado: src\iazar\data\nonces_ready.json
+[2025-07-08 16:00:24][ WARNING][inject_nonces_from_ia:251] No se encontraron nonces válidos para inyectar
+[2025-07-08 16:00:24][    INFO][inject_nonces_from_ia:273] Proceso completado en 0.05 segundos
+[2025-07-08 16:40:27][    INFO][inject_nonces_from_ia:227] === Inicio de inyección de nonces ===
+[2025-07-08 16:40:27][    INFO][inject_nonces_from_ia:233] Bloqueo adquirido
+[2025-07-08 16:40:27][    INFO][inject_nonces_from_ia: 79] Backup creado: src\iazar\data\backups\nonces_exitosos_20250708_164027.csv
+[2025-07-08 16:40:27][ WARNING][inject_nonces_from_ia: 87] Archivo JSON no encontrado: src\iazar\data\nonces_ready.json
+[2025-07-08 16:40:27][ WARNING][inject_nonces_from_ia:251] No se encontraron nonces válidos para inyectar
+[2025-07-08 16:40:27][    INFO][inject_nonces_from_ia:273] Proceso completado en 0.17 segundos
+[2025-07-08 23:59:34][    INFO][inject_nonces_from_ia:227] === Inicio de inyección de nonces ===
+[2025-07-08 23:59:34][    INFO][inject_nonces_from_ia:233] Bloqueo adquirido
+[2025-07-08 23:59:34][    INFO][inject_nonces_from_ia: 79] Backup creado: src\iazar\data\backups\nonces_exitosos_20250708_235934.csv
+[2025-07-08 23:59:34][ WARNING][inject_nonces_from_ia: 87] Archivo JSON no encontrado: src\iazar\data\nonces_ready.json
+[2025-07-08 23:59:34][ WARNING][inject_nonces_from_ia:251] No se encontraron nonces válidos para inyectar
+[2025-07-08 23:59:34][    INFO][inject_nonces_from_ia:273] Proceso completado en 0.05 segundos
+[2025-07-09 13:49:12][    INFO][inject_nonces_from_ia:278] === Inicio de inyección de nonces ===
+[2025-07-09 13:49:12][    INFO][inject_nonces_from_ia: 81] Backup creado: src\iazar\data\backups\nonces_exitosos_20250709_134912.csv
+[2025-07-09 13:49:12][CRITICAL][inject_nonces_from_ia:307] Error fatal en comunicación SHM: 'SharedMemoryManager' object has no attribute 'connect'
+[2025-07-09 13:49:12][    INFO][inject_nonces_from_ia:323] Proceso completado en 0.01 segundos

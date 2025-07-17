@@ -1,0 +1,13 @@
+{
+  "data_paths": {
+    "nonce_training_data": "C:/zarturxia/data/nonce_training_data.csv",
+    "nonce_hashes": "C:/zarturxia/data/nonce_hashes.bin",
+    "nonces_exitosos": "C:/zarturxia/data/nonces_exitosos.csv",
+    "winner_blocks": "C:/zarturxia/data/winner_blocks.csv"
+  },
+  "model_params": {
+    "n_estimators": 100,
+    "max_depth": 5,
+    "random_state": 42
+  }
+}

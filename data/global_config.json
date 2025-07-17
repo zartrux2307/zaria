@@ -1,0 +1,15 @@
+{
+  "name": "zar-shm",
+  "prefix": "5555",
+  "size": 4096,
+  "solution_buffer_size": 4096,
+  "logging": {"level": "INFO", "format": "%(asctime)s - %(levelname)s - %(message)s"},
+  "ia": {"feature_columns": ["nonce", "entropy", "uniqueness", "zero_density", "pattern_score", "is_valid"]}
+}
+  "wallet": "44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc",
+  "pool": {
+    "host": "127.0.0.1",
+    "port": 3333
+  },
+  "prefix": "5555"
+}

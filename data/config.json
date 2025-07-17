@@ -1,0 +1,51 @@
+{
+  "global_config": {
+    "wallet": "44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc",
+    "stratum": {
+      "pool_host": "127.0.0.1",
+      "pool_port": 3333
+    },
+    "shm": {
+      "name": "zartrux_shared",
+      "size": 65536,
+      "polling_interval": 0.001,
+      "segments": {
+        "blob": 152,
+        "target": 8,
+        "seed": 32,
+        "status": 1,
+        "nonce": 4
+      }
+    },
+    "logging": {
+      "level": "INFO",
+      "path": "src/iazar/logs/mining_operations.log",
+      "format": "%(asctime)s - %(levelname)s - %(message)s"
+    }
+  },
+  "ia_config": {
+    "model_path": "src/iazar/models/latest_model.pkl",
+    "data_paths": {
+      "nonce_training_data": "src/iazar/data/nonce_training_data.csv",
+      "winner_blocks": "src/iazar/data/winner_blocks.csv",
+      "nonces_exitosos": "src/iazar/data/nonces_exitosos.csv",
+      "nonce_hashes": "src/iazar/data/nonce_hashes.bin",
+      "injected_nonces": "src/iazar/logs/injected.csv"
+    },
+    "processing_params": {
+      "candidate_count": 10000,
+      "top_candidates": 300,
+      "entropy_window": 100,
+      "temporal_window": 60,
+      "polling_interval": 0.01,
+      "timeout": 5.0
+    },
+    "feature_columns": [
+      "nonce", "entropy", "uniqueness", "zero_density", "pattern_score", "is_valid"
+    ],
+    "analytics": {
+      "entropy_threshold": 7.5,
+      "fourier_cutoff": 0.25
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+    "name": "zar-shm",
+  "prefix": "5555",
+  "size": 4096,
+  "solution_buffer_size": 4096,
+  "logging": {"level": "INFO", "format": "%(asctime)s - %(levelname)s - %(message)s"},
+  "ia": {"feature_columns": ["nonce", "entropy", "uniqueness", "zero_density", "pattern_score", "is_valid"]}
+}
+
+
+"ia_integration": {
+    "enabled": true,
+    "kl_divergence": {
+        "threshold_jsd": 0.15,
+        "window_size": 1000,
+        "step": 500
+    },
+    "injection_threshold": 0.92
+}
+
+
+{
+  "mode": "pool",
+  "cpu": {
+    "threads": 2,
+    "max_temperature": 85,
+    "avx_optimization": true,
+    "affinity_mask": "0x3"
+  },
+  "gpu": {
+    "enabled": false,
+    "devices": [0],
+    "intensity": 0
+{
+  "wallet": "44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc",
+  "pool": {
+    "host": "127.0.0.1",
+    "port": 3333
+  },
+  "prefix": "5555"
+}
+
+  },
+  "monitoring": {
+    "reports_path": "src/iazar/logs/reports",
+    "metrics_file": "src/iazar/logs/metrics.csv",
+    "log_level": "INFO",
+    "health_check_interval": 60
+  },
+  "ia_integration": {
+    "enabled": true,
+    "kl_divergence": {
+      "threshold_jsd": 0.15,
+      "window_size": 1000,
+      "step": 500
+    },
+    "data_path": "src/iazar/data/nonce_training_data.csv",
+    "models_path": "src/iazar/models/",
+    "injection_threshold": 0.92
+  },
+  "power_management": {
+    "power_limit": 0,
+    "efficiency_mode": "balanced"
+  },
+  "advanced": {
+    "huge_pages": true,
+    "prefetch": true,
+    "randomx_flags": 0,
+    "hash_validation_threshold": 0.95
+  }
+}
