@@ -1,204 +1,264 @@
-"""
-Técnica 3: Generador basado en entropía avanzada para RandomX
-Implementa medidas de entropía especializadas y optimizadas para minería Monero
-"""
+import os
+import csv
+import time
+import random
+import logging
+import threading
+import concurrent.futures
+from typing import Optional, Dict, List, Set, Any
 
 import numpy as np
-import random
-import time
-from sklearn.neighbors import KernelDensity
 
-class EntropyBasedGenerator:
+from iazar.generator.nonce_generator import BaseNonceGenerator
+from iazar.generator.config_loader import config_loader
+from iazar.generator.randomx_validator import RandomXValidator
+
+# --- Logging Industrial ---
+logger = logging.getLogger("EntropyBasedGenerator")
+if not logger.hasHandlers():
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s [%(levelname)s] %(threadName)s: %(message)s",
+        handlers=[
+            logging.StreamHandler()
+        ]
+    )
+
+# Directorio base para datos
+DATA_DIR = './data'
+
+class EntropyBasedGenerator(BaseNonceGenerator):
     """
-    Generador de nonces con foco en máxima entropía para RandomX.
-    Combina múltiples medidas de entropía y adaptación dinámica.
+    Generador industrial de nonces basado en métricas de entropía, preparado para minería Monero RandomX.
+    Cumple los requisitos de integración multi-hilo, batch y escalabilidad.
     """
+
+    DATA_REFRESH_INTERVAL = 300
+    RECENT_NONCES_SIZE = 500
+    ENTROPY_BINS = 16
+    MAX_VALIDATION_WORKERS = max(2, min(16, os.cpu_count() or 4))
+    BATCH_ENTROPY_SAMPLES = 10000
+
+    def __init__(self, config: Optional[Dict[str, Any]] = None):
+        super().__init__("entropy_based", config)
+        self.lock = threading.RLock()
+        self.last_refresh = 0
+        self.validator = RandomXValidator(self.config)
+        self._initialize_data()
+        logger.info("[EntropyBasedGenerator] Vectorized generator initialized.")
     
-    MIN_ENTROPY_THRESHOLD = 5.8  # Mínimo absoluto para entropía de Shannon
-    MAX_ATTEMPTS = 1000  # Límite para evitar bucles infinitos
-    ADAPTIVE_WINDOW = 1000  # Tamaño de ventana para adaptación
+    def _get_data_path(self, key: str) -> str:
+        """Obtener ruta de datos profesional"""
+        return os.path.join(DATA_DIR, f"{self.generator_name}_{key}.csv")
     
-    def __init__(self, config=None):
-        self.generator_name = "entropy_based"
-        self.config = config or {}
-        self.adaptive_threshold = self.MIN_ENTROPY_THRESHOLD
-        self.recent_entropies = []
-        self.kde_model = None
-        self.last_kde_update = 0
-        self.training_data = []  # Inicializar lista vacía para datos de entrenamiento
+    def _load_training_data(self) -> list:
+        """Carga profesional de datos de entrenamiento"""
+        path = self._get_data_path('training')
+        if not os.path.exists(path):
+            logger.warning(f"[EntropyBasedGenerator] No training data found at {path}")
+            return []
         
-    def generate_nonce(self, block_height: int) -> dict:
-        """Genera un nonce con características de alta entropía"""
-        # Actualizar modelo KDE periódicamente
-        if time.time() - self.last_kde_update > 3600 or not self.kde_model:
-            self.update_kde_model()
-        
-        best_nonce = None
-        best_entropy = 0
-        attempts = 0
-        
-        while attempts < self.MAX_ATTEMPTS:
-            nonce = random.getrandbits(64)
-            entropy_metrics = self.calculate_entropy_metrics(nonce)
-            shannon_entropy = entropy_metrics['entropy']
-            
-            # Verificar si cumple con el umbral adaptativo
-            if shannon_entropy >= self.adaptive_threshold:
-                return {
-                    "nonce": nonce,
-                    "block_height": block_height,
-                    "generator": self.generator_name,
-                    "is_valid": True,
-                    **entropy_metrics
-                }
-            
-            # Trackear el mejor candidato encontrado
-            if shannon_entropy > best_entropy:
-                best_entropy = shannon_entropy
-                best_nonce = nonce
-                best_metrics = entropy_metrics
-            
-            attempts += 1
-        
-        # Si no se encontró candidato óptimo, devolver el mejor
-        print(f"Warning: Using best candidate after {self.MAX_ATTEMPTS} attempts")
-        return {
-            "nonce": best_nonce,
-            "block_height": block_height,
-            "generator": self.generator_name,
-            "is_valid": True,
-            **best_metrics
-        }
-    
-    def calculate_entropy_metrics(self, nonce: int) -> dict:
-        """
-        Calcula múltiples medidas de entropía optimizadas para RandomX:
-        1. Entropía de Shannon (bits)
-        2. Entropía de min-entropía
-        3. Entropía diferencial
-        4. Entropía de Rényi (orden 2)
-        """
-        bin_repr = bin(nonce)[2:].zfill(64)
-        byte_repr = nonce.to_bytes(8, 'big')
-        
-        # Shannon entropy
-        counts = np.bincount(np.frombuffer(byte_repr, dtype=np.uint8))
-        probs = counts / counts.sum()
-        shannon_entropy = -np.sum(probs * np.log2(probs + 1e-10))
-        
-        # Min-entropy
-        min_entropy = -np.log2(probs.max())
-        
-        # Differential entropy (aproximada)
-        diff_entropy = self.calculate_differential_entropy(byte_repr)
-        
-        # Rényi entropy (order 2)
-        renyi_entropy = -np.log2(np.sum(probs**2))
-        
-        # Calcular métricas adicionales para RandomX
-        zero_density = bin_repr.count('0') / 64
-        pattern_score = self.randomx_pattern_score(bin_repr)
-        
-        # Actualizar umbral adaptativo
-        self.update_adaptive_threshold(shannon_entropy)
-        
-        return {
-            "entropy": shannon_entropy,
-            "min_entropy": min_entropy,
-            "diff_entropy": diff_entropy,
-            "renyi_entropy": renyi_entropy,
-            "zero_density": zero_density,
-            "pattern_score": pattern_score
-        }
-    
-    def update_adaptive_threshold(self, entropy: float):
-        """Ajusta dinámicamente el umbral de entropía"""
-        self.recent_entropies.append(entropy)
-        if len(self.recent_entropies) > self.ADAPTIVE_WINDOW:
-            self.recent_entropies.pop(0)
-            
-        if len(self.recent_entropies) > 100:
-            mean_entropy = np.mean(self.recent_entropies)
-            std_entropy = np.std(self.recent_entropies)
-            self.adaptive_threshold = max(
-                self.MIN_ENTROPY_THRESHOLD,
-                mean_entropy - 0.5 * std_entropy
+        try:
+            data = []
+            with open(path, 'r', encoding='utf-8') as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    data.append(row)
+            logger.info(f"[EntropyBasedGenerator] Loaded {len(data)} training samples")
+            return data
+        except Exception as e:
+            logger.error(f"[EntropyBasedGenerator] Error loading training data: {e}")
+            return []
+
+    def _initialize_data(self):
+        with self.lock:
+            self.training_data = self._load_training_data()
+            self.entropy_distribution = self._calculate_entropy_distribution()
+            self.popcount_lut = self._create_popcount_lut()
+            self.last_refresh = time.time()
+
+    def _create_popcount_lut(self) -> np.ndarray:
+        # Lookup table for population count (popcount) for fast Hamming metrics
+        return np.array([bin(x).count('1') for x in range(256)], dtype=np.uint8)
+
+    def _should_refresh(self) -> bool:
+        return time.time() - self.last_refresh > self.DATA_REFRESH_INTERVAL
+
+    def _calculate_entropy_distribution(self) -> np.ndarray:
+        # Cálculo vectorizado de la distribución de entropía objetivo
+        try:
+            valid_entropies = [
+                float(row['entropy']) for row in self.training_data
+                if row.get('is_valid', 'false').lower() == 'true'
+            ]
+            valid_entropies = [e for e in valid_entropies if 0.7 <= e <= 1.0]
+            if not valid_entropies:
+                return np.array([0.85, 0.90, 0.95])
+            hist, _ = np.histogram(
+                valid_entropies,
+                bins=self.ENTROPY_BINS,
+                range=(0.7, 1.0),
+                density=True
             )
-    
-    def calculate_differential_entropy(self, byte_data: bytes) -> float:
-        """Calcula entropía diferencial usando KDE"""
-        if not self.kde_model:
-            return 6.0  # Valor por defecto
-            
-        data = np.frombuffer(byte_data, dtype=np.uint8).reshape(-1, 1)
-        log_prob = self.kde_model.score_samples(data)
-        return -np.mean(log_prob) / np.log(2)
-    
-    def update_kde_model(self):
-        """Actualiza el modelo de densidad kernel con datos recientes"""
-        if not self.training_data or len(self.training_data) < 100:
-            return
-            
-        # Obtener nonces recientes
-        nonces = []
-        for row in self.training_data[-1000:]:
-            try:
-                nonces.append(int(row['nonce']))
-            except:
-                continue
+            return np.cumsum(hist) / np.sum(hist)
+        except Exception as e:
+            logger.error(f"[EntropyBasedGenerator] Entropy distribution error: {e}")
+            return np.array([0.85, 0.90, 0.95])
+
+    def _sample_target_entropy(self) -> float:
+        if isinstance(self.entropy_distribution, np.ndarray):
+            u = random.uniform(0, 1)
+            idx = np.searchsorted(self.entropy_distribution, u)
+            bin_low = 0.7 + (idx / self.ENTROPY_BINS) * 0.3
+            bin_high = 0.7 + ((idx + 1) / self.ENTROPY_BINS) * 0.3
+            return random.uniform(bin_low, bin_high)
+        return random.uniform(0.85, 0.95)
+
+    def _generate_candidate_batch(self, batch_size: int, seen_batch: Set[int]) -> List[int]:
+        # Vectorized generation + batch filtering by entropy
+        nonces_arr = np.random.randint(0, 2**64, size=batch_size, dtype=np.uint64)
+        nonces_arr = np.array([n for n in nonces_arr if n not in seen_batch], dtype=np.uint64)
+        if nonces_arr.size == 0:
+            return []
+        counts = np.zeros(nonces_arr.size, dtype=np.uint8)
+        for shift in range(0, 64, 8):
+            byte_vals = (nonces_arr >> shift) & 0xFF
+            counts += self.popcount_lut[byte_vals]
+        p1 = counts / 64.0
+        p0 = 1.0 - p1
         
-        if len(nonces) < 100:
-            return
-            
-        # Convertir a representación de bytes
-        byte_data = []
-        for nonce in nonces:
-            byte_data.extend(list(nonce.to_bytes(8, 'big')))
+        # CORRECCIÓN DEFINITIVA: Expresión simplificada y corregida
+        log_p0 = np.where(p0 > 0, np.log2(p0), 0)
+        log_p1 = np.where(p1 > 0, np.log2(p1), 0)
+        entropy = - (p0 * log_p0 + p1 * log_p1)
         
-        # Entrenar modelo KDE
-        data = np.array(byte_data).reshape(-1, 1)
-        self.kde_model = KernelDensity(bandwidth=0.5, kernel='gaussian')
-        self.kde_model.fit(data)
-        self.last_kde_update = time.time()
-    
-    def randomx_pattern_score(self, binary_str: str) -> float:
-        """Calcula puntaje de patrón para RandomX"""
-        score = 1.0
-        
-        # Penalizar secuencias de ceros largas
-        max_zero_run = self.calculate_max_zero_run(binary_str)
-        if max_zero_run > 6:
-            penalty = min(0.3, (max_zero_run - 6) * 0.05)
-            score -= penalty
-        
-        # Bonificar alta densidad de transiciones
-        transitions = 0
-        for i in range(1, len(binary_str)):
-            if binary_str[i] != binary_str[i-1]:
-                transitions += 1
-                
-        transition_ratio = transitions / (len(binary_str) - 1)
-        if transition_ratio > 0.5:
-            bonus = min(0.15, (transition_ratio - 0.5) * 0.5)
-            score += bonus
-        
-        # Penalizar patrones periódicos
-        for period in [2, 4, 8, 16]:
-            pattern = binary_str[:period]
-            if binary_str == pattern * (64 // period):
-                score -= 0.25
+        target_entropies = np.array([self._sample_target_entropy() for _ in range(nonces_arr.size)])
+        mask = np.abs(entropy - target_entropies) < 0.03
+        return nonces_arr[mask].tolist()
+
+    def _validate_batch(self, nonces: List[int], block_data: dict) -> List[bool]:
+        # Validación paralela multi-hilo
+        if not nonces:
+            return []
+        with concurrent.futures.ThreadPoolExecutor(max_workers=self.MAX_VALIDATION_WORKERS) as executor:
+            futures = {executor.submit(self.validator.validate, nonce, block_data): nonce for nonce in nonces}
+            results = []
+            for future in concurrent.futures.as_completed(futures):
+                try:
+                    results.append(future.result())
+                except Exception as e:
+                    logger.error(f"[EntropyBasedGenerator] Validation failed: {e}")
+                    results.append(False)
+        return results
+
+    def _calculate_uniqueness(self, nonce: int, recent_set: Set[int]) -> float:
+        if not recent_set:
+            return 1.0
+        nonce_arr = np.full(len(recent_set), nonce, dtype=np.uint64)
+        recent_arr = np.array(list(recent_set), dtype=np.uint64)
+        xor_arr = np.bitwise_xor(nonce_arr, recent_arr)
+        popcnts = np.vectorize(lambda x: bin(x).count('1'))(xor_arr)
+        avg_distance = np.mean(popcnts)
+        return max(0.8, min(0.99, avg_distance / 64))
+
+    def _calculate_metrics(self, nonce: int, recent_set: Set[int]) -> dict:
+        bin_repr = bin(nonce)[2:].zfill(64)
+        arr = np.array([int(b) for b in bin_repr])
+        p0 = np.count_nonzero(arr == 0) / 64.0
+        p1 = 1 - p0
+        entropy = - (p0 * np.log2(p0 + 1e-10) + p1 * np.log2(p1 + 1e-10))
+        zero_runs = np.split(arr, np.where(np.diff(arr) != 0)[0] + 1)
+        max_zero_run = max(len(run) for run in zero_runs if run[0] == 0) if any(arr == 0) else 0
+        diff = np.diff(arr, prepend=arr[0]-1, append=arr[-1]-1)
+        run_starts = np.where(diff != 0)[0]
+        run_lengths = np.diff(run_starts)
+        max_run = np.max(run_lengths) if run_lengths.size > 0 else 0
+        transitions = np.sum(arr[:-1] != arr[1:])
+        uniqueness = self._calculate_uniqueness(nonce, recent_set)
+        pattern_score = max(0.5, 1.0 - min(0.3, max_run/32) + min(0.2, transitions/63))
+        return {
+            "entropy": round(entropy, 5),
+            "uniqueness": round(uniqueness, 5),
+            "zero_density": round(p0, 5),
+            "pattern_score": round(pattern_score, 5)
+        }
+
+    def _get_recent_nonces(self) -> Set[int]:
+        recent_nonces = set()
+        count = 0
+        for row in reversed(self.training_data):
+            if count >= self.RECENT_NONCES_SIZE:
                 break
-        
-        return max(0.65, min(1.0, score))
-    
-    def calculate_max_zero_run(self, binary_str: str) -> int:
-        """Calcula la secuencia más larga de ceros consecutivos"""
-        max_run = 0
-        current_run = 0
-        for bit in binary_str:
-            if bit == '0':
-                current_run += 1
-                max_run = max(max_run, current_run)
-            else:
-                current_run = 0
-        return max_run
+            if row.get('is_valid', 'false').lower() == 'true':
+                try:
+                    recent_nonces.add(int(row['nonce']))
+                    count += 1
+                except (ValueError, KeyError):
+                    continue
+        return recent_nonces
+
+    def run_generation(self, block_height: int, block_data: dict, batch_size: int = 500) -> List[dict]:
+        start_time = time.time()
+        if self._should_refresh():
+            self._initialize_data()
+        with self.lock:
+            recent_nonces = self._get_recent_nonces()
+            valid_nonces = []
+            total_tries = 0
+            max_batch_tries = 4
+            batch_factor = 4
+            for _ in range(max_batch_tries):
+                seen_batch = set()
+                candidates = self._generate_candidate_batch(batch_size * batch_factor, seen_batch)
+                candidates = [c for c in candidates if c not in seen_batch and not seen_batch.add(c)]
+                total_tries += len(candidates)
+                validation_results = self._validate_batch(candidates, block_data)
+                for nonce, is_valid in zip(candidates, validation_results):
+                    if len(valid_nonces) >= batch_size:
+                        break
+                    if is_valid:
+                        metrics = self._calculate_metrics(nonce, recent_nonces)
+                        nonce_data = {
+                            "nonce": nonce,
+                            "block_height": block_height,
+                            "generator": self.generator_name,
+                            "is_valid": True,
+                            **metrics
+                        }
+                        valid_nonces.append(nonce_data)
+                        recent_nonces.add(nonce)
+                if len(valid_nonces) >= batch_size:
+                    break
+                batch_factor *= 2
+            if valid_nonces:
+                self._save_nonces_batch(valid_nonces)
+            elapsed = time.time() - start_time
+            success_rate = len(valid_nonces) / total_tries if total_tries else 0
+            logger.info(
+                f"[EntropyBasedGenerator] Block {block_height}: "
+                f"{len(valid_nonces)}/{batch_size} valid, "
+                f"{total_tries} tries, "
+                f"{success_rate:.2%} success, "
+                f"{elapsed:.2f}s elapsed, "
+                f"{len(valid_nonces)/elapsed if elapsed else 0:.1f} nonces/sec"
+            )
+            return valid_nonces
+
+    def _save_nonces_batch(self, nonces: List[dict]):
+        if not nonces:
+            return
+        output_path = self._get_data_path('generated_nonces')
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        fieldnames = self.FIELDNAMES
+        try:
+            file_exists = os.path.exists(output_path)
+            with open(output_path, 'a', newline='', encoding='utf-8') as f:
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                if not file_exists:
+                    writer.writeheader()
+                writer.writerows(
+                    [{k: v for k, v in item.items() if k in fieldnames}
+                     for item in nonces]
+                )
+        except IOError as e:
+            logger.error(f"[EntropyBasedGenerator] Failed to save nonces: {e}")

@@ -8,7 +8,9 @@ def setup_paths():
     BASE_DIR = paths_config.get('data_dir', os.path.expanduser("~/iazar/data"))
     CONFIG_DIR = paths_config.get('config_dir', os.path.expanduser("~/iazar/config"))
     MODEL_DIR = paths_config.get('model_dir', os.path.expanduser("~/iazar/models"))
-    
+    os.makedirs("C:/zarturxia/src/iazar/data", exist_ok=True)
+    os.makedirs("C:/zarturxia/src/iazar/models", exist_ok=True)
+    os.makedirs("C:/zarturxia/src/iazar/config", exist_ok=True)
     # Crear directorios si no existen
     for path in [BASE_DIR, CONFIG_DIR, MODEL_DIR]:
         os.makedirs(path, exist_ok=True)

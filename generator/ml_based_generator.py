@@ -1,362 +1,356 @@
-
-
+import os
+import threading
+import time
+import logging
+import random
 import numpy as np
 import pandas as pd
 import joblib
-import time
-import os
-import random  # Added missing import
-from datetime import datetime
-from iazar.generator.nonce_generator import BaseNonceGenerator
+from typing import Optional, Dict, List, Tuple
+from concurrent.futures import ThreadPoolExecutor
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import accuracy_score, f1_score
+from sklearn.preprocessing import RobustScaler
+from sklearn.ensemble import IsolationForest
 import xgboost as xgb
 import lightgbm as lgb
 
+from iazar.generator.nonce_generator import BaseNonceGenerator
+from iazar.generator.config_loader import config_loader
+from iazar.generator.randomx_validator import RandomXValidator
+
+# ================== LOGGING ==================
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(threadName)s: %(message)s"
+)
+logger = logging.getLogger("MLBasedGenerator")
+
+# ================== CONFIGURACIÓN ==================
+MODEL_VERSION = "v2.2"
+RETRAIN_INTERVAL = 1800  # segundos
+MIN_TRAINING_SAMPLES = 10000
+CANDIDATE_BATCH_SIZE = 2000
+VALIDATION_WORKERS = 4
+
+# Directorio base para datos
+DATA_DIR = './data'
+
 class MLBasedGenerator(BaseNonceGenerator):
     """
-    Generador de nonces con modelo ML optimizado para CPU/RandomX.
-    Implementa aprendizaje continuo y características avanzadas.
+    Generador profesional basado en Machine Learning para minería Monero.
+    - Ensemble con XGBoost y LightGBM
+    - Selección y validación por lotes
+    - Entrenamiento incremental en background
+    - 100% CPU, robusto para entornos productivos
     """
-    
-    MODEL_VERSION = "v1.2"
-    RETRAIN_INTERVAL = 3600  # Segundos entre reentrenamientos
-    MIN_TRAINING_SAMPLES = 5000
-    
-    def __init__(self, config=None):
-        # Handle callable config (evaluate if it's a function)
-        evaluated_config = config() if callable(config) else config
-        
-        super().__init__("ml_based", evaluated_config)
+    def __init__(self, config: Optional[Dict] = None):
+        super().__init__("ml_based", config)
         self.model = None
         self.scaler = None
+        self.validator = RandomXValidator(self.config)
+        self.lock = threading.RLock()
         self.last_trained = 0
+        self.feature_importances = {}
+        self.acceptance_rate = 0.0
+        self.training_data_df = None
         self.model_path = os.path.join(
-            self.config['model_storage'],
-            f"randomx_ml_model_{self.MODEL_VERSION}.joblib"
+            self.config.get('model_storage', './models'),
+            f"nonce_model_{MODEL_VERSION}.joblib"
         )
-        self.load_or_train_model()
-        self.training_data = self.get_training_data() 
-        
-    def load_or_train_model(self):
-        """Carga el modelo o entrena uno nuevo si es necesario"""
-        if os.path.exists(self.model_path):
-            try:
-                model_data = joblib.load(self.model_path)
-                self.model = model_data['model']
-                self.scaler = model_data['scaler']
-                self.last_trained = model_data['timestamp']
-                print(f"Loaded ML model from {self.model_path}")
-                return
-            except Exception as e:
-                print(f"Model loading failed: {str(e)}")
-        
-        print("Training new ML model...")
-        self.train_model()
+        self.data_refreshed = False
+        self._load_or_train_model()
+        logger.info("[MLBasedGenerator] Ready for enterprise mining.")
     
-    def train_model(self):
-        """Entrena un nuevo modelo con datos históricos"""
-        training_data = self.get_training_data()
-        if len(training_data) < self.MIN_TRAINING_SAMPLES:
-            print(f"Warning: Insufficient training data ({len(training_data)} samples)")
-            self.initialize_fallback_model()
+    def _get_data_path(self, key: str) -> str:
+        """Obtener ruta de datos profesional"""
+        return os.path.join(DATA_DIR, f"ml_{key}.csv")
+
+    def _load_or_train_model(self):
+        try:
+            if os.path.exists(self.model_path):
+                with self.lock:
+                    model_data = joblib.load(self.model_path)
+                    self.model = model_data['model']
+                    self.scaler = model_data['scaler']
+                    self.last_trained = model_data['timestamp']
+                    self.feature_importances = model_data.get('feature_importances', {})
+                    logger.info(f"[MLBasedGenerator] Model v{MODEL_VERSION} loaded (accuracy: {model_data.get('accuracy', 0):.2f})")
+                return
+        except Exception as e:
+            logger.error(f"[MLBasedGenerator] Model load failed: {e}")
+        threading.Thread(target=self._train_model, daemon=True).start()
+        self._initialize_fallback_model()
+
+    def _refresh_training_data(self) -> pd.DataFrame:
+        """Carga profesional de datos de entrenamiento"""
+        with self.lock:
+            if self.data_refreshed:
+                return self.training_data_df
+            
+            path = self._get_data_path('training_data')
+            if not os.path.exists(path):
+                logger.warning(f"[MLBasedGenerator] Training data not found at {path}")
+                return pd.DataFrame()
+            
+            try:
+                df = pd.read_csv(path)
+                required_cols = ['nonce', 'entropy', 'uniqueness', 
+                                'zero_density', 'pattern_score', 'is_valid']
+                
+                # Validar y completar columnas faltantes
+                for col in required_cols:
+                    if col not in df.columns:
+                        if col == 'is_valid':
+                            df[col] = False  # Valor por defecto para columna de validación
+                        else:
+                            df[col] = np.nan  # NaN para características numéricas
+                
+                # Filtrar filas con valores faltantes
+                df = df.dropna(subset=required_cols)
+                
+                # Feature engineering
+                df['bit_variance'] = df['nonce'].apply(
+                    lambda x: np.var([int(b) for b in bin(int(x))[2:].zfill(64)])
+                )
+                df['byte_entropy'] = df['nonce'].apply(
+                    lambda x: self._byte_level_entropy(int(x)))
+                
+                self.training_data_df = df
+                self.data_refreshed = True
+                logger.info(f"[MLBasedGenerator] Training samples loaded: {len(df)}")
+                return df
+            except Exception as e:
+                logger.error(f"[MLBasedGenerator] Error loading training data: {e}")
+                return pd.DataFrame()
+
+    def _byte_level_entropy(self, nonce: int) -> float:
+        bytes_repr = nonce.to_bytes(8, 'little')
+        counts = np.bincount(np.frombuffer(bytes_repr, dtype=np.uint8), minlength=256)
+        probs = counts / counts.sum()
+        return -np.sum(probs * np.log2(probs + 1e-12))
+
+    def _train_model(self):
+        start_time = time.time()
+        df = self._refresh_training_data()
+        if len(df) < MIN_TRAINING_SAMPLES:
+            logger.warning("[MLBasedGenerator] Insufficient data for training.")
             return
-        
-        # Preprocesamiento de datos
-        features = training_data[['entropy', 'uniqueness', 'zero_density', 'pattern_score']]
-        target = training_data['is_valid'].astype(int)
-        
-        # Normalización
-        self.scaler = StandardScaler()
+        features = df[[
+            'entropy', 'uniqueness', 'zero_density', 
+            'pattern_score', 'bit_variance', 'byte_entropy'
+        ]]
+        target = df['is_valid'].astype(int)
+        # Remove outliers
+        outlier_detector = IsolationForest(contamination=0.05, random_state=42)
+        mask = outlier_detector.fit_predict(features) == 1
+        features = features[mask]
+        target = target[mask]
+        # Scaling
+        self.scaler = RobustScaler()
         X_scaled = self.scaler.fit_transform(features)
-        
-        # Entrenamiento con XGBoost (más preciso)
         x_train, x_test, y_train, y_test = train_test_split(
-            X_scaled, target, test_size=0.2, random_state=42
+            X_scaled, target, test_size=0.2, random_state=42, stratify=target
         )
-        
-        # Entrenar modelo con características avanzadas
-        start_time = time.time()
-        model = xgb.XGBClassifier(
-            n_estimators=300,
+        # XGBoost
+        xgb_model = xgb.XGBClassifier(
+            n_estimators=400,
             max_depth=7,
-            learning_rate=0.05,
-            subsample=0.8,
-            colsample_bytree=0.8,
-            use_label_encoder=False,
-            eval_metric='logloss',
+            learning_rate=0.08,
+            subsample=0.9,
+            colsample_bytree=0.85,
             tree_method='hist',
-            device='cpu'
+            predictor='auto',
+            eval_metric='logloss',
+            objective='binary:logistic',
+            verbosity=1,
+            use_label_encoder=False
         )
-        model.fit(x_train, y_train)
-        train_time = time.time() - start_time
-        
-        # Evaluación
-        y_pred = model.predict(x_test)
-        accuracy = accuracy_score(y_test, y_pred)
-        print(f"XGBoost training complete | Accuracy: {accuracy:.4f} | Time: {train_time:.2f}s")
-        
-        # Convertir a LightGBM para inferencia más rápida
-        start_time = time.time()
+        xgb_model.fit(x_train, y_train)
+        acc_xgb = accuracy_score(y_test, xgb_model.predict(x_test))
+        f1_xgb = f1_score(y_test, xgb_model.predict(x_test))
+        logger.info(f"[MLBasedGenerator] XGBoost Accuracy={acc_xgb:.4f}, F1={f1_xgb:.4f}")
+
+        # LightGBM
         lgb_model = lgb.LGBMClassifier(
-            n_estimators=150,
-            max_depth=5,
+            n_estimators=250,
+            max_depth=6,
             learning_rate=0.1,
-            num_leaves=32
+            num_leaves=48,
+            device='cpu',
+            metric='binary_logloss',
+            boosting_type='gbdt'
         )
         lgb_model.fit(x_train, y_train)
-        conversion_time = time.time() - start_time
-        
-        # Evaluar LightGBM
-        y_pred_lgb = lgb_model.predict(x_test)
-        accuracy_lgb = accuracy_score(y_test, y_pred_lgb)
-        print(f"LightGBM conversion | Accuracy: {accuracy_lgb:.4f} | Time: {conversion_time:.2f}s")
-        
-        # Guardar modelo
-        self.model = lgb_model
-        self.last_trained = time.time()
+        acc_lgb = accuracy_score(y_test, lgb_model.predict(x_test))
+        f1_lgb = f1_score(y_test, lgb_model.predict(x_test))
+        logger.info(f"[MLBasedGenerator] LightGBM Accuracy={acc_lgb:.4f}, F1={f1_lgb:.4f}")
+
+        # Ensemble
+        class EnsembleModel:
+            def predict_proba(self, X):
+                p1 = xgb_model.predict_proba(X)[:, 1]
+                p2 = lgb_model.predict_proba(X)[:, 1]
+                avg = (p1 + p2) / 2
+                return np.vstack([1 - avg, avg]).T
+            def predict(self, X):
+                return ((self.predict_proba(X)[:, 1] > 0.5).astype(int))
+        self.model = EnsembleModel()
+        self.feature_importances = {
+            'xgb': xgb_model.feature_importances_,
+            'lgb': lgb_model.feature_importances_
+        }
         model_data = {
             'model': self.model,
             'scaler': self.scaler,
-            'timestamp': self.last_trained,
-            'accuracy': accuracy_lgb,
-            'version': self.MODEL_VERSION
+            'timestamp': time.time(),
+            'accuracy': (acc_xgb + acc_lgb) / 2,
+            'f1_score': (f1_xgb + f1_lgb) / 2,
+            'feature_importances': self.feature_importances,
+            'version': MODEL_VERSION,
+            'training_size': len(df)
         }
         os.makedirs(os.path.dirname(self.model_path), exist_ok=True)
         joblib.dump(model_data, self.model_path)
-    
-    def get_training_data(self) -> pd.DataFrame:
-        """Carga y prepara datos de entrenamiento"""
-        training_path = self.config['data_paths']['training_data']
-        accepted_path = self.config['data_paths']['accepted_nonces']
-        
-        # Combinar datos de entrenamiento y nonces aceptados
-        dfs = []
-        if os.path.exists(training_path):
-            train_df = pd.read_csv(training_path)
-            dfs.append(train_df)
-        
-        if os.path.exists(accepted_path):
-            accepted_df = pd.read_csv(accepted_path)
-            # Filtrar solo nonces válidos
-            accepted_df = accepted_df[accepted_df['is_valid'] == True]
-            dfs.append(accepted_df)
-        
-        if not dfs:
-            return pd.DataFrame()
-        
-        full_df = pd.concat(dfs, ignore_index=True)
-        
-        # Limpieza de datos
-        full_df = full_df.dropna(subset=[
-            'entropy', 'uniqueness', 'zero_density', 'pattern_score', 'is_valid'
-        ])
-        
-        # Asegurar tipos correctos
-        full_df = full_df.astype({
-            'entropy': 'float32',
-            'uniqueness': 'float32',
-            'zero_density': 'float32',
-            'pattern_score': 'float32',
-            'is_valid': 'bool'
-        })
-        
-        return full_df
-    
-    def initialize_fallback_model(self):
-        """Modelo de emergencia cuando no hay datos suficientes"""
-        print("Initializing fallback model...")
-        self.scaler = StandardScaler()
-        dummy_features = np.array([[0.85, 0.90, 0.12, 0.95]])
+        self.last_trained = time.time()
+        logger.info(f"[MLBasedGenerator] Model trained and saved in {time.time()-start_time:.2f}s")
+
+    def _initialize_fallback_model(self):
+        self.scaler = RobustScaler()
+        dummy_features = np.array([[0.85, 0.90, 0.12, 0.95, 0.25, 1.8]])
         self.scaler.fit(dummy_features)
-        
-        # Modelo simple basado en reglas
-        class FallbackModel:
+        class ProductionFallback:
             def predict_proba(self, X):
-                # Reglas heurísticas básicas
+                # Simple heuristics
                 probs = []
                 for x in X:
-                    entropy, uniqueness, zero_density, pattern_score = x
-                    prob = 0.7
-                    if entropy > 0.8: prob += 0.1
-                    if uniqueness > 0.85: prob += 0.1
-                    if zero_density < 0.15: prob += 0.05
-                    if pattern_score > 0.9: prob += 0.05
+                    prob = 0.65
+                    if x[0] > 0.8: prob += 0.15
+                    if x[1] > 0.85: prob += 0.10
+                    if x[2] < 0.15: prob += 0.05
+                    if x[3] > 0.9: prob += 0.05
                     probs.append([1 - min(1, prob), min(1, prob)])
                 return np.array(probs)
-        
-        self.model = FallbackModel()
+            def predict(self, X):
+                return (self.predict_proba(X)[:, 1] > 0.7).astype(int)
+        self.model = ProductionFallback()
         self.last_trained = time.time()
-    
-    def generate_nonce(self, block_height: int) -> dict:
-        """Genera un nonce con alta probabilidad de éxito según modelo ML"""
-        # Verificar si necesita reentrenamiento
-        if time.time() - self.last_trained > self.RETRAIN_INTERVAL:
-            print("Retraining model...")
-            self.train_model()
-        
-        # Generar candidatos hasta encontrar uno con alta probabilidad
-        for _ in range(100):  # Límite de intentos
-            # Generar nonce aleatorio
-            nonce = random.randint(0, 2**64 - 1)
-            
-            # Calcular métricas optimizadas para RandomX
-            metrics = self.calculate_randomx_metrics(nonce)
-            
-            # Preparar características para el modelo
-            features = np.array([[
-                metrics['entropy'],
-                metrics['uniqueness'],
-                metrics['zero_density'],
-                metrics['pattern_score']
-            ]])
-            
-            # Normalizar características
-            if self.scaler:
-                features = self.scaler.transform(features)
-            
-            # Predecir probabilidad
-            prob_valid = self.model.predict_proba(features)[0][1]
-            
-            # Umbral dinámico basado en dificultad
-            threshold = self.calculate_dynamic_threshold(block_height)
-            
-            if prob_valid >= threshold:
-                return {
-                    "nonce": nonce,
-                    "block_height": block_height,
-                    "generator": self.generator_name,
-                    "is_valid": True,  # El proxy tiene la última palabra
-                    **metrics
-                }
-        
-        # Si no se encuentra candidato, devolver el mejor intento
-        return {
-            "nonce": nonce,
-            "block_height": block_height,
-            "generator": self.generator_name,
-            "is_valid": True,
-            **metrics
-        }
-    
-    def calculate_dynamic_threshold(self, block_height: int) -> float:
-        """Calcula umbral dinámico basado en condiciones de red"""
-        # Umbral base
-        threshold = 0.75
-        
-        # Aumentar umbral si hay muchos rechazos recientes
-        if hasattr(self, 'recent_acceptance_rate'):
-            if self.recent_acceptance_rate < 0.3:
-                threshold = min(0.85, threshold + 0.1)
-        
-        # Reducir umbral durante dificultad alta
-        if block_height > 2800000:  # Post hardfork
-            threshold = max(0.65, threshold - 0.05)
-        
-        return threshold
-    
-    def calculate_randomx_metrics(self, nonce: int) -> dict:
-        """
-        Métricas optimizadas para RandomX:
-        - Entropía de Shannon mejorada
-        - Uniqueness basado en distancia de Hamming ponderada
-        - Zero density con penalización por secuencias largas
-        - Pattern score para patrones específicos de RandomX
-        """
-        bin_repr = bin(nonce)[2:].zfill(64)
-        
-        # Entropía de Shannon mejorada
-        p0 = bin_repr.count('0') / 64
-        p1 = 1 - p0
-        entropy = - (p0 * np.log2(p0 + 1e-10) + p1 * np.log2(p1 + 1e-10))
-        
-        # Zero density con penalización por runs largos
-        zero_density, max_zero_run = self.calculate_penalized_zero_density(bin_repr)
-        
-        # Pattern score para RandomX
-        pattern_score = self.randomx_pattern_score(bin_repr, max_zero_run)
-        
-        # Uniqueness basada en datos históricos
-        uniqueness = self.historical_uniqueness(nonce)
-        
-        return {
-            "entropy": max(0.7, min(0.99, entropy)),
-            "uniqueness": uniqueness,
-            "zero_density": zero_density,
-            "pattern_score": pattern_score
-        }
-    
-    def calculate_penalized_zero_density(self, binary_str: str) -> tuple:
-        """Calcula densidad de ceros con penalización por secuencias largas"""
-        zero_count = binary_str.count('0')
+        logger.warning("[MLBasedGenerator] Using CPU fallback model.")
+
+    def _generate_candidates_batch(self, n: int) -> Tuple[np.ndarray, np.ndarray]:
+        nonces = np.random.randint(0, 2**63, size=n, dtype=np.uint64)
+        metrics = np.zeros((n, 6), dtype=np.float32)
+        seen = set()
+        for i, nonce in enumerate(nonces):
+            if nonce in seen:
+                nonce = random.randint(0, 2**64 - 1)
+            seen.add(nonce)
+            bin_repr = bin(nonce)[2:].zfill(64)
+            p0 = bin_repr.count('0') / 64
+            p1 = 1 - p0
+            entropy = - (p0 * np.log2(p0 + 1e-10) + p1 * np.log2(p1 + 1e-10))
+            zero_density, max_zero_run = self._calc_zero_metrics(bin_repr)
+            pattern_score = self._calc_pattern_score(bin_repr, max_zero_run)
+            uniqueness = self._calc_uniqueness(nonce)
+            bit_variance = np.var([int(b) for b in bin_repr])
+            byte_entropy = self._byte_level_entropy(nonce)
+            metrics[i] = [
+                max(0.7, min(0.99, entropy)),
+                uniqueness,
+                zero_density,
+                pattern_score,
+                bit_variance,
+                byte_entropy
+            ]
+        return nonces, metrics
+
+    def _calc_zero_metrics(self, bin_str: str) -> Tuple[float, int]:
+        zero_count = bin_str.count('0')
         zero_density = zero_count / 64
-        
-        # Detectar secuencia más larga de ceros
-        max_run = 0
-        current_run = 0
-        for char in binary_str:
-            if char == '0':
-                current_run += 1
-                max_run = max(max_run, current_run)
-            else:
-                current_run = 0
-        
-        # Penalizar secuencias largas (>8 ceros seguidos)
-        if max_run > 8:
-            penalty = min(0.2, (max_run - 8) * 0.05)
-            zero_density -= penalty
-        
+        max_run = max(len(run) for run in bin_str.split('1')) if '1' in bin_str else 64
         return max(0.01, zero_density), max_run
-    
-    def randomx_pattern_score(self, binary_str: str, max_zero_run: int) -> float:
-        """Calcula puntaje de patrón para características de RandomX"""
-        score = 1.0
-        
-        # Penalizar secuencias de ceros largas
-        if max_zero_run > 8:
-            score -= min(0.3, (max_zero_run - 8) * 0.05)
-        
-        # Penalizar patrones periódicos
-        periodic_penalty = 0
+
+    def _calc_pattern_score(self, bin_str: str, max_zero_run: int) -> float:
+        arr = np.array([int(b) for b in bin_str])
+        diff = np.diff(arr, prepend=arr[0]-1, append=arr[-1]-1)
+        run_starts = np.where(diff != 0)[0]
+        run_lengths = np.diff(run_starts)
+        max_run = np.max(run_lengths) if run_lengths.size > 0 else 0
+        periodic_score = 0
         for period in [2, 4, 8, 16]:
-            pattern = binary_str[:period]
-            repeats = 64 // period
-            if binary_str == pattern * repeats:
-                periodic_penalty += 0.2
-        
-        score -= periodic_penalty
-        
-        # Bonificación por distribución uniforme
-        transitions = sum(1 for i in range(1, 64) if binary_str[i] != binary_str[i-1])
-        transition_ratio = transitions / 63
-        if transition_ratio > 0.5:
-            score += min(0.1, (transition_ratio - 0.5) * 0.5)
-        
-        return max(0.6, min(1.0, score))
-    
-    def historical_uniqueness(self, nonce: int) -> float:
-        """Calcula unicidad basada en distancia con nonces históricos"""
-        if not self.training_data or len(self.training_data) < 100:
-            return random.uniform(0.85, 0.95)
-        
-        # Muestra aleatoria de nonces históricos
-        sample_size = min(100, len(self.training_data))
-        sample = random.sample(self.training_data, sample_size)
-        
-        # Calcular distancia promedio ponderada
-        total_distance = 0
+            if bin_str == (bin_str[:period] * (64//period)):
+                periodic_score += 0.3
+        transitions = np.sum(arr[:-1] != arr[1:])
+        transition_score = min(0.2, transitions / 63)
+        return max(0.5, 1.0 - min(0.3, max_run/32) - periodic_score + transition_score)
+
+    def _calc_uniqueness(self, nonce: int) -> float:
+        if self.training_data_df is None or len(self.training_data_df) < 100:
+            return np.random.uniform(0.85, 0.95)
+        sample_size = min(500, len(self.training_data_df))
+        sample = self.training_data_df.sample(sample_size)['nonce'].values
         bin_repr = bin(nonce)[2:].zfill(64)
-        
-        for item in sample:
-            try:
-                other_nonce = int(item['nonce'])
-                other_bin = bin(other_nonce)[2:].zfill(64)
-                distance = sum(1 for a, b in zip(bin_repr, other_bin) if a != b)
-                total_distance += distance
-            except:
-                continue
-        
-        avg_distance = total_distance / sample_size
-        uniqueness = avg_distance / 64
-        return max(0.8, min(0.99, uniqueness))
+        total_distance = 0
+        for other in sample:
+            other_bin = bin(int(other))[2:].zfill(64)
+            total_distance += sum(a != b for a, b in zip(bin_repr, other_bin))
+        return max(0.8, min(0.99, total_distance / (64 * sample_size)))
+
+    def _calculate_dynamic_threshold(self) -> float:
+        target_rate = 0.4
+        adjustment = 0.05 * (target_rate - self.acceptance_rate)
+        return max(0.5, min(0.9, 0.7 + adjustment))
+
+    def run_generation(self, block_height: int, block_data: dict, batch_size: int = 500) -> List[dict]:
+        start_time = time.time()
+        if time.time() - self.last_trained > RETRAIN_INTERVAL:
+            threading.Thread(target=self._train_model, daemon=True).start()
+        nonces, features = self._generate_candidates_batch(CANDIDATE_BATCH_SIZE)
+        if self.scaler:
+            features_scaled = self.scaler.transform(features)
+        else:
+            features_scaled = features
+        proba = self.model.predict_proba(features_scaled)[:, 1]
+        threshold = self._calculate_dynamic_threshold()
+        top_indices = np.argsort(proba)[-batch_size:]
+        top_nonces = nonces[top_indices]
+        valid_nonces = []
+        with ThreadPoolExecutor(max_workers=VALIDATION_WORKERS) as executor:
+            futures = [
+                executor.submit(self.validator.validate, nonce=nonce, block_data=block_data)
+                for nonce in top_nonces
+            ]
+            for i, future in enumerate(futures):
+                if future.result():
+                    valid_nonces.append({
+                        "nonce": int(top_nonces[i]),
+                        "block_height": block_height,
+                        "generator": self.generator_name,
+                        "is_valid": True,
+                        "entropy": float(features[top_indices[i], 0]),
+                        "uniqueness": float(features[top_indices[i], 1]),
+                        "zero_density": float(features[top_indices[i], 2]),
+                        "pattern_score": float(features[top_indices[i], 3])
+                    })
+        self.acceptance_rate = len(valid_nonces) / batch_size
+        logger.info(f"[MLBasedGenerator] Acceptance rate: {self.acceptance_rate:.2%}")
+        if valid_nonces:
+            self._save_nonces_batch(valid_nonces)
+        logger.info(f"[MLBasedGenerator] Generated {len(valid_nonces)} valid nonces in {time.time()-start_time:.2f}s")
+        return valid_nonces
+
+    def _save_nonces_batch(self, nonces: List[dict]):
+        if not nonces:
+            return
+        output_path = self._get_data_path('generated_nonces')
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        fieldnames = self.FIELDNAMES
+        rows = [{k: v for k, v in item.items() if k in fieldnames} for item in nonces]
+        with self.lock:
+            file_exists = os.path.exists(output_path)
+            import csv
+            with open(output_path, 'a', newline='', encoding='utf-8') as f:
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                if not file_exists:
+                    writer.writeheader()
+                writer.writerows(rows)
