@@ -1,219 +1,324 @@
+from __future__ import annotations
+"""
+sequence_based_generator.py (patched)
+------------------------------------
+Generador basado en secuencias pseudo‑aleatorias (LCG / XorShift / PCG) con
+bandit de pesos adaptativos y soporte de validación RandomX (hash real).
+
+Mejoras en este patch:
+- Añadido recent_accept_ratio() para compatibilidad con orquestador.
+- Uso de record_accept(True/False) en cada validación.
+- Protección contra divisiones por cero en normalización de pesos.
+- Factor interno calculado correctamente dentro del método (sin usar self fuera).
+- Devuelve registros con campo "hash" si validator retorna bytes.
+"""
+
 import os
-import csv
 import time
-import random
+import math
 import logging
 import threading
-from typing import Optional, Dict, List, Set
+from pathlib import Path
+from typing import Optional, Dict, Any, List, Tuple
 
-import numpy as np
+try:
+    import numpy as np
+    _HAS_NUMPY = True
+except Exception:  # pragma: no cover
+    _HAS_NUMPY = False
+    np = None  # type: ignore
+
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from iazar.generator.nonce_generator import BaseNonceGenerator
-from iazar.generator.config_loader import config_loader
-from iazar.generator.randomx_validator import RandomXValidator
+from iazar.proxy.randomx_validator import RandomXValidator
 
-# Directorio base para datos
-DATA_DIR = './data'
+LOGGER_NAME = "generator.sequence"
+logger = logging.getLogger(LOGGER_NAME)
+if not logger.hasHandlers():
+    logging.basicConfig(level=logging.INFO,
+                        format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
+
+UINT32_MASK = 0xFFFFFFFF
+CSV_FIELDS = ["nonce","entropy","uniqueness","zero_density","pattern_score","is_valid","block_height"]
 
 class SequenceBasedGenerator(BaseNonceGenerator):
-    """
-    Sequence-Based Nonce Generator for Monero/RandomX Mining.
-    - Learns step/gap patterns from historical data (incremental, decremental, variable)
-    - Safe, concurrent, batch and industrial grade for enterprise mining.
-    """
+    NAME = "sequence"
 
-    DATA_REFRESH_INTERVAL = 300  # seconds
-    RECENT_NONCES_SIZE = 500
-    MAX_VALIDATION_WORKERS = max(2, min(16, os.cpu_count() or 4))
-    SEQUENCE_WINDOW = 1024
+    DEFAULTS = {
+        "initial_weights": {"lcg": 0.4, "xorshift": 0.3, "pcg": 0.3},
+        "min_entropy_batch": 4.8,
+        "degeneration_threshold": 4.2,
+        "weight_adjust_alpha": 0.06,
+        "internal_factor": 3,
+        "max_internal_factor": 6,
+        "recent_uniqueness_window": 1500,
+        "use_validator": True,
+        "validator_workers": 8
+    }
 
-    def __init__(self, config: Optional[Dict] = None):
-        super().__init__("sequence_based", config)
-        self.lock = threading.RLock()
-        self.last_refresh = 0
-        self.validator = RandomXValidator(self.config)
-        self.seq_patterns: List[int] = []
-        self._initialize_data()
-        self._log("Initialized.")
-    
-    def _get_data_path(self, key: str) -> str:
-        """Obtener ruta de datos profesional"""
-        return os.path.join(DATA_DIR, f"{self.generator_name}_{key}.csv")
-    
-    def _load_training_data(self) -> list:
-        """Carga profesional de datos de entrenamiento"""
-        path = self._get_data_path('training')
-        if not os.path.exists(path):
-            self._log(f"No training data found at {path}", level="warning")
-            return []
-        
-        try:
-            data = []
-            with open(path, 'r', encoding='utf-8') as f:
-                reader = csv.DictReader(f)
-                for row in reader:
-                    data.append(row)
-            self._log(f"Loaded {len(data)} training samples")
-            return data
-        except Exception as e:
-            self._log(f"Error loading training data: {e}", level="error")
-            return []
+    def __init__(self,
+                 config: Optional[Dict[str, Any]] = None,
+                 base_dir: Optional[Path] = None,
+                 validator: Optional[RandomXValidator] = None):
+        merged = {**self.DEFAULTS, **(config or {}).get("sequence_generator", {})}
+        super().__init__("sequence", {"sequence_generator": merged})
+        self.cfg = merged
+        self.base_dir = Path(base_dir or os.environ.get("IAZAR_BASE", "C:/zarturxia/src/iazar"))
+        self.data_dir = self.base_dir / "data"
+        self.use_validator = bool(self.cfg.get("use_validator", True))
+        self.validator = validator or (RandomXValidator((config or {}).get("randomx", {}))
+                                       if self.use_validator else None)
+        self.use_validator = bool(self.use_validator and self.validator)
 
-    def _initialize_data(self):
-        with self.lock:
-            self.training_data = self._load_training_data()
-            self.seq_patterns = self._extract_sequence_patterns()
-            self.last_refresh = time.time()
-            self._log(f"Patterns: {self.seq_patterns}")
-
-    def _should_refresh(self) -> bool:
-        return (time.time() - self.last_refresh) > self.DATA_REFRESH_INTERVAL
-
-    def _extract_sequence_patterns(self) -> List[int]:
-        """Detects frequent step/gap sizes from successful historical nonces."""
-        nonces = [int(row['nonce']) for row in self.training_data
-                  if row.get('is_valid', 'False').lower() == 'true' and 'nonce' in row]
-        if len(nonces) < 20:
-            return [1, 4, 8, 32, 128, 1024]
-        nonces = sorted(nonces)
-        gaps = np.diff(nonces)
-        if len(gaps) == 0:
-            return [1, 4, 8, 32]
-        hist, bin_edges = np.histogram(gaps, bins=np.logspace(0, 16, num=17, base=2))
-        top_indices = hist.argsort()[-8:][::-1]
-        steps = sorted(set(int(bin_edges[i]) for i in top_indices if hist[i] > 0))
-        return steps or [1, 4, 8, 16, 32, 128]
-
-    def _generate_sequence_batch(self, block_height: int, batch_size: int) -> List[int]:
-        """Batch of sequence-based nonces using learned patterns."""
-        nonces = set()
-        max_start = 2 ** 64 - self.SEQUENCE_WINDOW
-        rng = random.SystemRandom()
-        for pattern in self.seq_patterns:
-            if len(nonces) >= batch_size:
-                break
-            direction = rng.choice([1, -1])
-            start = rng.randint(0, max_start)
-            for i in range(self.SEQUENCE_WINDOW // pattern):
-                if len(nonces) >= batch_size:
-                    break
-                candidate = start + direction * pattern * i
-                if 0 <= candidate < 2**64:
-                    nonces.add(candidate)
-        # Fill with random nonces if needed
-        while len(nonces) < batch_size:
-            nonces.add(rng.getrandbits(64))
-        return list(nonces)[:batch_size]
-
-    def _get_recent_nonces(self) -> Set[int]:
-        """Returns most recent valid nonces."""
-        recent = set()
-        for row in reversed(self.training_data):
-            if len(recent) >= self.RECENT_NONCES_SIZE:
-                break
-            try:
-                if row.get('is_valid', 'False').lower() == 'true':
-                    recent.add(int(row['nonce']))
-            except (ValueError, KeyError):
-                continue
-        return recent
-
-    def _calculate_metrics(self, nonce: int, recent_set: Set[int]) -> dict:
-        bin_repr = bin(nonce)[2:].zfill(64)
-        arr = np.array([int(b) for b in bin_repr], dtype=np.uint8)
-        p0 = np.count_nonzero(arr == 0) / 64.0
-        p1 = 1 - p0
-        entropy = - (p0 * np.log2(p0 + 1e-12) + p1 * np.log2(p1 + 1e-12))
-        zero_runs = np.split(arr, np.where(np.diff(arr) != 0)[0] + 1)
-        max_zero_run = max((len(run) for run in zero_runs if run[0] == 0), default=0)
-        run_lengths = np.diff(np.where(np.concatenate(([0], arr[:-1] != arr[1:], [0])))[0])
-        max_run = np.max(run_lengths) if run_lengths.size > 0 else 0
-        transitions = np.sum(arr[:-1] != arr[1:])
-        uniqueness = self._calculate_uniqueness(nonce, recent_set)
-        pattern_score = max(0.5, 1.0 - min(0.3, max_run / 32) + min(0.2, transitions / 63))
-        return {
-            "entropy": round(entropy, 5),
-            "uniqueness": round(uniqueness, 5),
-            "zero_density": round(p0, 5),
-            "pattern_score": round(pattern_score, 5)
+        wcfg = self.cfg.get("initial_weights", {})
+        self.weights = {
+            "lcg": float(wcfg.get("lcg", 0.4)),
+            "xorshift": float(wcfg.get("xorshift", 0.3)),
+            "pcg": float(wcfg.get("pcg", 0.3))
         }
+        # Normaliza
+        self._normalize_weights()
+        self.alpha = float(self.cfg["weight_adjust_alpha"])
+        self.recent_valid: List[int] = []
+        self.recent_window = int(self.cfg["recent_uniqueness_window"])
+        self._val_pool: Optional[ThreadPoolExecutor] = None
+        self._val_pool_lock = threading.Lock()
 
-    def _calculate_uniqueness(self, nonce: int, recent_set: Set[int]) -> float:
-        """Promedio de Hamming contra nonces recientes (vectorizado)."""
-        if not recent_set:
+        logger.info("[sequence] Initialized (validator=%s) weights=%s",
+                    "ON" if self.use_validator else "OFF", self.weights)
+
+    # --------------- Internal sequences ---------------
+    def _seq_lcg(self, seed: int, count: int) -> List[int]:
+        a = 1664525
+        c = 1013904223
+        m = 2**32
+        x = seed & UINT32_MASK
+        out = []
+        for _ in range(count):
+            x = (a * x + c) % m
+            out.append(x)
+        return out
+
+    def _seq_xorshift(self, seed: int, count: int) -> List[int]:
+        x = (seed | 1) & UINT32_MASK
+        out = []
+        for _ in range(count):
+            x ^= (x << 13) & UINT32_MASK
+            x ^= (x >> 17) & UINT32_MASK
+            x ^= (x << 5) & UINT32_MASK
+            out.append(x & UINT32_MASK)
+        return out
+
+    def _seq_pcg(self, seed: int, count: int) -> List[int]:
+        state = seed & UINT32_MASK
+        inc = 0x5851F42D
+        out = []
+        for _ in range(count):
+            old = state
+            state = (old * 747796405 + inc) & UINT32_MASK
+            xorshifted = (((old >> 18) ^ old) >> 27) & UINT32_MASK
+            rot = old >> 27
+            val = ((xorshifted >> rot) | (xorshifted << ((-rot) & 31))) & UINT32_MASK
+            out.append(val)
+        return out
+
+    def _normalize_weights(self):
+        s = sum(self.weights.values())
+        if s <= 0:
+            self.weights = {k: 1.0 / len(self.weights) for k in self.weights}
+        else:
+            for k in self.weights:
+                self.weights[k] = self.weights[k] / s
+
+    # --------------- Metrics ---------------
+    @staticmethod
+    def _entropy(n: int) -> float:
+        b = f"{n:032b}"
+        ones = b.count("1")
+        p = ones / 32.0
+        if p in (0.0, 1.0):
+            return 0.0
+        return -(p*math.log2(p) + (1-p)*math.log2(1-p))
+
+    @staticmethod
+    def _zero_density(n: int) -> float:
+        b = f"{n:032b}"
+        return b.count("0") / 32.0
+
+    @staticmethod
+    def _pattern_score(n: int) -> float:
+        b = f"{n:032b}"
+        max_run = 1
+        cur = 1
+        for i in range(1, 32):
+            if b[i] == b[i-1]:
+                cur += 1
+                max_run = max(max_run, cur)
+            else:
+                cur = 1
+        penalty = min(0.5, max_run / 32.0)
+        return max(0.4, 1.0 - penalty)
+
+    def _uniqueness(self, n: int) -> float:
+        if not self.recent_valid:
             return 1.0
-        nonce_arr = np.full(len(recent_set), nonce, dtype=np.uint64)
-        recent_arr = np.array(list(recent_set), dtype=np.uint64)
-        xor_arr = np.bitwise_xor(nonce_arr, recent_arr)
-        popcnts = np.vectorize(lambda x: bin(x).count('1'))(xor_arr)
-        avg_distance = np.mean(popcnts)
-        return max(0.8, min(0.99, avg_distance / 64))
+        sample = self.recent_valid[-min(len(self.recent_valid), 256):]
+        diffs = 0
+        for r in sample:
+            diffs += bin((r ^ n) & UINT32_MASK).count("1")
+        avg = diffs / (len(sample) * 32.0)
+        return min(0.99, max(0.7, avg))
 
-    def _validate_batch(self, nonces: List[int], block_data: dict) -> List[bool]:
-        """Valida los nonces en paralelo usando RandomX."""
-        if not nonces:
-            return []
-        results = [False] * len(nonces)
-        with ThreadPoolExecutor(max_workers=self.MAX_VALIDATION_WORKERS) as executor:
-            future_map = {executor.submit(self.validator.validate, n, block_data): i for i, n in enumerate(nonces)}
-            for future in as_completed(future_map):
-                idx = future_map[future]
-                try:
-                    results[idx] = bool(future.result())
-                except Exception as e:
-                    self._log(f"Validation failed for idx {idx}: {e}", level="error")
-        return results
-
-    def run_generation(self, block_height: int, block_data: dict, batch_size: int = 500) -> List[dict]:
-        t0 = time.time()
-        if self._should_refresh():
-            self._initialize_data()
-        with self.lock:
-            recent_nonces = self._get_recent_nonces()
-            candidates = self._generate_sequence_batch(block_height, batch_size * 4)
-            validation = self._validate_batch(candidates, block_data)
-            valid_nonces = []
-            for nonce, is_valid in zip(candidates, validation):
-                if len(valid_nonces) >= batch_size:
-                    break
-                if is_valid:
-                    metrics = self._calculate_metrics(nonce, recent_nonces)
-                    valid_nonces.append({
-                        "nonce": nonce,
-                        "block_height": block_height,
-                        "generator": self.generator_name,
-                        "is_valid": True,
-                        **metrics
-                    })
-                    recent_nonces.add(nonce)
-            self._save_nonces_batch(valid_nonces)
-            elapsed = time.time() - t0
-            self._log(
-                f"Block {block_height}: {len(valid_nonces)}/{batch_size} valid, "
-                f"{len(candidates)} tried, {len(valid_nonces)/len(candidates):.2%} ok, "
-                f"{elapsed:.2f}s, {len(valid_nonces)/elapsed if elapsed else 0:.1f} nonces/sec"
-            )
-            return valid_nonces
-
-    def _save_nonces_batch(self, nonces: List[dict]):
-        if not nonces:
+    # --------------- Validation ---------------
+    def _ensure_pool(self):
+        if not self.use_validator:
             return
-        output_path = self._get_data_path('generated_nonces')
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
-        fieldnames = self.FIELDNAMES
-        file_exists = os.path.exists(output_path)
-        try:
-            with open(output_path, 'a', newline='', encoding='utf-8') as f:
-                writer = csv.DictWriter(f, fieldnames=fieldnames)
-                if not file_exists:
-                    writer.writeheader()
-                writer.writerows([{k: v for k, v in item.items() if k in fieldnames} for item in nonces])
-        except Exception as e:
-            self._log(f"Failed to save nonces: {e}", level="error")
+        with self._val_pool_lock:
+            if self._val_pool is None:
+                workers = min(int(self.cfg["validator_workers"]), os.cpu_count() or 4)
+                self._val_pool = ThreadPoolExecutor(max_workers=workers, thread_name_prefix="seq-val")
 
-    def _log(self, msg: str, level="info"):
-        logger = logging.getLogger("SequenceBasedGenerator")
-        if not logger.hasHandlers():
-            logging.basicConfig(level=logging.INFO)
-        getattr(logger, level, logger.info)(msg)
+    def _validate_batch(self, nonces: List[int], block_data: Dict[str, Any]) -> Tuple[List[bool], List[Optional[bytes]]]:
+        if not self.use_validator or not self.validator:
+            return ([False] * len(nonces)), [None] * len(nonces)
+        self._ensure_pool()
+        assert self._val_pool is not None
+        futures = {self._val_pool.submit(self.validator.validate, int(n), block_data, True): i
+                   for i, n in enumerate(nonces)}
+        results = [False] * len(nonces)
+        hashes: List[Optional[bytes]] = [None] * len(nonces)
+        for fut in as_completed(futures):
+            idx = futures[fut]
+            try:
+                res = fut.result()
+                if isinstance(res, tuple) and len(res) == 2:
+                    ok, h = res
+                    results[idx] = bool(ok)
+                    if ok and isinstance(h, (bytes, bytearray)):
+                        hashes[idx] = bytes(h)
+                else:
+                    results[idx] = bool(res)
+            except Exception as e:  # pragma: no cover
+                logger.debug("[sequence] validate error idx=%d err=%s", idx, e)
+        return results, hashes
+
+    # --------------- Core Generation ---------------
+    def run_generation(self, block_height: int, block_data: Dict[str, Any], batch_size: int = 500) -> List[Dict[str, Any]]:
+        t0 = time.perf_counter()
+
+        base_internal = int(self.cfg.get("internal_factor", 3))
+        max_internal = int(self.cfg.get("max_internal_factor", 6))
+        internal_factor = max(1, min(base_internal, max_internal))
+
+        # Distribuir candidatos entre secuencias según pesos
+        self._normalize_weights()
+        total_weight = sum(self.weights.values()) or 1.0
+        seq_counts = {}
+        remaining = batch_size * internal_factor
+        for name, w in self.weights.items():
+            c = int((w / total_weight) * batch_size * internal_factor)
+            seq_counts[name] = c
+            remaining -= c
+        # repartir restante
+        keys = list(self.weights.keys())
+        ki = 0
+        while remaining > 0:
+            k = keys[ki % len(keys)]
+            seq_counts[k] += 1
+            remaining -= 1
+            ki += 1
+
+        seed_base = int(time.time_ns() & UINT32_MASK)
+        seq_outputs: List[int] = []
+        seq_origin: List[str] = []
+
+        # Generar
+        for name, count in seq_counts.items():
+            if count <= 0:
+                continue
+            seed = (seed_base ^ hash(name)) & UINT32_MASK
+            if name == "lcg":
+                seq = self._seq_lcg(seed, count)
+            elif name == "xorshift":
+                seq = self._seq_xorshift(seed, count)
+            else:
+                seq = self._seq_pcg(seed, count)
+            seq_outputs.extend(seq)
+            seq_origin.extend([name] * len(seq))
+
+        # Métricas y filtrado ligero
+        entropies = [self._entropy(n) for n in seq_outputs]
+        zdens = [self._zero_density(n) for n in seq_outputs]
+        patterns = [self._pattern_score(n) for n in seq_outputs]
+        uniqs = [self._uniqueness(n) for n in seq_outputs]
+
+        # Degeneración: si media de entropía demasiado baja subir internal_factor (siguiente lote)
+        avg_ent = sum(entropies) / len(entropies) if entropies else 0.0
+        if avg_ent < float(self.cfg["degeneration_threshold"]):
+            self.cfg["internal_factor"] = min(max_internal, base_internal + 1)
+
+        # Selección top por entropía + pattern
+        scored_idx = list(range(len(seq_outputs)))
+        scored_idx.sort(key=lambda i: (entropies[i] + patterns[i]), reverse=True)
+        picked_idx = scored_idx[:batch_size]
+
+        chosen_nonces = [seq_outputs[i] for i in picked_idx]
+        chosen_origin = [seq_origin[i] for i in picked_idx]
+        chosen_entropy = [entropies[i] for i in picked_idx]
+        chosen_zd = [zdens[i] for i in picked_idx]
+        chosen_pattern = [patterns[i] for i in picked_idx]
+        chosen_uniq = [uniqs[i] for i in picked_idx]
+
+        val_flags, hashes = self._validate_batch(chosen_nonces, block_data)
+
+        records: List[Dict[str, Any]] = []
+        for i, n in enumerate(chosen_nonces):
+            ok = bool(val_flags[i])
+            rec = {
+                "nonce": int(n) & UINT32_MASK,
+                "entropy": round(chosen_entropy[i], 5),
+                "uniqueness": round(chosen_uniq[i], 5),
+                "zero_density": round(chosen_zd[i], 5),
+                "pattern_score": round(chosen_pattern[i], 5),
+                "is_valid": ok,
+                "block_height": block_height
+            }
+            if ok and hashes[i]:
+                rec["hash"] = hashes[i].hex()
+                self.recent_valid.append(rec["nonce"])
+            # Bandit update
+            self._update_weight(chosen_origin[i], ok)
+            self.record_accept(ok)
+            records.append(rec)
+
+        # Trim recent
+        if len(self.recent_valid) > self.recent_window * 1.3:
+            self.recent_valid = self.recent_valid[-self.recent_window:]
+
+        elapsed = time.perf_counter() - t0
+        logger.debug("[sequence] block=%s out=%d entropy_avg=%.3f latency=%.3fs",
+                     block_height, len(records), avg_ent, elapsed)
+        return records
+
+    # --------------- Bandit Weight Update ---------------
+    def _update_weight(self, name: str, accepted: bool):
+        # Pequeña actualización tipo gradient / EMA
+        delta = self.alpha if accepted else -self.alpha
+        self.weights[name] = max(0.01, self.weights[name] + delta)
+        self._normalize_weights()
+
+    # --------------- Compatibility Hook ---------------
+    def recent_accept_ratio(self) -> float:
+        # Asegura compatibilidad con orquestador
+        return super().recent_accept_ratio()
+
+    # --------------- Shutdown ---------------
+    def close(self):
+        if self._val_pool:
+            self._val_pool.shutdown(wait=False, cancel_futures=True)
+
+def create_generator(config: Optional[Dict[str, Any]] = None,
+                     base_dir: Optional[Path] = None,
+                     validator: Optional[RandomXValidator] = None) -> SequenceBasedGenerator:
+    return SequenceBasedGenerator(config=config, base_dir=base_dir, validator=validator)

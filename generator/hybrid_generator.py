@@ -1,10 +1,41 @@
-import random
-import json
+from __future__ import annotations
+"""
+hybrid_generator.py
+-------------------
+Generador híbrido (meta‑orquestador) que coordina múltiples sub‑generadores
+(range, ml, entropy, sequence, adaptive, random) con:
+
+- Multi-armed bandit adaptativo (pesos por tasa de éxito suavizada).
+- Circuit breaker por generador con recuperación diferida.
+- Rebalanceo periódico de pesos (clamp min/max).
+- Agrupación de peticiones: se llama a cada subgenerador sólo una vez por batch.
+- Preserva campo 'hash' que puedan aportar subgeneradores, pero para persistencia
+  sólo se escriben las 7 columnas estándar.
+- Opción de desactivar escritura directa (write_direct=False) y delegar al
+  orquestador global. Si write_direct=True usa NonceCSVWriter.
+- Hooks de extensión para métricas externas o generadores adicionales.
+
+Formato estándar de registros (para CSV):
+  ["nonce","entropy","uniqueness","zero_density","pattern_score","is_valid","block_height"]
+'hash' (si existe) queda en memoria para envío a proxy / submit.
+
+Este módulo NO realiza validación RandomX adicional: depende de cada subgenerador.
+"""
+
+import os
 import time
-import threading
+import json
+import random
 import logging
-from typing import Optional, Dict, List
-import numpy as np
+import threading
+from typing import Optional, Dict, List, Any
+
+try:
+    import numpy as np
+    _HAS_NUMPY = True
+except Exception:  # pragma: no cover
+    np = None       # type: ignore
+    _HAS_NUMPY = False
 
 from iazar.generator.range_based_generator import RangeBasedGenerator
 from iazar.generator.ml_based_generator import MLBasedGenerator
@@ -12,50 +43,107 @@ from iazar.generator.entropy_based_generator import EntropyBasedGenerator
 from iazar.generator.sequence_based_generator import SequenceBasedGenerator
 from iazar.generator.adaptive_generator import AdaptiveGenerator
 from iazar.generator.random_generator import RandomGenerator
+from iazar.generator.NonceCSVWriter import NonceCSVWriter
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(threadName)s [HybridGenerator] %(message)s"
-)
+LOGGER_NAME = "generator.hybrid"
+logger = logging.getLogger(LOGGER_NAME)
+if not logger.hasHandlers():
+    logging.basicConfig(level=logging.INFO,
+                        format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
+
+# Columnas estándar (sin hash) para persistencia CSV
+CSV_FIELDS = ["nonce","entropy","uniqueness","zero_density","pattern_score","is_valid","block_height"]
+
 
 class HybridGenerator:
-    """
-    Generador Híbrido Profesional Enterprise para Monero/RandomX.
-    Orquestación con Multi-Armed Bandit adaptativo, circuit breaker, batch numpy-aware
-    y rebalanceo en caliente. Listo para minería intensiva y autoajuste en producción.
-    """
+    """Meta‑orquestador de sub‑generadores."""
 
-    REBALANCE_INTERVAL = 300      # segundos
-    PERFORMANCE_WINDOW = 1000
-    CIRCUIT_BREAKER_THRESHOLD = 4   # Fallos seguidos antes de aislar generador
-    CIRCUIT_RECOVERY_TIME = 600     # s para recuperar generador automáticamente
+    DEFAULTS = {
+        "rebalance_interval": 300,
+        "performance_window": 1000,
+        "min_weight": 0.05,
+        "max_weight": 0.40,
+        "circuit_breaker_threshold": 4,
+        "circuit_recovery_time": 600,
+        "write_direct": False,
+        "csv_path": "C:/zarturxia/src/iazar/data/nonces_exitosos.csv"
+    }
 
-    def __init__(self, config: Optional[Dict] = None):
-        self.generator_name = "hybrid"
-        self.config = config or {}
-        self.generators = self._initialize_generators()
-        self.weights = self._initial_weights()
-        self.performance = {name: {'success': 0, 'total': 0} for name in self.generators}
-        self.generator_health = {name: 0 for name in self.generators}  # 0=ok, +1 por fallo
-        self.circuit_last_failure = {name: 0 for name in self.generators}
-        self.lock = threading.RLock()
-        self.last_rebalance = time.time()
-        logging.info(f"Initialized with weights: {json.dumps(self.weights, indent=2)}")
+    def __init__(self, config: Optional[Dict[str, Any]] = None):
+        cfg_root = config or {}
+        hybrid_cfg = {**self.DEFAULTS, **cfg_root.get("hybrid_generator", {})}
+        self.config = hybrid_cfg
 
-    def _initialize_generators(self) -> dict:
-        """Instancia todos los sub-generadores enterprise con config unificada."""
-        return {
-            "range": RangeBasedGenerator(config=self.config),
-            "ml": MLBasedGenerator(config=self.config),
-            "entropy": EntropyBasedGenerator(config=self.config),
-            "sequence": SequenceBasedGenerator(config=self.config),
-            "adaptive": AdaptiveGenerator(config=self.config),
-            "random": RandomGenerator(config=self.config)
+        # Sub‑generadores (instanciación lazy posible; aquí directa)
+        self.generators: Dict[str, Any] = self._initialize_generators(cfg_root)
+
+        # Pesos iniciales: usa config.global "generator_weights" si disponible
+        self.weights = self._initial_weights(cfg_root)
+
+        # Estadísticas de rendimiento por generador
+        self.performance: Dict[str, Dict[str, int]] = {name: {'success': 0, 'total': 0}
+                                                       for name in self.generators}
+        # Salud (conteo de fallos consecutivos)
+        self.generator_health: Dict[str, int] = {name: 0 for name in self.generators}
+        self.circuit_last_failure: Dict[str, float] = {name: 0.0 for name in self.generators}
+
+        # Sincronización
+        self._lock = threading.RLock()
+        self._last_rebalance = time.time()
+
+        # Persistencia directa opcional
+        self.write_direct = bool(hybrid_cfg["write_direct"])
+        self.writer = NonceCSVWriter(hybrid_cfg["csv_path"]) if self.write_direct else None
+
+        logger.info("[HybridGenerator] Initialized weights=%s write_direct=%s",
+                    json.dumps(self.weights), self.write_direct)
+
+    # ------------------------------------------------------------------
+    # Inicialización de subgeneradores
+    # ------------------------------------------------------------------
+    def _initialize_generators(self, full_config: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Instancia todos los subgeneradores con el mismo bloque de configuración raíz.
+        Se asume que cada subgenerador internamente extrae su sección específica.
+        """
+        gens = {
+            "range": RangeBasedGenerator(config=full_config),
+            "ml": MLBasedGenerator(config=full_config),
+            "entropy": EntropyBasedGenerator(config=full_config),
+            "sequence": SequenceBasedGenerator(config=full_config),
+            "adaptive": AdaptiveGenerator(config=full_config),
+            "random": RandomGenerator(config=full_config)
         }
+        return gens
 
-    def _initial_weights(self) -> dict:
-        # Estos pesos iniciales se pueden ajustar por config externa si lo deseas
-        return {
+    def register_external_generator(self, name: str, generator_obj: Any, weight: float = 0.05):
+        """Permite añadir un generador nuevo en caliente."""
+        with self._lock:
+            if name in self.generators:
+                logger.warning("Generator '%s' already exists. Skipping.", name)
+                return
+            self.generators[name] = generator_obj
+            self.performance[name] = {'success': 0, 'total': 0}
+            self.generator_health[name] = 0
+            self.circuit_last_failure[name] = 0.0
+            self.weights[name] = float(weight)
+            logger.info("[HybridGenerator] Registered external generator '%s' weight=%.4f", name, weight)
+            self._normalize_weights()
+
+    # ------------------------------------------------------------------
+    # Pesos adaptativos
+    # ------------------------------------------------------------------
+    def _initial_weights(self, full_config: Dict[str, Any]) -> Dict[str, float]:
+        # Intenta leer pesos globales si existen
+        gw = full_config.get("generator_weights")
+        if isinstance(gw, dict):
+            usable = {k: float(v) for k, v in gw.items() if k in self.generators}
+            if usable:
+                total = sum(usable.values()) or 1.0
+                return {k: v / total for k, v in usable.items()}
+
+        # Fallback por defecto
+        defaults = {
             "range": 0.30,
             "ml": 0.25,
             "entropy": 0.15,
@@ -63,124 +151,218 @@ class HybridGenerator:
             "adaptive": 0.15,
             "random": 0.05
         }
+        # Filtra solo generadores instanciados
+        usable = {k: defaults[k] for k in self.generators if k in defaults}
+        total = sum(usable.values()) or 1.0
+        return {k: v / total for k, v in usable.items()}
 
-    def update_performance(self, generator_name: str, success: bool):
-        with self.lock:
-            self.performance[generator_name]['total'] += 1
-            if success:
-                self.performance[generator_name]['success'] += 1
-                self.generator_health[generator_name] = 0
-            else:
-                self.generator_health[generator_name] += 1
-                if self.generator_health[generator_name] >= self.CIRCUIT_BREAKER_THRESHOLD:
-                    self.circuit_last_failure[generator_name] = time.time()
-                    logging.warning(f"Circuit breaker: {generator_name} aislado por fallos consecutivos.")
+    def _normalize_weights(self):
+        total = sum(self.weights.values()) or 1.0
+        for k in self.weights:
+            self.weights[k] /= total
 
-            # Rebalanceo periódico (autoajuste de pesos)
-            if time.time() - self.last_rebalance > self.REBALANCE_INTERVAL:
-                self.rebalance_weights()
-                self.last_rebalance = time.time()
-
-    def calculate_success_rate(self, generator_name: str) -> float:
-        stats = self.performance[generator_name]
-        if stats['total'] == 0:
-            return self.weights[generator_name]
-        # Laplace smoothing para evitar division by zero
+    def _calculate_success_rate(self, name: str) -> float:
+        stats = self.performance[name]
+        # Laplace smoothing
         return (stats['success'] + 1) / (stats['total'] + 2)
 
-    def rebalance_weights(self):
-        rates = {name: self.calculate_success_rate(name) for name in self.generators}
-        total_rate = sum(rates.values())
-        # Ajusta pesos proporcionalmente y asegura mínimos/máximos
-        new_weights = {
-            name: max(0.05, min(0.40, rate / total_rate))
-            for name, rate in rates.items()
-        }
-        # Normaliza
-        total = sum(new_weights.values())
-        for name in new_weights:
-            new_weights[name] /= total
-        self.weights = new_weights
-        # Reset stats para nueva ventana de evaluación
+    def _rebalance_weights_if_needed(self):
+        now = time.time()
+        if now - self._last_rebalance < float(self.config["rebalance_interval"]):
+            return
+        self._rebalance_weights()
+        self._last_rebalance = now
+
+    def _rebalance_weights(self):
+        min_w = float(self.config["min_weight"])
+        max_w = float(self.config["max_weight"])
+        rates = {name: self._calculate_success_rate(name) for name in self.generators}
+        total_rate = sum(rates.values()) or 1.0
+        new_w = {name: max(min_w, min(max_w, rates[name] / total_rate)) for name in rates}
+        # Renormaliza después de clamping
+        total = sum(new_w.values()) or 1.0
+        for n in new_w:
+            new_w[n] /= total
+        self.weights = new_w
+        # Resetea ventana de rendimiento
         for name in self.performance:
             self.performance[name] = {'success': 0, 'total': 0}
-        logging.info(f"Weights rebalanced: {json.dumps(self.weights, indent=2)}")
+        logger.info("[HybridGenerator] Weights rebalanced -> %s", json.dumps(self.weights))
 
-    def select_generators_batch(self, batch_size: int) -> List[str]:
-        """Muestreo eficiente (numpy) para selección de generadores activos."""
-        with self.lock:
-            available = [name for name in self.generators if not self.is_circuit_open(name)]
-            if not available:
-                logging.critical("All circuits open! Forzando random fallback.")
-                available = list(self.generators.keys())
-            weights = np.array([self.weights[n] for n in available])
-            weights /= weights.sum()
-            return np.random.choice(available, size=batch_size, p=weights).tolist()
-
-    def is_circuit_open(self, generator_name: str) -> bool:
-        """Verifica si el generador está aislado por circuit breaker."""
-        fail_count = self.generator_health[generator_name]
-        if fail_count < self.CIRCUIT_BREAKER_THRESHOLD:
+    # ------------------------------------------------------------------
+    # Circuit breaker
+    # ------------------------------------------------------------------
+    def _is_circuit_open(self, name: str) -> bool:
+        threshold = int(self.config["circuit_breaker_threshold"])
+        if self.generator_health[name] < threshold:
             return False
-        last_fail = self.circuit_last_failure[generator_name]
-        # Recuperación automática tras timeout
-        if time.time() - last_fail > self.CIRCUIT_RECOVERY_TIME:
-            self.generator_health[generator_name] = 0
+        recovery = float(self.config["circuit_recovery_time"])
+        elapsed = time.time() - self.circuit_last_failure[name]
+        if elapsed >= recovery:
+            # Reset tras ventana de recuperación
+            self.generator_health[name] = 0
             return False
         return True
 
-    def run_generation(self, block_height: int, block_data: dict, batch_size: int = 500) -> List[dict]:
-        """
-        Generación batch robusta, selección multi-generador, integración con monitorización.
-        Retorna una lista de dicts de nonces completos (con metadatos).
-        """
-        selected_generators = self.select_generators_batch(batch_size)
-        nonce_data_list = []
-        generator_counts = {name: 0 for name in self.generators}
-        for gen_name in selected_generators:
-            generator_counts[gen_name] += 1
+    def _mark_failure(self, name: str):
+        self.generator_health[name] += 1
+        threshold = int(self.config["circuit_breaker_threshold"])
+        if self.generator_health[name] == threshold:
+            self.circuit_last_failure[name] = time.time()
+            logger.warning("[HybridGenerator] Circuit breaker OPEN for '%s'", name)
 
-        for gen_name, count in generator_counts.items():
-            if count == 0 or self.is_circuit_open(gen_name):
+    def _mark_success(self, name: str):
+        self.generator_health[name] = 0
+
+    # ------------------------------------------------------------------
+    # Selección de generadores para el batch
+    # ------------------------------------------------------------------
+    def _allocate_batch(self, batch_size: int) -> Dict[str, int]:
+        """Devuelve cuántos nonces pediremos a cada subgenerador."""
+        with self._lock:
+            enabled = [g for g in self.generators if not self._is_circuit_open(g)]
+            if not enabled:
+                # Todos bloqueados -> forzar habilitación
+                enabled = list(self.generators.keys())
+                logger.critical("[HybridGenerator] All generators in circuit breaker; forcing usage.")
+
+            if not _HAS_NUMPY:
+                # Reparto proporcional simple
+                alloc = {g: 0 for g in enabled}
+                total_w = sum(self.weights[g] for g in enabled) or 1.0
+                rem = batch_size
+                for g in enabled:
+                    cnt = int(round(batch_size * self.weights[g] / total_w))
+                    cnt = min(cnt, rem)
+                    alloc[g] = cnt
+                    rem -= cnt
+                # Ajuste restos
+                i = 0
+                keys = list(alloc.keys())
+                while rem > 0 and keys:
+                    alloc[keys[i % len(keys)]] += 1
+                    rem -= 1
+                    i += 1
+                return alloc
+
+            # Numpy-based multinomial
+            w = np.array([self.weights[g] for g in enabled], dtype=np.float64)
+            w = w / w.sum()
+            draws = np.random.multinomial(batch_size, w)
+            alloc = {g: int(draws[i]) for i, g in enumerate(enabled)}
+            return alloc
+
+    # ------------------------------------------------------------------
+    # Métricas / Rendimiento
+    # ------------------------------------------------------------------
+    def _update_performance(self, name: str, success: bool):
+        perf = self.performance[name]
+        perf['total'] += 1
+        if success:
+            perf['success'] += 1
+            self._mark_success(name)
+        else:
+            self._mark_failure(name)
+
+        # Mantener ventana máxima (performance_window)
+        window = int(self.config["performance_window"])
+        # No almacenamos histórico detallado para reducir memoria; solo contadores.
+        self._rebalance_weights_if_needed()
+
+    # ------------------------------------------------------------------
+    # Ciclo de generación
+    # ------------------------------------------------------------------
+    def run_generation(self, block_height: int, block_data: Dict[str, Any], batch_size: int = 500) -> List[Dict[str, Any]]:
+        """
+        Produce un batch de nonces combinando subgeneradores según pesos y salud.
+        Devuelve lista de registros (incluye 'hash' si subgenerador lo añadió).
+        """
+        t0 = time.perf_counter()
+        allocation = self._allocate_batch(batch_size)
+
+        produced: List[Dict[str, Any]] = []
+        for name, count in allocation.items():
+            if count <= 0:
                 continue
-            subgen = self.generators[gen_name]
+            gen = self.generators.get(name)
+            if gen is None:
+                continue
             try:
-                # Validación estricta de interfaz
-                if not hasattr(subgen, "run_generation"):
-                    raise NotImplementedError(
-                        f"Generator {gen_name} must implement run_generation."
-                    )
-                nonces = subgen.run_generation(block_height, block_data, batch_size=count)
-                for n in nonces:
-                    n['hybrid_generator'] = gen_name
-                    self.update_performance(gen_name, n.get('is_valid', True))
-                nonce_data_list.extend(nonces)
+                if not hasattr(gen, "run_generation"):
+                    raise RuntimeError(f"Subgenerator '{name}' lacks run_generation()")
+                sub_batch = gen.run_generation(block_height, block_data, batch_size=count)
+                # Actualizar rendimiento con resultados
+                for rec in sub_batch:
+                    self._update_performance(name, bool(rec.get("is_valid")))
+                    rec["source"] = name  # Anotación de procedencia
+                produced.extend(sub_batch)
             except Exception as e:
-                self.update_performance(gen_name, False)
-                logging.error(f"Error in {gen_name}: {e}", exc_info=True)
+                logger.error("Error in subgenerator '%s': %s", name, e, exc_info=True)
+                self._update_performance(name, False)
 
-        random.shuffle(nonce_data_list)
-        return nonce_data_list[:batch_size]
+        # Mezcla final aleatoria (para no sesgar orden por generador)
+        random.shuffle(produced)
 
-    def report_success(self, nonce_data: dict, success: bool):
-        generator_name = nonce_data.get('hybrid_generator')
-        if generator_name in self.generators:
-            self.update_performance(generator_name, success)
+        # Recorte (si algún generador sobreprodujo)
+        if len(produced) > batch_size:
+            produced = produced[:batch_size]
 
-    def get_mixture_report(self) -> Dict[str, float]:
-        """Devuelve la mezcla actual de pesos para dashboards externos."""
-        return self.weights.copy()
+        # Opcional: persistir (solo columnas estándar)
+        if self.write_direct and produced and self.writer:
+            rows_std = []
+            for r in produced:
+                rows_std.append({k: r.get(k) for k in CSV_FIELDS})
+            self.writer.write_many(rows_std)
+
+        elapsed = time.perf_counter() - t0
+        valid_count = sum(1 for r in produced if r.get("is_valid"))
+        logger.info("[HybridGenerator] block=%s batch=%d valid=%d latency=%.3fs weights=%s",
+                    block_height, len(produced), valid_count, elapsed, json.dumps(self.weights))
+        # METRIC: hybrid_generator_batch_latency_seconds.observe(elapsed)
+        # METRIC: hybrid_generator_valid_ratio.observe(valid_count / (len(produced) or 1))
+
+        return produced
+
+    # ------------------------------------------------------------------
+    # Reports / Info
+    # ------------------------------------------------------------------
+    def get_weight_report(self) -> Dict[str, float]:
+        with self._lock:
+            return dict(self.weights)
 
     def get_health_report(self) -> Dict[str, int]:
-        """Reporte de health/circuit breaker status por generador."""
-        return self.generator_health.copy()
+        with self._lock:
+            return dict(self.generator_health)
 
-    # Block-aware weighting: para perfiles avanzados por tipo de bloque
-    def set_block_profile(self, block_type: str, weights: Dict[str, float]):
-        """
-        Permite definir perfiles de peso por tipo de bloque.
-        NOTA: requiere implementación avanzada de perfiles si lo usas.
-        """
+    def get_performance_snapshot(self) -> Dict[str, Dict[str, int]]:
+        with self._lock:
+            return {k: v.copy() for k, v in self.performance.items()}
+
+    # ------------------------------------------------------------------
+    # Hooks (extensibles)
+    # ------------------------------------------------------------------
+    def _pre_cycle(self):
         pass
 
-# Logs y métricas en inglés para auditoría profesional
+    def _post_cycle(self):
+        pass
+
+    # ------------------------------------------------------------------
+    # Cierre
+    # ------------------------------------------------------------------
+    def close(self):
+        if self.writer:
+            self.writer.close()
+        # Cerrar subgeneradores que tengan close()
+        for g in self.generators.values():
+            close_fn = getattr(g, "close", None)
+            if callable(close_fn):
+                try:
+                    close_fn()
+                except Exception:
+                    pass
+        logger.info("[HybridGenerator] Closed.")
+
+# Factory para descubrimiento dinámico
+def create_generator(config: Optional[Dict[str, Any]] = None) -> HybridGenerator:
+    return HybridGenerator(config=config)

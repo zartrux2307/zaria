@@ -1,187 +1,223 @@
-import numpy as np
-import threading
-import csv
+from __future__ import annotations
 import os
 import time
+import csv
+import math  # <-- IMPORTACIÓN PATCH OK
 import logging
-from typing import Optional, Dict, List
+import threading
+from pathlib import Path
+from typing import Optional, Dict, List, Any
+
+try:
+    import numpy as np
+    _HAS_NUMPY = True
+except Exception:  # pragma: no cover
+    _HAS_NUMPY = False
+    np = None  # type: ignore
 
 from iazar.generator.nonce_generator import BaseNonceGenerator
-from iazar.generator.config_loader import config_loader
-from iazar.generator.randomx_validator import RandomXValidator
+from iazar.proxy.randomx_validator import RandomXValidator
+from iazar.generator.NonceCSVWriter import NonceCSVWriter
 
-logger = logging.getLogger("RandomGenerator")
+LOGGER_NAME = "generator.random"
+logger = logging.getLogger(LOGGER_NAME)
 if not logger.hasHandlers():
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s [%(levelname)s] %(message)s",
-    )
+    logging.basicConfig(level=logging.INFO,
+                        format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
+
+UINT32_MASK = 0xFFFFFFFF
+CSV_FIELDS = ["nonce", "entropy", "uniqueness", "zero_density", "pattern_score", "is_valid", "block_height"]
 
 class RandomGenerator(BaseNonceGenerator):
-    """
-    Industrial-Grade Random Nonce Generator for Monero/RandomX Mining.
-    - Uniform 64-bit nonces, vectorized, no repetition in batch.
-    - Parallel RandomX validation.
-    - Full metrics: entropy, uniqueness (bitwise, vectorized), zero_density, pattern_score.
-    - Thread-safe. Batch-prepared. Mainnet ready.
-    """
-    BATCH_CANDIDATE_FACTOR = 4
-    MAX_VALIDATION_WORKERS = min(os.cpu_count() or 4, 16)
-    RECENT_NONCES_SIZE = 500
+    DEFAULTS = {
+        "batch_candidate_factor": 4,
+        "max_validation_workers": 8,
+        "recent_nonces_size": 500,
+        "max_attempt_loops": 8,
+        "max_candidate_factor": 32,
+        "min_entropy_threshold": 0.0,
+        "pattern_score_min": 0.5,
+        "write_direct": True
+    }
 
-    def __init__(self, config: Optional[Dict] = None):
-        super().__init__("random", config)
-        self.lock = threading.RLock()
-        self.validator = RandomXValidator(self.config)
-        self._last_block_height = None
-        self._recent_arr_cache = None
-        logger.info("[RandomGenerator] Ready (optimized, mainnet-proof)")
+    def __init__(self, config: Optional[Dict[str, Any]] = None, validator: Optional[RandomXValidator] = None):
+        merged = {**self.DEFAULTS, **(config or {}).get("random_generator", {})}
+        super().__init__("random", {"random_generator": merged})
+        self.config = merged
+        self._recent_lock = threading.RLock()
+        self.validator = validator or RandomXValidator((config or {}).get("randomx", {}))
+        self.use_validator = True if self.validator else False
+        self._recent: List[int] = []
+        self._recent_size = int(self.config["recent_nonces_size"])
+        self._executor = None
+        self._executor_lock = threading.Lock()
+        base_dir = Path(os.environ.get("IAZAR_BASE", "C:/zarturxia/src/iazar"))
+        self.data_dir = base_dir / "data"
+        self.writer = NonceCSVWriter(self.data_dir / "nonces_exitosos.csv") if self.config.get("write_direct", False) else None
+        logger.info("[RandomGenerator] Initialized (workers=%d write_direct=%s)",
+                    int(self.config["max_validation_workers"]), bool(self.writer))
 
-    def _generate_candidate_nonces(self, count: int) -> np.ndarray:
-        """Generate unique random 64-bit nonces using vectorization."""
-        nonces = np.random.randint(0, 2**64, size=int(count * 1.2), dtype=np.uint64)
-        unique = np.unique(nonces)
-        if unique.size < count:
-            needed = count - unique.size
-            extra = np.random.randint(0, 2**64, size=needed, dtype=np.uint64)
-            unique = np.unique(np.concatenate([unique, extra]))
-        return unique[:count]
-
-    def _calc_metrics(self, nonce: int, recent_arr: np.ndarray) -> dict:
-        """
-        Enterprise metrics for nonce quality assessment.
-        """
-        bin_str = bin(nonce)[2:].zfill(64)
-        p0 = bin_str.count('0') / 64
-        p1 = 1.0 - p0
-        entropy = 0.0
-        if 0 < p0 < 1:
-            entropy = - (p0 * np.log2(p0) + p1 * np.log2(p1))
-        uniqueness = self._calc_uniqueness_vec(nonce, recent_arr)
-        max_run_0 = max((len(run) for run in bin_str.split('1')), default=0)
-        max_run_1 = max((len(run) for run in bin_str.split('0')), default=0)
-        run_penalty = min(0.5, max(max_run_0, max_run_1) / 32)
-        period_penalty = 0
-        for p in [2, 4, 8, 16]:
-            pattern = bin_str[:p]
-            if bin_str == pattern * (64 // p):
-                period_penalty += 0.15
-        pattern_score = max(0.5, 1.0 - run_penalty - period_penalty)
-        return {
-            "entropy": round(entropy, 5),
-            "uniqueness": round(uniqueness, 5),
-            "zero_density": round(p0, 5),
-            "pattern_score": round(pattern_score, 5)
-        }
-
-    def _calc_uniqueness_vec(self, nonce: int, recent_arr: Optional[np.ndarray]) -> float:
-        """Mean Hamming distance between nonce and recent nonces, vectorized."""
-        if recent_arr is None or recent_arr.size == 0:
-            return 1.0
-        xor = np.bitwise_xor(recent_arr, nonce)
-        hamming = np.unpackbits(xor.view(np.uint8)).reshape(-1, 64).sum(axis=1)
-        return max(0.8, min(0.99, hamming.mean() / 64))
-
-    def _get_recent_nonces_arr(self, block_height: int) -> np.ndarray:
-        """
-        Returns last RECENT_NONCES_SIZE valid nonces from training_data (cached per block).
-        """
-        if self._last_block_height == block_height and self._recent_arr_cache is not None:
-            return self._recent_arr_cache
-        recent = []
-        count = 0
-        for row in reversed(self.training_data):
-            if count >= self.RECENT_NONCES_SIZE:
-                break
-            if row.get('is_valid', 'false').lower() == 'true':
-                try:
-                    recent.append(int(row['nonce']))
-                    count += 1
-                except Exception:
-                    continue
-        arr = np.array(recent, dtype=np.uint64) if recent else np.array([], dtype=np.uint64)
-        self._recent_arr_cache = arr
-        self._last_block_height = block_height
-        return arr
-
-    def _validate_batch(self, nonces: np.ndarray, block_data: dict) -> List[bool]:
-        """
-        Validates batch of nonces via RandomXValidator (concurrent).
-        """
-        from concurrent.futures import ThreadPoolExecutor
-        results = []
-        with ThreadPoolExecutor(max_workers=self.MAX_VALIDATION_WORKERS) as executor:
-            futs = [executor.submit(self.validator.validate, int(n), block_data) for n in nonces]
-            for f in futs:
-                try:
-                    results.append(f.result())
-                except Exception as e:
-                    logger.error(f"[RandomGenerator] Validation error: {e}")
-                    results.append(False)
-        return results
-
+    # ---------------- Public API ----------------
     def run_generation(self, block_height: int, block_data: dict, batch_size: int = 500) -> List[dict]:
-        """
-        Uniform random batch generation, vectorized and thread-safe.
-        """
-        t0 = time.time()
-        with self.lock:
-            self.training_data = self._load_training_data()
-            recent_arr = self._get_recent_nonces_arr(block_height)
-            valid_nonces = []
-            tries = 0
-            batch_factor = self.BATCH_CANDIDATE_FACTOR
+        t0 = time.perf_counter()
+        batch_factor = int(self.config["batch_candidate_factor"])
+        max_factor = int(self.config["max_candidate_factor"])
+        max_loops = int(self.config["max_attempt_loops"])
 
-            while len(valid_nonces) < batch_size and tries < 8:
-                candidates = self._generate_candidate_nonces(batch_size * batch_factor)
-                metrics_list = [self._calc_metrics(n, recent_arr) for n in candidates]
-                valids = self._validate_batch(candidates, block_data)
-                for i, is_valid in enumerate(valids):
-                    if is_valid and len(valid_nonces) < batch_size:
-                        n = candidates[i]
-                        nonce_data = {
-                            "nonce": int(n),
-                            "block_height": block_height,
-                            "generator": self.generator_name,
-                            "is_valid": True,
-                            **metrics_list[i]
-                        }
-                        valid_nonces.append(nonce_data)
-                        if recent_arr.size < self.RECENT_NONCES_SIZE:
-                            recent_arr = np.append(recent_arr, n)
-                tries += 1
-                batch_factor = min(batch_factor * 2, 32)
+        accepted: List[dict] = []
+        attempts = 0
+        while len(accepted) < batch_size and attempts < max_loops:
+            candidate_count = batch_size * batch_factor
+            candidates = self._generate_candidates(candidate_count)
+            metrics = self._compute_metrics(candidates)
+            mask = [
+                (m["entropy"] >= self.config["min_entropy_threshold"]) and
+                (m["pattern_score"] >= self.config["pattern_score_min"])
+                for m in metrics
+            ]
+            filtered = [c for c, ok in zip(candidates, mask) if ok]
+            filtered_metrics = [m for m, ok in zip(metrics, mask) if ok]
+            if not filtered:
+                batch_factor = min(batch_factor * 2, max_factor)
+                attempts += 1
+                continue
+            val_flags, hashes = self._validate_vector(filtered, block_data)
+            for i, ok in enumerate(val_flags):
+                if not ok:
+                    self.record_accept(False)
+                    continue
+                rec = {
+                    "nonce": int(filtered[i]) & UINT32_MASK,
+                    "entropy": round(filtered_metrics[i]["entropy"], 5),
+                    "uniqueness": round(filtered_metrics[i]["uniqueness"], 5),
+                    "zero_density": round(filtered_metrics[i]["zero_density"], 5),
+                    "pattern_score": round(filtered_metrics[i]["pattern_score"], 5),
+                    "is_valid": True,
+                    "block_height": block_height
+                }
+                if hashes[i]:
+                    rec["hash"] = hashes[i].hex()
+                accepted.append(rec)
+                self._append_recent(rec["nonce"])
+                self.record_accept(True)
+                if len(accepted) >= batch_size:
+                    break
+            if len(accepted) < batch_size:
+                batch_factor = min(batch_factor * 2, max_factor)
+            attempts += 1
 
-            if valid_nonces:
-                self._save_nonces_batch(valid_nonces)
-            elapsed = time.time() - t0
-            logger.info(
-                f"[RandomGenerator] Block {block_height}: "
-                f"{len(valid_nonces)}/{batch_size} valid, "
-                f"{elapsed:.2f}s elapsed"
-            )
-            return valid_nonces
+        if accepted and self.writer:
+            self.writer.write_many(accepted)
 
-    def _save_nonces_batch(self, nonces: List[dict]):
-        if not nonces:
-            return
-        output_path = self._get_data_path('generated_nonces')
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
-        fieldnames = self.FIELDNAMES
-        try:
-            file_exists = os.path.exists(output_path)
-            with open(output_path, 'a', newline='', encoding='utf-8') as f:
-                writer = csv.DictWriter(f, fieldnames=fieldnames)
-                if not file_exists:
-                    writer.writeheader()
-                writer.writerows([{k: v for k, v in item.items() if k in fieldnames} for item in nonces])
-        except IOError as e:
-            logger.error(f"[RandomGenerator] Save error: {e}")
+        elapsed = time.perf_counter() - t0
+        logger.info("[RandomGenerator] block=%s accepted=%d/%d attempts=%d elapsed=%.3fs",
+                    block_height, len(accepted), batch_size, attempts, elapsed)
+        return accepted
 
-# Uncomment for stress testing
-# if __name__ == "__main__":
-#     from iazar.generator.config_loader import config_loader
-#     generator = RandomGenerator(config_loader.load_config())
-#     fake_block = {...}
-#     result = generator.run_generation(fake_block["height"], fake_block, batch_size=2000)
-#     print(f"Nonces generados: {len(result)}")
+    # ---------------- Candidate Generation ----------------
+    def _generate_candidates(self, count: int):
+        if _HAS_NUMPY:
+            raw64 = np.random.randint(0, 2**64, size=int(count * 1.2), dtype=np.uint64)
+            c32 = (raw64 & 0xFFFFFFFF).astype(np.uint32)
+            uniq = np.unique(c32)
+            if uniq.size < count:
+                while uniq.size < count:
+                    extra = (np.random.randint(0, 2**64, size=count - uniq.size, dtype=np.uint64) & 0xFFFFFFFF).astype(np.uint32)
+                    uniq = np.unique(np.concatenate([uniq, extra]))
+            return uniq[:count].tolist()
+        # Fallback puro Python
+        import secrets
+        seen = set()
+        out = []
+        while len(out) < count:
+            n = int.from_bytes(secrets.token_bytes(4), 'little')
+            if n not in seen:
+                seen.add(n)
+                out.append(n)
+        return out
+
+    # ---------------- Metrics ----------------
+    def _compute_metrics(self, nonces: List[int]):
+        metrics: List[Dict[str, float]] = []
+        recent = self._recent_snapshot()
+        for n in nonces:
+            b = f"{n:032b}"
+            zeros = b.count('0')
+            p0 = zeros / 32.0
+            p1 = 1.0 - p0
+            if p0 in (0.0, 1.0):
+                ent = 0.0
+            else:
+                ent = -(p0 * math.log2(p0) + p1 * math.log2(p1))
+            max_run0 = max((len(r) for r in b.split('1')), default=0)
+            max_run1 = max((len(r) for r in b.split('0')), default=0)
+            run_penalty = min(0.5, max(max_run0, max_run1) / 16)
+            pattern = max(0.5, 1.0 - run_penalty)
+            uniq = self._uniqueness(n, recent)
+            metrics.append({
+                "entropy": ent,
+                "zero_density": p0,
+                "pattern_score": pattern,
+                "uniqueness": uniq
+            })
+        return metrics
+
+    def _uniqueness(self, n: int, recent: List[int]) -> float:
+        if not recent:
+            return 1.0
+        subset = recent[-min(len(recent), 64):]
+        diffs = 0
+        for r in subset:
+            diffs += bin((r ^ n) & UINT32_MASK).count("1")
+        avg = diffs / (len(subset) * 32.0)
+        return max(0.8, min(0.99, avg))
+
+    # ---------------- Validation ----------------
+    def _validate_vector(self, nonces: List[int], block_data: dict):
+        if not self.use_validator or not self.validator:
+            return [False]*len(nonces), [None]*len(nonces)
+        from concurrent.futures import ThreadPoolExecutor
+        with self._executor_lock:
+            if self._executor is None:
+                self._executor = ThreadPoolExecutor(max_workers=int(self.config["max_validation_workers"]),
+                                                    thread_name_prefix="rng-val")
+        futures = []
+        for n in nonces:
+            futures.append(self._executor.submit(self.validator.validate, int(n), block_data, True))
+        results = []
+        hashes: List[Optional[bytes]] = []
+        for f in futures:
+            try:
+                res = f.result()
+                if isinstance(res, tuple) and len(res) == 2:
+                    ok, h = res
+                    results.append(bool(ok))
+                    hashes.append(h if (ok and isinstance(h, (bytes, bytearray))) else None)
+                else:
+                    results.append(bool(res))
+                    hashes.append(None)
+            except Exception:
+                results.append(False)
+                hashes.append(None)
+        return results, hashes
+
+    # ---------------- Recent Cache ----------------
+    def _append_recent(self, nonce: int):
+        with self._recent_lock:
+            self._recent.append(nonce)
+            if len(self._recent) > self._recent_size:
+                self._recent.pop(0)
+
+    def _recent_snapshot(self):
+        with self._recent_lock:
+            return list(self._recent)
+
+    def close(self):
+        with self._executor_lock:
+            if self._executor:
+                self._executor.shutdown(wait=False, cancel_futures=True)
+                self._executor = None
+
+def create_generator(config: Optional[Dict[str, Any]] = None,
+                     validator: Optional[RandomXValidator] = None) -> RandomGenerator:
+    return RandomGenerator(config=config, validator=validator)

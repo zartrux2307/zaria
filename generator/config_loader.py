@@ -1,116 +1,93 @@
-import os
+from __future__ import annotations
+"""
+config_loader.py
+----------------
+Carga y cachea `global_config.json` con soporte de:
+ - Reload automático por mtime.
+ - Acceso segmentado por secciones.
+ - Override por variables de entorno (prefijo IAZAR_CFG__SECTION__KEY).
+ - Método utility para obtener sub‑config de generadores.
+
+Uso:
+    from iazar.generator.config_loader import config_loader
+    cfg = config_loader.get()
+    rnd_cfg = config_loader.section("random_generator")
+"""
+
 import json
-import logging
+import os
+import threading
+from pathlib import Path
+from typing import Any, Dict, Optional
 
-logger = logging.getLogger("ConfigLoader")
-if not logger.hasHandlers():
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s [%(levelname)s] %(message)s"
-    )
+class _ConfigLoader:
+    _lock = threading.RLock()
+    _cache: Dict[str, Any] = {}
+    _mtime: float = 0.0
 
-def get_project_root() -> str:
-    """
-    Returns project root directory assuming this file is at: src/iazar/generator/config_loader.py
-    """
-    return os.path.abspath(
-        os.path.join(os.path.dirname(__file__), "..", "..", "..")
-    )
+    def __init__(self):
+        self.base_dir = Path(os.environ.get("IAZAR_BASE", "C:/zarturxia/src/iazar")).resolve()
+        self.config_path = self.base_dir / "config" / "global_config.json"
 
-def get_default_config(base_dir: str) -> dict:
-    """
-    Returns a dict with the default configuration (absolute paths).
-    """
-    data_dir = os.path.join(base_dir, "data")
-    return {
-        "prefix": "5555",
-        "evaluation_interval": 300,
-        "data_paths": {
-            "training_data": os.path.join(data_dir, "nonce_training_data.csv"),
-            "generated_nonces": os.path.join(data_dir, "nonces_exitosos.csv"),
-            "accepted_nonces": os.path.join(data_dir, "nonces_aceptados.csv"),
-            "reports": os.path.join(data_dir, "reports")
-        },
-        "hybrid_params": {"weights": [0.5, 0.5]},
-        "adaptive_params": {"initial_parameters": {}},
-        "sequence_params": {"step": 1},
-        "generator_weights": {"adaptativo": 0.7, "hibrido": 0.3},
-        "performance_settings": {"batch_size": 500, "max_nonce": 2**64 - 1}
-    }
-
-def load_config(path: str = None, extra_settings: dict = None) -> dict:
-    """
-    Loads and normalizes the config JSON, merges with extra_settings if provided.
-    If the config file does not exist, creates one with defaults.
-
-    :param path: Path to config.json. Uses <project_root>/config/config.json by default.
-    :param extra_settings: Optional dict to merge/override loaded config.
-    :return: Config dict with normalized absolute paths.
-    """
-    base_dir = get_project_root()
-    default_path = os.path.join(base_dir, "config", "global_config.json")
-    config_path = path or default_path
-
-    # Ensure directory exists
-    os.makedirs(os.path.dirname(config_path), exist_ok=True)
-
-    # If config does not exist, create with defaults
-    if not os.path.exists(config_path):
-        default_cfg = get_default_config(base_dir)
+    def _load_raw(self) -> Dict[str, Any]:
+        if not self.config_path.exists():
+            return {}
         try:
-            with open(config_path, 'w', encoding='utf-8') as f:
-                json.dump(default_cfg, f, indent=4)
-            logger.info(f"[ConfigLoader] Default config created: {config_path}")
-        except Exception as e:
-            logger.error(f"[ConfigLoader] Error creating default config: {e}")
-        cfg = default_cfg
-    else:
-        # Load existing config
-        try:
-            with open(config_path, 'r', encoding='utf-8') as f:
-                cfg = json.load(f)
-            logger.info(f"[ConfigLoader] Config loaded: {config_path}")
-        except Exception as e:
-            logger.error(f"[ConfigLoader] Error loading config: {e}")
-            cfg = get_default_config(base_dir)
+            with self.config_path.open("r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            return {}
 
-    # Normalize relative paths
-    data_paths = cfg.get('data_paths', {})
-    for key, val in data_paths.items():
-        if val and not os.path.isabs(val):
-            abs_path = os.path.normpath(os.path.join(base_dir, val))
-            data_paths[key] = abs_path
-    cfg['data_paths'] = data_paths
+    def _apply_env_overrides(self, config: Dict[str, Any]):
+        """
+        Variables de entorno:
+          IAZAR_CFG__<SECTION>__<KEY>=value
+          IAZAR_CFG__ROOT__clave=value  (para nivel root)
 
-    # Merge with extra_settings if provided
-    if extra_settings:
-        cfg = deep_merge_dict(cfg, extra_settings)
+        Conversión básica de tipos: int, float, bool, json si empieza con { o [.
+        """
+        prefix = "IAZAR_CFG__"
+        for k, v in os.environ.items():
+            if not k.startswith(prefix):
+                continue
+            parts = k[len(prefix):].split("__")
+            if len(parts) != 2:
+                continue
+            section, key = parts
+            raw = v.strip()
+            # Coerción
+            val: Any
+            if raw.lower() in ("true", "false"):
+                val = raw.lower() == "true"
+            else:
+                try:
+                    if raw.startswith("{") or raw.startswith("["):
+                        val = json.loads(raw)
+                    elif "." in raw:
+                        val = float(raw)
+                    else:
+                        val = int(raw)
+                except Exception:
+                    val = raw
+            if section.upper() == "ROOT":
+                config[key] = val
+            else:
+                sec = config.setdefault(section, {})
+                if isinstance(sec, dict):
+                    sec[key] = val
 
-    # Validation: batch_size, max_nonce
-    perf = cfg.get("performance_settings", {})
-    batch_size = perf.get("batch_size", 500)
-    if not isinstance(batch_size, int) or batch_size < 1:
-        logger.warning("[ConfigLoader] Invalid batch_size, resetting to 500")
-        perf["batch_size"] = 500
-    max_nonce = perf.get("max_nonce", 2**64-1)
-    if not isinstance(max_nonce, int) or not (1 < max_nonce <= 2**64-1):
-        logger.warning("[ConfigLoader] Invalid max_nonce, resetting to 2^64-1")
-        perf["max_nonce"] = 2**64-1
-    cfg["performance_settings"] = perf
+    def get(self, force: bool = False) -> Dict[str, Any]:
+        with self._lock:
+            mtime = self.config_path.stat().st_mtime if self.config_path.exists() else 0.0
+            if force or not self._cache or mtime != self._mtime:
+                data = self._load_raw()
+                self._apply_env_overrides(data)
+                self._cache = data
+                self._mtime = mtime
+            return self._cache
 
-    return cfg
+    def section(self, name: str, default: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        cfg = self.get()
+        return cfg.get(name, default or {})
 
-def deep_merge_dict(a: dict, b: dict) -> dict:
-    """
-    Deep merges two dicts. Values from b override those in a.
-    """
-    result = a.copy()
-    for k, v in b.items():
-        if (k in result and isinstance(result[k], dict) and isinstance(v, dict)):
-            result[k] = deep_merge_dict(result[k], v)
-        else:
-            result[k] = v
-    return result
-
-# Alias for compatibility with existing imports
-config_loader = load_config
+config_loader = _ConfigLoader()
