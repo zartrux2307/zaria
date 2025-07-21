@@ -18259,3 +18259,850 @@
 2025-07-19 21:11:51,256 - IA-Zar-Proxy - INFO - Connected to pool, session ID: 63285ca5-69bd-4bc6-be59-9521c9db7463
 2025-07-19 21:12:54,811 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
 2025-07-19 21:14:00,814 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:16:07,409 - IA-Zar-Proxy - INFO - Launching IA-Zar Proxy with config:
+2025-07-19 22:16:07,409 - IA-Zar-Proxy - INFO -   Wallet:           44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc
+2025-07-19 22:16:07,409 - IA-Zar-Proxy - INFO -   Pool host:        pool.hashvault.pro
+2025-07-19 22:16:07,409 - IA-Zar-Proxy - INFO -   Pool port:        443
+2025-07-19 22:16:07,409 - IA-Zar-Proxy - INFO -   SHM prefix:       5555
+2025-07-19 22:16:07,409 - IA-Zar-Proxy - INFO -   TLS fingerprint:  420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14
+2025-07-19 22:16:07,409 - IA-Zar-Proxy - INFO -   Listen port:      5555 (local miners)
+2025-07-19 22:16:07,409 - IA-Zar-Proxy - INFO - Proxy started on port 5555
+2025-07-19 22:16:07,421 - IA-Zar-Proxy - INFO - Starting proxy main loop
+2025-07-19 22:16:07,421 - IA-Zar-Proxy - INFO - Connecting to pool pool.hashvault.pro:443 (attempt 1/10)
+2025-07-19 22:16:07,427 - IA-Zar-Proxy - INFO - Miner listener started on port 5555 (SSL only)
+2025-07-19 22:16:08,766 - IA-Zar-Proxy - INFO - Connected to pool, session ID: db5680fa-e51a-4458-a674-1a5c3cab38c6
+2025-07-19 22:17:22,156 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:18:35,940 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:19:39,967 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:20:48,077 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:21:59,814 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:23:03,983 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:23:06,982 - IA-Zar-Proxy - WARNING - No job received in 300 seconds, reconnecting...
+2025-07-19 22:23:06,982 - IA-Zar-Proxy - INFO - Connecting to pool pool.hashvault.pro:443 (attempt 1/10)
+2025-07-19 22:23:08,243 - IA-Zar-Proxy - INFO - Connected to pool, session ID: a948fa22-8f2e-4c48-b767-27789c5371bc
+2025-07-19 22:24:29,967 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:25:43,983 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:26:57,976 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:28:04,167 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:29:09,979 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:30:16,209 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:30:19,198 - IA-Zar-Proxy - WARNING - No job received in 300 seconds, reconnecting...
+2025-07-19 22:30:19,198 - IA-Zar-Proxy - INFO - Connecting to pool pool.hashvault.pro:443 (attempt 1/10)
+2025-07-19 22:30:19,449 - IA-Zar-Proxy - INFO - Connected to pool, session ID: 30cf8edf-9f45-430b-bbc1-23ed2b7ad9d8
+2025-07-19 22:31:24,954 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:32:36,974 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:33:40,967 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:34:56,875 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:36:08,999 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:37:14,990 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:37:17,976 - IA-Zar-Proxy - WARNING - No job received in 300 seconds, reconnecting...
+2025-07-19 22:37:17,976 - IA-Zar-Proxy - INFO - Connecting to pool pool.hashvault.pro:443 (attempt 1/10)
+2025-07-19 22:37:18,217 - IA-Zar-Proxy - INFO - Connected to pool, session ID: 77c5c468-bfd1-4328-a9a7-16a78f3013a6
+2025-07-19 22:38:33,856 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:39:58,981 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:41:04,993 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:42:11,027 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:43:15,655 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:44:22,980 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:44:25,973 - IA-Zar-Proxy - WARNING - No job received in 300 seconds, reconnecting...
+2025-07-19 22:44:25,973 - IA-Zar-Proxy - INFO - Connecting to pool pool.hashvault.pro:443 (attempt 1/10)
+2025-07-19 22:44:26,275 - IA-Zar-Proxy - INFO - Connected to pool, session ID: bb400c75-beaf-4424-95fd-c85aa5eae988
+2025-07-19 22:45:32,985 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:46:38,968 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:47:45,002 - IA-Zar-Proxy - WARNING - Timeout waiting for pool job
+2025-07-19 22:59:38,727 - IA-Zar-Proxy - INFO - Launching IA-Zar Proxy with config:
+2025-07-19 22:59:38,727 - IA-Zar-Proxy - INFO -   Wallet:           44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc
+2025-07-19 22:59:38,727 - IA-Zar-Proxy - INFO -   Pool host:        pool.hashvault.pro
+2025-07-19 22:59:38,727 - IA-Zar-Proxy - INFO -   Pool port:        443
+2025-07-19 22:59:38,727 - IA-Zar-Proxy - INFO -   SHM prefix:       5555
+2025-07-19 22:59:38,727 - IA-Zar-Proxy - INFO -   TLS fingerprint:  420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14
+2025-07-19 22:59:38,727 - IA-Zar-Proxy - INFO -   Listen port:      5555 (local miners)
+2025-07-19 22:59:38,727 - IA-Zar-Proxy - INFO - Proxy started on port 5555
+2025-07-19 22:59:38,736 - IA-Zar-Proxy - INFO - Starting proxy main loop
+2025-07-19 22:59:38,736 - IA-Zar-Proxy - INFO - Connecting to pool pool.hashvault.pro:443 (attempt 1/10)
+2025-07-19 22:59:38,740 - IA-Zar-Proxy - INFO - Miner listener started on port 5555 (SSL only)
+2025-07-19 22:59:39,045 - IA-Zar-Proxy - INFO - Connected to pool, session ID: 420c8e16-9386-4923-852c-5b1d563449ed
+2025-07-19 23:00:01,034 - IA-Zar-Proxy - INFO - Received new job from pool: 579371e9-9060-4c31-841c-146c091e2596
+2025-07-19 23:00:23,042 - IA-Zar-Proxy - INFO - Received new job from pool: 0b20c341-70ad-4054-a1a6-d9b39159d5d5
+2025-07-19 23:01:30,559 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 65329)
+2025-07-19 23:01:30,560 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 65329)
+2025-07-19 23:01:34,394 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 65331)
+2025-07-19 23:01:34,396 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 65331)
+2025-07-19 23:01:37,428 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 65333)
+2025-07-19 23:01:37,430 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 65333)
+2025-07-19 23:01:40,468 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 65337)
+2025-07-19 23:01:40,468 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 65337)
+2025-07-19 23:01:43,503 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 65338)
+2025-07-19 23:01:43,504 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 65338)
+2025-07-19 23:01:46,537 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 65339)
+2025-07-19 23:01:46,538 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 65339)
+2025-07-19 23:01:49,558 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 65340)
+2025-07-19 23:01:49,559 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 65340)
+2025-07-19 23:01:52,586 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 65343)
+2025-07-19 23:01:52,586 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 65343)
+2025-07-19 23:01:55,608 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 65345)
+2025-07-19 23:01:55,610 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 65345)
+2025-07-19 23:01:58,638 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 65346)
+2025-07-19 23:01:58,639 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 65346)
+2025-07-19 23:02:01,670 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 65347)
+2025-07-19 23:02:01,670 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 65347)
+2025-07-19 23:02:04,708 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 65348)
+2025-07-19 23:02:04,709 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 65348)
+2025-07-19 23:02:07,741 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 65349)
+2025-07-19 23:02:07,741 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 65349)
+2025-07-19 23:02:10,768 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 65350)
+2025-07-19 23:02:10,768 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 65350)
+2025-07-19 23:07:57,552 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:07:57,560 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:00,588 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:01,462 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:03,621 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:05,476 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:06,647 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:08,513 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:09,687 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:11,551 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:12,711 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:14,579 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:15,744 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:17,598 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:18,780 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:20,626 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:23,657 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:26,687 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:29,704 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:32,743 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:35,779 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:38,806 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:41,831 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:44,848 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:47,878 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:55,656 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:08:58,970 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:09:01,987 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:09:05,003 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:09:08,036 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:09:11,049 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:09:14,066 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:09:18,071 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:09:21,094 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:09:24,108 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:09:27,142 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:09:30,164 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:09:33,181 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:09:36,202 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:09:39,223 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-19 23:11:36,461 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 49323)
+2025-07-19 23:11:36,462 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 49323)
+2025-07-19 23:11:40,466 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 49325)
+2025-07-19 23:11:40,466 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 49325)
+2025-07-19 23:11:43,496 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 49328)
+2025-07-19 23:11:43,498 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 49328)
+2025-07-19 23:11:46,533 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 49330)
+2025-07-19 23:11:46,534 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 49330)
+2025-07-19 23:11:49,571 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 49332)
+2025-07-19 23:11:49,572 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 49332)
+2025-07-19 23:11:52,609 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 49333)
+2025-07-19 23:11:52,610 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 49333)
+2025-07-19 23:11:55,639 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 49334)
+2025-07-19 23:11:55,640 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 49334)
+2025-07-19 23:11:58,670 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 49335)
+2025-07-19 23:11:58,671 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 49335)
+2025-07-19 23:12:01,707 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 49336)
+2025-07-19 23:12:01,708 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 49336)
+2025-07-19 23:12:04,718 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 49338)
+2025-07-19 23:12:04,718 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 49338)
+2025-07-19 23:12:07,744 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 49340)
+2025-07-19 23:12:07,745 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 49340)
+2025-07-19 23:12:10,770 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 49343)
+2025-07-19 23:12:16,543 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 49343)
+2025-07-19 23:12:19,855 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 49347)
+2025-07-19 23:12:19,855 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 49347)
+2025-07-19 23:12:23,866 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 49349)
+2025-07-19 23:12:23,867 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 49349)
+2025-07-19 23:12:26,908 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 49353)
+2025-07-19 23:12:26,914 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 49353)
+2025-07-19 23:12:29,931 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 49367)
+2025-07-19 23:12:29,932 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 49367)
+2025-07-19 23:12:32,955 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 49369)
+2025-07-19 23:12:32,955 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 49369)
+2025-07-19 23:12:35,968 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 49371)
+2025-07-19 23:12:35,969 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 49371)
+2025-07-19 23:12:38,983 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 49373)
+2025-07-19 23:12:38,983 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 49373)
+2025-07-19 23:12:42,005 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 49376)
+2025-07-19 23:12:42,007 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 49376)
+2025-07-19 23:12:45,023 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 49380)
+2025-07-19 23:12:45,024 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 49380)
+2025-07-19 23:13:12,904 - IA-Zar-Proxy - INFO - Launching IA-Zar Proxy with config:
+2025-07-19 23:13:12,905 - IA-Zar-Proxy - INFO -   Wallet:           44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc
+2025-07-19 23:13:12,905 - IA-Zar-Proxy - INFO -   Pool host:        pool.hashvault.pro
+2025-07-19 23:13:12,905 - IA-Zar-Proxy - INFO -   Pool port:        443
+2025-07-19 23:13:12,905 - IA-Zar-Proxy - INFO -   SHM prefix:       5555
+2025-07-19 23:13:12,905 - IA-Zar-Proxy - INFO -   TLS fingerprint:  420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14
+2025-07-19 23:13:12,905 - IA-Zar-Proxy - INFO -   Listen port:      5555 (local miners)
+2025-07-19 23:13:12,907 - IA-Zar-Proxy - INFO - Proxy started on port 5555
+2025-07-19 23:13:12,908 - IA-Zar-Proxy - INFO - Starting proxy main loop
+2025-07-19 23:13:12,908 - IA-Zar-Proxy - INFO - Connecting to pool pool.hashvault.pro:443 (attempt 1/10)
+2025-07-19 23:13:12,912 - IA-Zar-Proxy - INFO - Miner listener started on port 5555 (SSL only)
+2025-07-19 23:13:13,198 - IA-Zar-Proxy - INFO - Connected to pool, session ID: 92a6636d-c383-4386-8d6a-7652412c4898
+2025-07-19 23:13:15,457 - IA-Zar-Proxy - INFO - Received new job from pool: 6ade210a-58b6-42f2-928e-331417bab3b6
+2025-07-19 23:13:37,033 - IA-Zar-Proxy - INFO - Received new job from pool: 3acd86c9-95fe-477b-ac4e-08d8bf83320c
+2025-07-19 23:40:30,349 - IA-Zar-Proxy - INFO - Launching IA-Zar Proxy with config:
+2025-07-19 23:40:30,349 - IA-Zar-Proxy - INFO -   Wallet:           44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc
+2025-07-19 23:40:30,349 - IA-Zar-Proxy - INFO -   Pool host:        pool.hashvault.pro
+2025-07-19 23:40:30,349 - IA-Zar-Proxy - INFO -   Pool port:        443
+2025-07-19 23:40:30,349 - IA-Zar-Proxy - INFO -   SHM prefix:       5555
+2025-07-19 23:40:30,349 - IA-Zar-Proxy - INFO -   TLS fingerprint:  420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14
+2025-07-19 23:40:30,349 - IA-Zar-Proxy - INFO -   Listen port:      5555 (local miners)
+2025-07-19 23:40:30,349 - IA-Zar-Proxy - INFO - Proxy started on port 5555
+2025-07-19 23:40:30,363 - IA-Zar-Proxy - INFO - Starting proxy main loop
+2025-07-19 23:40:30,363 - IA-Zar-Proxy - INFO - Connecting to pool pool.hashvault.pro:443 (attempt 1/10)
+2025-07-19 23:40:30,367 - IA-Zar-Proxy - INFO - Miner listener started on port 5555 (SSL only)
+2025-07-19 23:40:31,607 - IA-Zar-Proxy - INFO - Connected to pool, session ID: 741c9621-1ac3-4164-919e-168d1cbd4bbc
+2025-07-19 23:40:36,121 - IA-Zar-Proxy - INFO - Received new job from pool: 8dda73f1-2be3-419c-896a-8a747a27f922
+2025-07-19 23:40:50,176 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50313)
+2025-07-19 23:40:50,177 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50313): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-19 23:40:50,178 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50313)
+2025-07-19 23:40:50,178 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50313)
+2025-07-19 23:40:54,176 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50318)
+2025-07-19 23:40:54,177 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50318): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-19 23:40:54,177 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50318)
+2025-07-19 23:40:54,178 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50318)
+2025-07-19 23:40:57,204 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50319)
+2025-07-19 23:40:57,204 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50319): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-19 23:40:57,205 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50319)
+2025-07-19 23:40:57,207 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50319)
+2025-07-19 23:40:58,131 - IA-Zar-Proxy - INFO - Received new job from pool: e610704d-9475-439f-8c42-d3467b5d2c04
+2025-07-19 23:41:00,232 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50320)
+2025-07-19 23:41:00,232 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50320): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-19 23:41:00,234 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50320)
+2025-07-19 23:41:00,235 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50320)
+2025-07-19 23:41:03,261 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50321)
+2025-07-19 23:41:03,261 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50321): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-19 23:41:03,264 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50321)
+2025-07-19 23:41:03,265 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50321)
+2025-07-19 23:41:06,292 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50324)
+2025-07-19 23:41:11,359 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50324): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-19 23:41:11,366 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50324)
+2025-07-19 23:41:11,369 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50324)
+2025-07-19 23:41:14,372 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50326)
+2025-07-19 23:41:14,372 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50326): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-19 23:41:14,375 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50326)
+2025-07-19 23:41:14,376 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50326)
+2025-07-19 23:41:17,408 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50327)
+2025-07-19 23:41:17,408 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50327): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-19 23:41:17,410 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50327)
+2025-07-19 23:41:17,411 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50327)
+2025-07-19 23:53:34,057 - IA-Zar-Proxy - INFO - Launching IA-Zar Proxy with config:
+2025-07-19 23:53:34,057 - IA-Zar-Proxy - INFO -   Wallet:           44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc
+2025-07-19 23:53:34,057 - IA-Zar-Proxy - INFO -   Pool host:        pool.hashvault.pro
+2025-07-19 23:53:34,057 - IA-Zar-Proxy - INFO -   Pool port:        443
+2025-07-19 23:53:34,057 - IA-Zar-Proxy - INFO -   SHM prefix:       5555
+2025-07-19 23:53:34,057 - IA-Zar-Proxy - INFO -   TLS fingerprint:  420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14
+2025-07-19 23:53:34,057 - IA-Zar-Proxy - INFO -   Listen port:      5555 (local miners)
+2025-07-19 23:53:34,057 - IA-Zar-Proxy - INFO - Proxy started on port 5555
+2025-07-19 23:53:34,072 - IA-Zar-Proxy - INFO - Starting proxy main loop
+2025-07-19 23:53:34,072 - IA-Zar-Proxy - INFO - Connecting to pool pool.hashvault.pro:443 (attempt 1/10)
+2025-07-19 23:53:34,076 - IA-Zar-Proxy - INFO - Miner listener started on port 5555 (SSL only)
+2025-07-19 23:53:35,428 - IA-Zar-Proxy - INFO - Connected to pool, session ID: b930cb89-66fc-4f23-bac8-2dd4d214bbc3
+2025-07-19 23:53:42,179 - IA-Zar-Proxy - INFO - Received new job from pool: 0842a8e1-4881-4d7f-8d52-14f13f725182
+2025-07-19 23:53:53,430 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50617) (Worker ID: worker-7418068d)
+2025-07-19 23:53:53,430 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50617): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-19 23:53:53,430 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50617) (Worker ID: worker-7418068d)
+2025-07-19 23:53:53,432 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50617) (Worker ID: worker-7418068d)
+2025-07-19 23:53:57,441 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50620) (Worker ID: worker-dfde5e30)
+2025-07-19 23:53:57,442 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50620): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-19 23:53:57,442 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50620) (Worker ID: worker-dfde5e30)
+2025-07-19 23:53:57,443 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50620) (Worker ID: worker-dfde5e30)
+2025-07-19 23:54:00,469 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50623) (Worker ID: worker-da4485ef)
+2025-07-19 23:54:00,470 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50623): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-19 23:54:00,470 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50623) (Worker ID: worker-da4485ef)
+2025-07-19 23:54:00,472 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 50623): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-19 23:54:00,472 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50623) (Worker ID: worker-da4485ef)
+2025-07-19 23:54:03,493 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50625) (Worker ID: worker-b08aa7e7)
+2025-07-19 23:54:03,494 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50625): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-19 23:54:03,495 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50625) (Worker ID: worker-b08aa7e7)
+2025-07-19 23:54:03,496 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 50625): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-19 23:54:03,496 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50625) (Worker ID: worker-b08aa7e7)
+2025-07-19 23:54:04,395 - IA-Zar-Proxy - INFO - Received new job from pool: 069f42e5-0855-438d-b653-39cce8d90443
+2025-07-19 23:54:06,525 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50626) (Worker ID: worker-e356806d)
+2025-07-19 23:54:06,525 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50626): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-19 23:54:06,527 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50626) (Worker ID: worker-e356806d)
+2025-07-19 23:54:06,528 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 50626): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-19 23:54:06,528 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50626) (Worker ID: worker-e356806d)
+2025-07-19 23:54:09,555 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50628) (Worker ID: worker-638d429d)
+2025-07-19 23:54:15,589 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50628): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-19 23:54:15,593 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50628) (Worker ID: worker-638d429d)
+2025-07-19 23:54:15,596 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 50628): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-19 23:54:15,596 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50628) (Worker ID: worker-638d429d)
+2025-07-19 23:54:18,645 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50630) (Worker ID: worker-ca7c81a9)
+2025-07-19 23:54:18,646 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50630): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-19 23:54:18,648 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50630) (Worker ID: worker-ca7c81a9)
+2025-07-19 23:54:18,649 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 50630): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-19 23:54:18,650 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50630) (Worker ID: worker-ca7c81a9)
+2025-07-19 23:54:21,680 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50631) (Worker ID: worker-5c92b173)
+2025-07-19 23:54:21,681 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50631): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-19 23:54:21,681 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50631) (Worker ID: worker-5c92b173)
+2025-07-19 23:54:21,682 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 50631): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-19 23:54:21,683 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50631) (Worker ID: worker-5c92b173)
+2025-07-19 23:54:24,715 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50632) (Worker ID: worker-8da0fa01)
+2025-07-19 23:54:24,715 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50632): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-19 23:54:24,719 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50632) (Worker ID: worker-8da0fa01)
+2025-07-19 23:54:24,720 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 50632): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-19 23:54:24,720 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50632) (Worker ID: worker-8da0fa01)
+2025-07-19 23:54:27,752 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50633) (Worker ID: worker-5d435f81)
+2025-07-19 23:54:27,753 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50633): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-19 23:54:27,754 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50633) (Worker ID: worker-5d435f81)
+2025-07-19 23:54:27,755 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 50633): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-19 23:54:27,756 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50633) (Worker ID: worker-5d435f81)
+2025-07-20 00:08:15,018 - IA-Zar-Proxy - INFO - Launching IA-Zar Proxy with config:
+2025-07-20 00:08:15,018 - IA-Zar-Proxy - INFO -   Wallet:           44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc
+2025-07-20 00:08:15,018 - IA-Zar-Proxy - INFO -   Pool host:        pool.hashvault.pro
+2025-07-20 00:08:15,018 - IA-Zar-Proxy - INFO -   Pool port:        443
+2025-07-20 00:08:15,018 - IA-Zar-Proxy - INFO -   SHM prefix:       5555
+2025-07-20 00:08:15,018 - IA-Zar-Proxy - INFO -   TLS fingerprint:  420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14
+2025-07-20 00:08:15,018 - IA-Zar-Proxy - INFO -   Listen port:      5555 (local miners)
+2025-07-20 00:08:15,018 - IA-Zar-Proxy - INFO - Proxy started on port 5555
+2025-07-20 00:08:15,028 - IA-Zar-Proxy - INFO - Starting proxy main loop
+2025-07-20 00:08:15,028 - IA-Zar-Proxy - INFO - Connecting to pool pool.hashvault.pro:443 (attempt 1/10)
+2025-07-20 00:08:15,034 - IA-Zar-Proxy - INFO - Miner listener started on port 5555 (SSL only)
+2025-07-20 00:08:15,346 - IA-Zar-Proxy - INFO - Connected to pool, session ID: 454a34b6-6991-4e51-b9cd-8bbe791f6841
+2025-07-20 00:08:23,142 - IA-Zar-Proxy - INFO - Received new job from pool: 9a1a033b-2dd4-4698-81c5-63c5671d1bc1
+2025-07-20 00:08:27,432 - IA-Zar-Proxy - INFO - Received new job from pool: 7a2f746a-58bd-4eb3-ac9d-55df98ccb324
+2025-07-20 00:08:38,334 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50879) (Worker ID: worker-2fc475a1)
+2025-07-20 00:08:38,334 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50879): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:08:38,335 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50879) (Worker ID: worker-2fc475a1)
+2025-07-20 00:08:38,335 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50879) (Worker ID: worker-2fc475a1)
+2025-07-20 00:08:42,347 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50881) (Worker ID: worker-a73071e1)
+2025-07-20 00:08:42,347 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50881): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:08:42,348 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50881) (Worker ID: worker-a73071e1)
+2025-07-20 00:08:42,348 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 50881): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:08:42,348 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50881) (Worker ID: worker-a73071e1)
+2025-07-20 00:08:45,381 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50882) (Worker ID: worker-eacc6c90)
+2025-07-20 00:08:45,381 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50882): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:08:45,382 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50882) (Worker ID: worker-eacc6c90)
+2025-07-20 00:08:45,383 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 50882): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:08:45,384 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50882) (Worker ID: worker-eacc6c90)
+2025-07-20 00:08:48,415 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50883) (Worker ID: worker-d49ce2bc)
+2025-07-20 00:08:48,416 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50883): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:08:48,418 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50883) (Worker ID: worker-d49ce2bc)
+2025-07-20 00:08:48,419 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 50883): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:08:48,420 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50883) (Worker ID: worker-d49ce2bc)
+2025-07-20 00:08:51,444 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 50884) (Worker ID: worker-c195aee6)
+2025-07-20 00:08:51,445 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 50884): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:08:51,448 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 50884) (Worker ID: worker-c195aee6)
+2025-07-20 00:08:51,448 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 50884): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:08:51,450 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 50884) (Worker ID: worker-c195aee6)
+2025-07-20 00:16:33,451 - IA-Zar-Proxy - INFO - Launching IA-Zar Proxy with config:
+2025-07-20 00:16:33,451 - IA-Zar-Proxy - INFO -   Wallet:           44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc
+2025-07-20 00:16:33,451 - IA-Zar-Proxy - INFO -   Pool host:        pool.hashvault.pro
+2025-07-20 00:16:33,451 - IA-Zar-Proxy - INFO -   Pool port:        443
+2025-07-20 00:16:33,451 - IA-Zar-Proxy - INFO -   SHM prefix:       5555
+2025-07-20 00:16:33,451 - IA-Zar-Proxy - INFO -   TLS fingerprint:  420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14
+2025-07-20 00:16:33,451 - IA-Zar-Proxy - INFO -   Listen port:      5555 (local miners)
+2025-07-20 00:16:33,451 - IA-Zar-Proxy - INFO - Proxy started on port 5555
+2025-07-20 00:16:33,461 - IA-Zar-Proxy - INFO - Starting proxy main loop
+2025-07-20 00:16:33,461 - IA-Zar-Proxy - INFO - Connecting to pool pool.hashvault.pro:443 (attempt 1/10)
+2025-07-20 00:16:33,468 - IA-Zar-Proxy - INFO - Miner listener started on port 5555 (SSL only)
+2025-07-20 00:16:33,782 - IA-Zar-Proxy - INFO - Connected to pool, session ID: 76209e4e-df06-4aaa-b8d4-af7b72404455
+2025-07-20 00:16:41,161 - IA-Zar-Proxy - INFO - Received new job from pool: 5e9fec48-33cc-4a72-9bd2-688598443149
+2025-07-20 00:16:51,027 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51052) (Worker ID: worker-3d711c2b)
+2025-07-20 00:16:51,027 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51052): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:16:51,027 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51052) (Worker ID: worker-3d711c2b)
+2025-07-20 00:16:51,028 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 51052): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:16:51,028 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51052) (Worker ID: worker-3d711c2b)
+2025-07-20 00:16:57,035 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51056) (Worker ID: worker-3711a889)
+2025-07-20 00:17:03,167 - IA-Zar-Proxy - INFO - Received new job from pool: 0f08fce0-24ef-489d-a668-9b7f6712f4f6
+2025-07-20 00:17:22,258 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51060) (Worker ID: worker-1b917fab)
+2025-07-20 00:17:27,378 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51056): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:17:27,381 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51060): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:17:27,381 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51056) (Worker ID: worker-3711a889)
+2025-07-20 00:17:27,384 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51060) (Worker ID: worker-1b917fab)
+2025-07-20 00:17:27,386 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 51056): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:17:27,387 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 51060): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:17:27,389 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 51056): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:17:27,390 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51060) (Worker ID: worker-1b917fab)
+2025-07-20 00:17:27,392 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51056) (Worker ID: worker-3711a889)
+2025-07-20 00:17:33,330 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51061) (Worker ID: worker-c0c78d08)
+2025-07-20 00:17:38,848 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51061): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:17:43,242 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51061) (Worker ID: worker-c0c78d08)
+2025-07-20 00:17:43,245 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 51061): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:17:43,245 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51061) (Worker ID: worker-c0c78d08)
+2025-07-20 00:17:48,442 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51066) (Worker ID: worker-259f161c)
+2025-07-20 00:17:48,443 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51066): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:17:48,445 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51066) (Worker ID: worker-259f161c)
+2025-07-20 00:17:48,446 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 51066): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:17:48,447 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51066) (Worker ID: worker-259f161c)
+2025-07-20 00:17:53,522 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51069) (Worker ID: worker-ed38a22b)
+2025-07-20 00:17:53,526 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51069): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:17:53,527 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51069) (Worker ID: worker-ed38a22b)
+2025-07-20 00:17:53,533 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 51069): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:17:53,534 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51069) (Worker ID: worker-ed38a22b)
+2025-07-20 00:17:58,575 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51073) (Worker ID: worker-3e5f1e2d)
+2025-07-20 00:17:58,576 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51073): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:17:58,577 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51073) (Worker ID: worker-3e5f1e2d)
+2025-07-20 00:17:58,579 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 51073): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:17:58,579 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51073) (Worker ID: worker-3e5f1e2d)
+2025-07-20 00:18:03,605 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51089) (Worker ID: worker-425e9416)
+2025-07-20 00:18:03,606 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51089): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:18:03,608 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51089) (Worker ID: worker-425e9416)
+2025-07-20 00:18:03,609 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 51089): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:18:03,610 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51089) (Worker ID: worker-425e9416)
+2025-07-20 00:18:08,632 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51090) (Worker ID: worker-c0910329)
+2025-07-20 00:18:08,633 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51090): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:18:08,634 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51090) (Worker ID: worker-c0910329)
+2025-07-20 00:18:08,635 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 51090): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:18:08,636 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51090) (Worker ID: worker-c0910329)
+2025-07-20 00:18:13,662 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51091) (Worker ID: worker-89895e9a)
+2025-07-20 00:18:13,662 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51091): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:18:13,664 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51091) (Worker ID: worker-89895e9a)
+2025-07-20 00:18:13,665 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 51091): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:18:13,666 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51091) (Worker ID: worker-89895e9a)
+2025-07-20 00:18:18,688 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51092) (Worker ID: worker-c8e56946)
+2025-07-20 00:18:18,688 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51092): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:18:18,691 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51092) (Worker ID: worker-c8e56946)
+2025-07-20 00:18:18,692 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 51092): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:18:18,693 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51092) (Worker ID: worker-c8e56946)
+2025-07-20 00:18:23,709 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51094) (Worker ID: worker-04e60344)
+2025-07-20 00:18:23,710 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51094): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:18:23,712 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51094) (Worker ID: worker-04e60344)
+2025-07-20 00:18:23,714 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 51094): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:18:23,715 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51094) (Worker ID: worker-04e60344)
+2025-07-20 00:19:01,432 - IA-Zar-Proxy - INFO - Launching IA-Zar Proxy with config:
+2025-07-20 00:19:01,432 - IA-Zar-Proxy - INFO -   Wallet:           44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc
+2025-07-20 00:19:01,432 - IA-Zar-Proxy - INFO -   Pool host:        pool.hashvault.pro
+2025-07-20 00:19:01,433 - IA-Zar-Proxy - INFO -   Pool port:        443
+2025-07-20 00:19:01,433 - IA-Zar-Proxy - INFO -   SHM prefix:       5555
+2025-07-20 00:19:01,433 - IA-Zar-Proxy - INFO -   TLS fingerprint:  [none]
+2025-07-20 00:19:01,433 - IA-Zar-Proxy - INFO -   Listen port:      5555 (local miners)
+2025-07-20 00:19:01,434 - IA-Zar-Proxy - INFO - Proxy started on port 5555
+2025-07-20 00:19:01,435 - IA-Zar-Proxy - INFO - Starting proxy main loop
+2025-07-20 00:19:01,435 - IA-Zar-Proxy - INFO - Connecting to pool pool.hashvault.pro:443 (attempt 1/10)
+2025-07-20 00:19:01,441 - IA-Zar-Proxy - INFO - Miner listener started on port 5555 (SSL only)
+2025-07-20 00:19:01,745 - IA-Zar-Proxy - INFO - Connected to pool, session ID: cfecbb92-622a-458f-a0d4-6c82db401975
+2025-07-20 00:19:11,127 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51116) (Worker ID: worker-8222eca6)
+2025-07-20 00:19:11,127 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51116): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:19:11,128 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51116) (Worker ID: worker-8222eca6)
+2025-07-20 00:19:11,129 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51116) (Worker ID: worker-8222eca6)
+2025-07-20 00:19:17,141 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51120) (Worker ID: worker-175c98bc)
+2025-07-20 00:19:17,141 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51120): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:19:17,142 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51120) (Worker ID: worker-175c98bc)
+2025-07-20 00:19:17,142 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51120) (Worker ID: worker-175c98bc)
+2025-07-20 00:19:21,168 - IA-Zar-Proxy - INFO - Received new job from pool: 23fa7b92-5b87-4b13-b409-bf92709b6781
+2025-07-20 00:19:22,178 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51121) (Worker ID: worker-7e43dbec)
+2025-07-20 00:19:22,178 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51121): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:19:22,180 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51121) (Worker ID: worker-7e43dbec)
+2025-07-20 00:19:22,182 - IA-Zar-Proxy - ERROR - Send error to ('127.0.0.1', 51121): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:19:22,182 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51121) (Worker ID: worker-7e43dbec)
+2025-07-20 00:30:48,486 - IA-Zar-Proxy - INFO - No TLS cert/key found, creating self-signed...
+2025-07-20 00:30:48,955 - IA-Zar-Proxy - INFO - Launching IA-Zar Proxy with config:
+2025-07-20 00:30:48,955 - IA-Zar-Proxy - INFO -   Wallet:           44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc
+2025-07-20 00:30:48,955 - IA-Zar-Proxy - INFO -   Pool host:        pool.hashvault.pro
+2025-07-20 00:30:48,955 - IA-Zar-Proxy - INFO -   Pool port:        443
+2025-07-20 00:30:48,955 - IA-Zar-Proxy - INFO -   SHM prefix:       5555
+2025-07-20 00:30:48,955 - IA-Zar-Proxy - INFO -   TLS fingerprint:  420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14
+2025-07-20 00:30:48,955 - IA-Zar-Proxy - INFO -   Listen port:      5555 (local miners)
+2025-07-20 00:30:48,970 - IA-Zar-Proxy - INFO - Proxy started on port 5555
+2025-07-20 00:30:48,972 - IA-Zar-Proxy - INFO - Starting proxy main loop
+2025-07-20 00:30:48,972 - IA-Zar-Proxy - INFO - Connecting to pool pool.hashvault.pro:443 (attempt 1/10)
+2025-07-20 00:30:48,998 - IA-Zar-Proxy - INFO - Miner listener started on port 5555 (SSL only)
+2025-07-20 00:30:49,298 - IA-Zar-Proxy - INFO - Connected to pool, session ID: cee42e27-7f4c-4ffd-9d81-44b5ca671557
+2025-07-20 00:30:55,220 - IA-Zar-Proxy - INFO - Received new job from pool: 5a1c00a4-97b3-4b80-b170-e58af70e1d3c
+2025-07-20 00:31:01,042 - IA-Zar-Proxy - INFO - Received new job from pool: aab43d1e-5fd8-4487-aac5-4a952b5f521b
+2025-07-20 00:31:07,853 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51273) (Worker ID: worker-94204f77)
+2025-07-20 00:31:07,853 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51273): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:31:07,853 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51273) (Worker ID: worker-94204f77)
+2025-07-20 00:31:07,855 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51273) (Worker ID: worker-94204f77)
+2025-07-20 00:31:12,876 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51276) (Worker ID: worker-dd3848a8)
+2025-07-20 00:31:12,876 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51276): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:31:12,876 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51276) (Worker ID: worker-dd3848a8)
+2025-07-20 00:31:12,878 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51276): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:31:12,878 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51276) (Worker ID: worker-dd3848a8)
+2025-07-20 00:31:17,923 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51277) (Worker ID: worker-f103ef50)
+2025-07-20 00:31:17,924 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51277): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:31:17,925 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51277) (Worker ID: worker-f103ef50)
+2025-07-20 00:31:17,926 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51277) (Worker ID: worker-f103ef50)
+2025-07-20 00:31:22,980 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51278) (Worker ID: worker-becaf88c)
+2025-07-20 00:31:22,980 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51278): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:31:22,983 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51278) (Worker ID: worker-becaf88c)
+2025-07-20 00:31:22,984 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51278) (Worker ID: worker-becaf88c)
+2025-07-20 00:32:04,526 - IA-Zar-Proxy - INFO - Launching IA-Zar Proxy with config:
+2025-07-20 00:32:04,526 - IA-Zar-Proxy - INFO -   Wallet:           44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc
+2025-07-20 00:32:04,526 - IA-Zar-Proxy - INFO -   Pool host:        pool.hashvault.pro
+2025-07-20 00:32:04,526 - IA-Zar-Proxy - INFO -   Pool port:        443
+2025-07-20 00:32:04,526 - IA-Zar-Proxy - INFO -   SHM prefix:       5555
+2025-07-20 00:32:04,526 - IA-Zar-Proxy - INFO -   TLS fingerprint:  [none]
+2025-07-20 00:32:04,526 - IA-Zar-Proxy - INFO -   Listen port:      5555 (local miners)
+2025-07-20 00:32:04,526 - IA-Zar-Proxy - INFO - Proxy started on port 5555
+2025-07-20 00:32:04,537 - IA-Zar-Proxy - INFO - Starting proxy main loop
+2025-07-20 00:32:04,537 - IA-Zar-Proxy - INFO - Connecting to pool pool.hashvault.pro:443 (attempt 1/10)
+2025-07-20 00:32:04,542 - IA-Zar-Proxy - INFO - Miner listener started on port 5555 (SSL only)
+2025-07-20 00:32:05,782 - IA-Zar-Proxy - INFO - Connected to pool, session ID: 396a61a6-aa70-46e3-b89d-4754100b5f7c
+2025-07-20 00:32:22,303 - IA-Zar-Proxy - INFO - Received new job from pool: b81eeba5-6845-45fe-a2e7-fc86c7707343
+2025-07-20 00:32:44,603 - IA-Zar-Proxy - INFO - Received new job from pool: 99e51673-f108-49a9-98db-a0d0656dbdd5
+2025-07-20 00:32:54,797 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51309) (Worker ID: worker-c160bb83)
+2025-07-20 00:32:54,797 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51309): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:32:54,798 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51309) (Worker ID: worker-c160bb83)
+2025-07-20 00:32:54,798 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51309) (Worker ID: worker-c160bb83)
+2025-07-20 00:32:59,811 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51311) (Worker ID: worker-5becdf6d)
+2025-07-20 00:32:59,811 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51311): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:32:59,812 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51311) (Worker ID: worker-5becdf6d)
+2025-07-20 00:32:59,812 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51311) (Worker ID: worker-5becdf6d)
+2025-07-20 00:33:04,868 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51312) (Worker ID: worker-b1cf212d)
+2025-07-20 00:33:04,868 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51312): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:33:04,869 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51312) (Worker ID: worker-b1cf212d)
+2025-07-20 00:33:04,870 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51312) (Worker ID: worker-b1cf212d)
+2025-07-20 00:33:09,923 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51313) (Worker ID: worker-c3101601)
+2025-07-20 00:33:09,971 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51313): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:33:13,468 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51313) (Worker ID: worker-c3101601)
+2025-07-20 00:33:13,476 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51313): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:33:13,478 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51313) (Worker ID: worker-c3101601)
+2025-07-20 00:33:19,009 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51317) (Worker ID: worker-2df09bc6)
+2025-07-20 00:33:19,010 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51317): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:33:19,012 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51317) (Worker ID: worker-2df09bc6)
+2025-07-20 00:33:19,013 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51317): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:33:19,013 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51317) (Worker ID: worker-2df09bc6)
+2025-07-20 00:33:24,042 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51331) (Worker ID: worker-0f63725c)
+2025-07-20 00:33:24,042 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51331): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:33:24,044 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51331) (Worker ID: worker-0f63725c)
+2025-07-20 00:33:24,045 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51331): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:33:24,047 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51331) (Worker ID: worker-0f63725c)
+2025-07-20 00:33:29,069 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51332) (Worker ID: worker-59162629)
+2025-07-20 00:33:29,070 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51332): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:33:29,072 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51332) (Worker ID: worker-59162629)
+2025-07-20 00:33:29,073 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51332): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:33:29,073 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51332) (Worker ID: worker-59162629)
+2025-07-20 00:33:35,091 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51333) (Worker ID: worker-89fb4a79)
+2025-07-20 00:33:35,091 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51333): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:33:35,092 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51333) (Worker ID: worker-89fb4a79)
+2025-07-20 00:33:35,095 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51333): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:33:35,095 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51333) (Worker ID: worker-89fb4a79)
+2025-07-20 00:33:40,123 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51337) (Worker ID: worker-b2b8b616)
+2025-07-20 00:33:40,123 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51337): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:33:40,126 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51337) (Worker ID: worker-b2b8b616)
+2025-07-20 00:33:40,126 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51337): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:33:40,127 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51337) (Worker ID: worker-b2b8b616)
+2025-07-20 00:33:45,152 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51338) (Worker ID: worker-82747169)
+2025-07-20 00:33:45,152 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51338): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:33:45,154 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51338) (Worker ID: worker-82747169)
+2025-07-20 00:33:45,156 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51338): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:33:45,156 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51338) (Worker ID: worker-82747169)
+2025-07-20 00:33:50,199 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51339) (Worker ID: worker-9bc7ec16)
+2025-07-20 00:33:50,199 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51339): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:33:50,200 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51339) (Worker ID: worker-9bc7ec16)
+2025-07-20 00:33:50,202 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51339): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:33:50,203 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51339) (Worker ID: worker-9bc7ec16)
+2025-07-20 00:33:55,242 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51340) (Worker ID: worker-27e7416f)
+2025-07-20 00:33:55,242 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51340): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:33:55,243 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51340) (Worker ID: worker-27e7416f)
+2025-07-20 00:33:55,245 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51340): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:33:55,246 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51340) (Worker ID: worker-27e7416f)
+2025-07-20 00:34:00,276 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51345) (Worker ID: worker-9d118439)
+2025-07-20 00:34:00,284 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51345): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:34:00,285 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51345) (Worker ID: worker-9d118439)
+2025-07-20 00:34:00,286 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51345): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:34:00,287 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51345) (Worker ID: worker-9d118439)
+2025-07-20 00:34:05,304 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51350) (Worker ID: worker-a4e561ec)
+2025-07-20 00:34:05,305 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51350): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:34:05,307 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51350) (Worker ID: worker-a4e561ec)
+2025-07-20 00:34:05,308 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51350): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:34:05,308 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51350) (Worker ID: worker-a4e561ec)
+2025-07-20 00:34:10,335 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51355) (Worker ID: worker-ec92b9cb)
+2025-07-20 00:34:10,336 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51355): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:34:10,339 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51355) (Worker ID: worker-ec92b9cb)
+2025-07-20 00:34:10,339 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51355): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:34:10,340 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51355) (Worker ID: worker-ec92b9cb)
+2025-07-20 00:34:15,354 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51358) (Worker ID: worker-4a8f3f53)
+2025-07-20 00:34:15,354 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51358): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:34:15,357 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51358) (Worker ID: worker-4a8f3f53)
+2025-07-20 00:34:15,358 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51358): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:34:15,358 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51358) (Worker ID: worker-4a8f3f53)
+2025-07-20 00:34:20,393 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51360) (Worker ID: worker-2962a4c1)
+2025-07-20 00:34:20,393 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51360): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:34:20,396 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51360) (Worker ID: worker-2962a4c1)
+2025-07-20 00:34:20,398 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51360): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:34:20,399 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51360) (Worker ID: worker-2962a4c1)
+2025-07-20 00:34:25,414 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51367) (Worker ID: worker-29452af1)
+2025-07-20 00:34:25,414 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51367): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:34:25,417 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51367) (Worker ID: worker-29452af1)
+2025-07-20 00:34:25,418 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51367): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:34:25,419 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51367) (Worker ID: worker-29452af1)
+2025-07-20 00:34:30,447 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51370) (Worker ID: worker-c31364ca)
+2025-07-20 00:34:30,447 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51370): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:34:30,450 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51370) (Worker ID: worker-c31364ca)
+2025-07-20 00:34:30,450 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51370): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:34:30,450 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51370) (Worker ID: worker-c31364ca)
+2025-07-20 00:34:35,514 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51371) (Worker ID: worker-55b3dac3)
+2025-07-20 00:34:35,514 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51371): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:34:35,516 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51371) (Worker ID: worker-55b3dac3)
+2025-07-20 00:34:35,517 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51371): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:34:35,517 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51371) (Worker ID: worker-55b3dac3)
+2025-07-20 00:34:40,537 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51372) (Worker ID: worker-e4ea7b00)
+2025-07-20 00:34:40,537 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51372): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:34:40,540 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51372) (Worker ID: worker-e4ea7b00)
+2025-07-20 00:34:40,542 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51372): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:34:40,542 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51372) (Worker ID: worker-e4ea7b00)
+2025-07-20 00:34:45,586 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51376) (Worker ID: worker-bad6ef1a)
+2025-07-20 00:34:45,586 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51376): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:34:45,588 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51376) (Worker ID: worker-bad6ef1a)
+2025-07-20 00:34:45,590 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51376): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:34:45,591 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51376) (Worker ID: worker-bad6ef1a)
+2025-07-20 00:34:50,616 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51378) (Worker ID: worker-70d57261)
+2025-07-20 00:34:50,616 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51378): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:34:50,620 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51378) (Worker ID: worker-70d57261)
+2025-07-20 00:34:50,621 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51378): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:34:50,621 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51378) (Worker ID: worker-70d57261)
+2025-07-20 00:34:55,652 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51379) (Worker ID: worker-e9860c55)
+2025-07-20 00:34:55,652 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51379): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:34:55,655 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51379) (Worker ID: worker-e9860c55)
+2025-07-20 00:34:55,657 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51379): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:34:55,657 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51379) (Worker ID: worker-e9860c55)
+2025-07-20 00:35:00,740 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51380) (Worker ID: worker-a9b99939)
+2025-07-20 00:35:00,743 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51380): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:35:00,774 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51380) (Worker ID: worker-a9b99939)
+2025-07-20 00:35:00,776 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51380): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:35:00,778 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51380) (Worker ID: worker-a9b99939)
+2025-07-20 00:35:06,744 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51384) (Worker ID: worker-dbdf51aa)
+2025-07-20 00:35:06,744 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51384): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:35:06,746 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51384) (Worker ID: worker-dbdf51aa)
+2025-07-20 00:35:06,747 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51384): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:35:06,747 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51384) (Worker ID: worker-dbdf51aa)
+2025-07-20 00:35:11,781 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51385) (Worker ID: worker-b3681a65)
+2025-07-20 00:35:11,782 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51385): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:35:11,783 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51385) (Worker ID: worker-b3681a65)
+2025-07-20 00:35:11,785 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51385): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:35:11,786 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51385) (Worker ID: worker-b3681a65)
+2025-07-20 00:35:16,876 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51386) (Worker ID: worker-7edde926)
+2025-07-20 00:35:16,909 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51386): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:35:16,943 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51386) (Worker ID: worker-7edde926)
+2025-07-20 00:35:16,960 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51386): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:35:16,960 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51386) (Worker ID: worker-7edde926)
+2025-07-20 00:35:22,890 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51390) (Worker ID: worker-3a4834dd)
+2025-07-20 00:35:22,890 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51390): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:35:22,892 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51390) (Worker ID: worker-3a4834dd)
+2025-07-20 00:35:22,893 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51390): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:35:22,894 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51390) (Worker ID: worker-3a4834dd)
+2025-07-20 00:35:27,906 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51391) (Worker ID: worker-7b00dddb)
+2025-07-20 00:35:27,906 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51391): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:35:27,909 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51391) (Worker ID: worker-7b00dddb)
+2025-07-20 00:35:27,909 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51391): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:35:27,910 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51391) (Worker ID: worker-7b00dddb)
+2025-07-20 00:35:32,960 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51393) (Worker ID: worker-7919a7dd)
+2025-07-20 00:35:32,961 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51393): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:35:32,964 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51393) (Worker ID: worker-7919a7dd)
+2025-07-20 00:35:32,965 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51393): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:35:32,966 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51393) (Worker ID: worker-7919a7dd)
+2025-07-20 00:35:37,997 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51402) (Worker ID: worker-a46d56c6)
+2025-07-20 00:35:37,998 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51402): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:35:38,000 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51402) (Worker ID: worker-a46d56c6)
+2025-07-20 00:35:38,000 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51402): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:35:38,000 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51402) (Worker ID: worker-a46d56c6)
+2025-07-20 00:35:43,030 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51403) (Worker ID: worker-c98d2d94)
+2025-07-20 00:35:43,031 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51403): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:35:43,033 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51403) (Worker ID: worker-c98d2d94)
+2025-07-20 00:35:43,034 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51403): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:35:43,035 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51403) (Worker ID: worker-c98d2d94)
+2025-07-20 00:35:48,058 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51404) (Worker ID: worker-0e43e2d4)
+2025-07-20 00:35:48,058 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51404): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:35:48,060 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51404) (Worker ID: worker-0e43e2d4)
+2025-07-20 00:35:48,061 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51404): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:35:48,062 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51404) (Worker ID: worker-0e43e2d4)
+2025-07-20 00:35:53,105 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51405) (Worker ID: worker-28fd41e4)
+2025-07-20 00:35:53,105 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51405): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:35:53,108 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51405) (Worker ID: worker-28fd41e4)
+2025-07-20 00:35:53,108 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51405): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:35:53,109 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51405) (Worker ID: worker-28fd41e4)
+2025-07-20 00:35:58,148 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51406) (Worker ID: worker-21835d47)
+2025-07-20 00:35:58,149 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51406): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:35:58,151 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51406) (Worker ID: worker-21835d47)
+2025-07-20 00:35:58,153 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51406): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:35:58,153 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51406) (Worker ID: worker-21835d47)
+2025-07-20 00:36:03,170 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51407) (Worker ID: worker-1cd73a62)
+2025-07-20 00:36:03,170 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51407): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:36:03,172 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51407) (Worker ID: worker-1cd73a62)
+2025-07-20 00:36:03,173 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51407): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:36:03,175 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51407) (Worker ID: worker-1cd73a62)
+2025-07-20 00:36:08,192 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51412) (Worker ID: worker-b6ac4681)
+2025-07-20 00:36:08,192 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51412): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:36:08,194 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51412) (Worker ID: worker-b6ac4681)
+2025-07-20 00:36:08,195 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51412): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:36:08,196 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51412) (Worker ID: worker-b6ac4681)
+2025-07-20 00:36:13,241 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51416) (Worker ID: worker-c58e2ace)
+2025-07-20 00:36:13,241 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51416): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:36:13,245 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51416) (Worker ID: worker-c58e2ace)
+2025-07-20 00:36:13,245 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51416): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:36:13,245 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51416) (Worker ID: worker-c58e2ace)
+2025-07-20 00:36:18,271 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51417) (Worker ID: worker-971eff71)
+2025-07-20 00:36:18,271 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51417): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:36:18,273 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51417) (Worker ID: worker-971eff71)
+2025-07-20 00:36:18,275 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51417): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:36:18,275 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51417) (Worker ID: worker-971eff71)
+2025-07-20 00:36:23,327 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51418) (Worker ID: worker-a32c169d)
+2025-07-20 00:36:23,327 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51418): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:36:23,330 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51418) (Worker ID: worker-a32c169d)
+2025-07-20 00:36:23,330 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51418): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:36:23,331 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51418) (Worker ID: worker-a32c169d)
+2025-07-20 00:36:28,388 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51419) (Worker ID: worker-7090d925)
+2025-07-20 00:36:28,388 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51419): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:36:28,390 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51419) (Worker ID: worker-7090d925)
+2025-07-20 00:36:28,391 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51419): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:36:28,392 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51419) (Worker ID: worker-7090d925)
+2025-07-20 00:36:34,406 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51421) (Worker ID: worker-036123d7)
+2025-07-20 00:36:34,407 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51421): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:36:34,409 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51421) (Worker ID: worker-036123d7)
+2025-07-20 00:36:34,411 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51421): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:36:34,411 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51421) (Worker ID: worker-036123d7)
+2025-07-20 00:36:39,464 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51422) (Worker ID: worker-030f9627)
+2025-07-20 00:36:39,466 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51422): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:36:39,468 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51422) (Worker ID: worker-030f9627)
+2025-07-20 00:36:39,470 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51422): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:36:39,471 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51422) (Worker ID: worker-030f9627)
+2025-07-20 00:36:44,507 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51423) (Worker ID: worker-650e362f)
+2025-07-20 00:36:44,507 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51423): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:36:44,510 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51423) (Worker ID: worker-650e362f)
+2025-07-20 00:36:44,511 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51423): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:36:44,512 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51423) (Worker ID: worker-650e362f)
+2025-07-20 00:36:49,524 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51428) (Worker ID: worker-39578a68)
+2025-07-20 00:36:49,524 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51428): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:36:49,525 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51428) (Worker ID: worker-39578a68)
+2025-07-20 00:36:49,528 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51428): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:36:49,528 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51428) (Worker ID: worker-39578a68)
+2025-07-20 00:36:54,561 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51429) (Worker ID: worker-da5d3c59)
+2025-07-20 00:36:54,561 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51429): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:36:54,563 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51429) (Worker ID: worker-da5d3c59)
+2025-07-20 00:36:54,565 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51429): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:36:54,565 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51429) (Worker ID: worker-da5d3c59)
+2025-07-20 00:36:59,614 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51430) (Worker ID: worker-810f5b35)
+2025-07-20 00:36:59,615 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51430): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:36:59,616 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51430) (Worker ID: worker-810f5b35)
+2025-07-20 00:36:59,618 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51430): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:36:59,618 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51430) (Worker ID: worker-810f5b35)
+2025-07-20 00:37:04,638 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51432) (Worker ID: worker-0a9100eb)
+2025-07-20 00:37:04,638 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51432): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:37:04,640 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51432) (Worker ID: worker-0a9100eb)
+2025-07-20 00:37:04,641 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51432): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:37:04,641 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51432) (Worker ID: worker-0a9100eb)
+2025-07-20 00:37:09,692 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51433) (Worker ID: worker-76cc76a6)
+2025-07-20 00:37:09,693 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51433): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:37:09,695 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51433) (Worker ID: worker-76cc76a6)
+2025-07-20 00:37:09,696 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51433): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:37:09,697 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51433) (Worker ID: worker-76cc76a6)
+2025-07-20 00:37:14,707 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51437) (Worker ID: worker-244650e1)
+2025-07-20 00:37:14,707 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51437): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:37:14,710 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51437) (Worker ID: worker-244650e1)
+2025-07-20 00:37:14,711 - IA-Zar-Proxy - ERROR - SSL send error to ('127.0.0.1', 51437): EOF occurred in violation of protocol (_ssl.c:2427)
+2025-07-20 00:37:14,711 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51437) (Worker ID: worker-244650e1)
+2025-07-20 00:43:03,192 - IA-Zar-Proxy - INFO - Launching IA-Zar Proxy with config:
+2025-07-20 00:43:03,192 - IA-Zar-Proxy - INFO -   Wallet:           44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc
+2025-07-20 00:43:03,192 - IA-Zar-Proxy - INFO -   Pool host:        pool.hashvault.pro
+2025-07-20 00:43:03,192 - IA-Zar-Proxy - INFO -   Pool port:        443
+2025-07-20 00:43:03,192 - IA-Zar-Proxy - INFO -   SHM prefix:       5555
+2025-07-20 00:43:03,192 - IA-Zar-Proxy - INFO -   TLS fingerprint:  [none]
+2025-07-20 00:43:03,192 - IA-Zar-Proxy - INFO -   Listen port:      5555 (local miners)
+2025-07-20 00:43:03,192 - IA-Zar-Proxy - INFO - Proxy started on port 5555
+2025-07-20 00:43:03,198 - IA-Zar-Proxy - INFO - Starting proxy main loop
+2025-07-20 00:43:03,198 - IA-Zar-Proxy - INFO - Connecting to pool pool.hashvault.pro:443 (attempt 1/10)
+2025-07-20 00:43:03,203 - IA-Zar-Proxy - INFO - Miner listener started on port 5555 (SSL only)
+2025-07-20 00:43:03,457 - IA-Zar-Proxy - INFO - Connected to pool, session ID: c685ec58-c296-4909-a1cb-4a2989aa37b2
+2025-07-20 00:43:26,724 - IA-Zar-Proxy - INFO - Launching IA-Zar Proxy with config:
+2025-07-20 00:43:26,724 - IA-Zar-Proxy - INFO -   Wallet:           44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc
+2025-07-20 00:43:26,724 - IA-Zar-Proxy - INFO -   Pool host:        pool.hashvault.pro
+2025-07-20 00:43:26,724 - IA-Zar-Proxy - INFO -   Pool port:        443
+2025-07-20 00:43:26,724 - IA-Zar-Proxy - INFO -   SHM prefix:       5555
+2025-07-20 00:43:26,724 - IA-Zar-Proxy - INFO -   TLS fingerprint:  420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14
+2025-07-20 00:43:26,724 - IA-Zar-Proxy - INFO -   Listen port:      5555 (local miners)
+2025-07-20 00:43:26,724 - IA-Zar-Proxy - INFO - Proxy started on port 5555
+2025-07-20 00:43:26,735 - IA-Zar-Proxy - INFO - Starting proxy main loop
+2025-07-20 00:43:26,735 - IA-Zar-Proxy - INFO - Connecting to pool pool.hashvault.pro:443 (attempt 1/10)
+2025-07-20 00:43:26,740 - IA-Zar-Proxy - INFO - Miner listener started on port 5555 (SSL only)
+2025-07-20 00:43:26,975 - IA-Zar-Proxy - INFO - Connected to pool, session ID: a9daa8cc-c9c4-4196-b45c-64cd0796be66
+2025-07-20 00:43:37,236 - IA-Zar-Proxy - INFO - Received new job from pool: b12dbf3a-489c-47f1-88e8-653b45ee6652
+2025-07-20 00:43:46,916 - IA-Zar-Proxy - INFO - New miner connected: ('127.0.0.1', 51550) (Worker ID: worker-91639a3e)
+2025-07-20 00:43:46,916 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51550): {'id': 1, 'jsonrpc': '2.0', 'method': 'login', 'params': {'login': '44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc', 'pass': 'x', 'agent': 'XMRig/6.22.2 (Windows NT 10.0; Win64; x64) libuv/1.49.2 gcc/13.2.0', 'algo': ['cn/1', 'cn/2', 'cn/r', 'cn/fast', 'cn/half', 'cn/xao', 'cn/rto', 'cn/rwz', 'cn/zls', 'cn/double', 'cn/ccx', 'cn-lite/1', 'cn-heavy/0', 'cn-heavy/tube', 'cn-heavy/xhv', 'cn-pico', 'cn-pico/tlo', 'cn/upx2', 'rx/0', 'rx/wow', 'rx/arq', 'rx/graft', 'rx/sfx', 'rx/yada', 'argon2/chukwa', 'argon2/chukwav2', 'argon2/ninja', 'ghostrider']}}
+2025-07-20 00:43:46,916 - IA-Zar-Proxy - INFO - Logged in miner (via login): ('127.0.0.1', 51550) (Worker ID: worker-91639a3e)
+2025-07-20 00:43:59,187 - IA-Zar-Proxy - INFO - Received new job from pool: 192d3257-707d-4737-a343-ff6235bd3c07
+2025-07-20 00:44:47,262 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51550): {'id': 2, 'jsonrpc': '2.0', 'method': 'keepalived', 'params': {'id': '(null)'}}
+2025-07-20 00:45:47,610 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51550): {'id': 3, 'jsonrpc': '2.0', 'method': 'keepalived', 'params': {'id': '(null)'}}
+2025-07-20 00:46:51,030 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51550): {'id': 4, 'jsonrpc': '2.0', 'method': 'keepalived', 'params': {'id': '(null)'}}
+2025-07-20 00:47:51,507 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51550): {'id': 5, 'jsonrpc': '2.0', 'method': 'keepalived', 'params': {'id': '(null)'}}
+2025-07-20 00:48:51,921 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51550): {'id': 6, 'jsonrpc': '2.0', 'method': 'keepalived', 'params': {'id': '(null)'}}
+2025-07-20 00:49:52,400 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51550): {'id': 7, 'jsonrpc': '2.0', 'method': 'keepalived', 'params': {'id': '(null)'}}
+2025-07-20 00:50:52,824 - IA-Zar-Proxy - INFO - Received miner message from ('127.0.0.1', 51550): {'id': 8, 'jsonrpc': '2.0', 'method': 'keepalived', 'params': {'id': '(null)'}}
+2025-07-20 00:51:16,455 - IA-Zar-Proxy - INFO - Miner disconnected: ('127.0.0.1', 51550) (Worker ID: worker-91639a3e)
+2025-07-20 00:51:16,461 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-20 00:51:22,041 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-20 00:51:27,064 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-20 00:51:50,051 - IA-Zar-Proxy - INFO - Launching IA-Zar Proxy with config:
+2025-07-20 00:51:50,051 - IA-Zar-Proxy - INFO -   Wallet:           44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc
+2025-07-20 00:51:50,051 - IA-Zar-Proxy - INFO -   Pool host:        pool.hashvault.pro
+2025-07-20 00:51:50,051 - IA-Zar-Proxy - INFO -   Pool port:        443
+2025-07-20 00:51:50,051 - IA-Zar-Proxy - INFO -   SHM prefix:       5555
+2025-07-20 00:51:50,051 - IA-Zar-Proxy - INFO -   TLS fingerprint:  420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14
+2025-07-20 00:51:50,051 - IA-Zar-Proxy - INFO -   Listen port:      5555 (local miners)
+2025-07-20 00:51:50,051 - IA-Zar-Proxy - INFO - Proxy started on port 5555
+2025-07-20 00:51:50,055 - IA-Zar-Proxy - INFO - Starting proxy main loop
+2025-07-20 00:51:50,055 - IA-Zar-Proxy - INFO - Connecting to pool pool.hashvault.pro:443 (attempt 1/10)
+2025-07-20 00:51:50,096 - IA-Zar-Proxy - INFO - Miner listener started on port 5555 (SSL only)
+2025-07-20 00:51:53,341 - IA-Zar-Proxy - INFO - Connected to pool, session ID: 712b10a0-69ab-4e04-9441-297afd9a741d
+2025-07-20 00:52:01,403 - IA-Zar-Proxy - INFO - Received new job from pool: 9ea5d35d-1887-4a5e-81ff-75d272d0a9da
+2025-07-20 00:52:10,403 - IA-Zar-Proxy - INFO - Received new job from pool: f6afac17-5652-4c31-81b3-9e49b523446e
+2025-07-20 00:52:21,696 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-20 00:52:27,707 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-20 00:52:32,735 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-20 00:52:37,780 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-20 00:52:42,830 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-20 00:52:47,872 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-20 00:52:52,897 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-20 00:52:57,939 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-20 00:53:02,982 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-20 00:53:08,025 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-20 00:53:13,042 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-20 00:53:18,084 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-20 00:53:26,602 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-20 00:53:31,630 - IA-Zar-Proxy - WARNING - SSL error from unknown: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)
+2025-07-20 01:06:56,015 - IA-Zar-Proxy - INFO - Launching IA-Zar Proxy with config:
+2025-07-20 01:06:56,015 - IA-Zar-Proxy - INFO -   Wallet:           44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc
+2025-07-20 01:06:56,015 - IA-Zar-Proxy - INFO -   Pool host:        pool.hashvault.pro
+2025-07-20 01:06:56,015 - IA-Zar-Proxy - INFO -   Pool port:        443
+2025-07-20 01:06:56,015 - IA-Zar-Proxy - INFO -   SHM prefix:       5555
+2025-07-20 01:06:56,015 - IA-Zar-Proxy - INFO -   TLS fingerprint:  420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14
+2025-07-20 01:06:56,015 - IA-Zar-Proxy - INFO -   Listen port:      5555 (local miners)
+2025-07-20 01:06:56,030 - IA-Zar-Proxy - INFO - TLS cert/key found, verifying fingerprint...
+2025-07-20 01:06:56,749 - IA-Zar-Proxy - ERROR - Certificate verification failed: cannot access local variable 'serialization' where it is not associated with a value
+2025-07-20 01:06:56,749 - IA-Zar-Proxy - INFO - Proxy started on port 5555
+2025-07-20 01:06:56,763 - IA-Zar-Proxy - INFO - Starting proxy main loop
+2025-07-20 01:06:56,763 - IA-Zar-Proxy - INFO - Connecting to pool pool.hashvault.pro:443 (attempt 1/10)
+2025-07-20 01:06:57,077 - IA-Zar-Proxy - INFO - Connected to pool, session ID: 3464eab6-8f60-49e9-b168-17d6e1ff509c
+2025-07-20 01:07:01,043 - IA-Zar-Proxy - INFO - Received new job from pool: 3eca7bf3-feff-47f1-9f8a-44f493bb564d
+2025-07-20 01:07:05,243 - IA-Zar-Proxy - INFO - Received new job from pool: fb1f99bd-a2eb-40c2-94f1-24efeff8277e
+2025-07-20 01:10:28,536 - IA-Zar-Proxy - INFO - Launching IA-Zar Proxy with config:
+2025-07-20 01:10:28,536 - IA-Zar-Proxy - INFO -   Wallet:           44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc
+2025-07-20 01:10:28,536 - IA-Zar-Proxy - INFO -   Pool host:        pool.hashvault.pro
+2025-07-20 01:10:28,536 - IA-Zar-Proxy - INFO -   Pool port:        443
+2025-07-20 01:10:28,552 - IA-Zar-Proxy - INFO -   SHM prefix:       5555
+2025-07-20 01:10:28,552 - IA-Zar-Proxy - INFO -   TLS fingerprint:  420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14
+2025-07-20 01:10:28,552 - IA-Zar-Proxy - INFO -   Listen port:      5555 (local miners)
+2025-07-20 01:10:28,552 - IA-Zar-Proxy - INFO - TLS cert/key found, verifying fingerprint...
+2025-07-20 01:10:28,646 - IA-Zar-Proxy - ERROR - Certificate verification failed: cannot access local variable 'serialization' where it is not associated with a value
+2025-07-20 01:10:28,646 - IA-Zar-Proxy - INFO - Proxy started on port 5555
+2025-07-20 01:10:28,659 - IA-Zar-Proxy - INFO - Starting proxy main loop
+2025-07-20 01:10:28,659 - IA-Zar-Proxy - INFO - Connecting to pool pool.hashvault.pro:443 (attempt 1/10)
+2025-07-20 01:10:28,913 - IA-Zar-Proxy - INFO - Connected to pool, session ID: a24b0808-0011-4d5c-a746-fb1d588646a1
+2025-07-20 01:10:49,255 - IA-Zar-Proxy - INFO - Received new job from pool: 90095646-c117-4899-b21f-c5e39c6aa656
+2025-07-20 01:11:11,269 - IA-Zar-Proxy - INFO - Received new job from pool: 3ae313cb-7ea9-4c83-80b9-0c8852223984
+2025-07-20 09:25:09,316 - IA-Zar-Proxy - INFO - Launching IA-Zar Proxy with config:
+2025-07-20 09:25:09,316 - IA-Zar-Proxy - INFO -   Wallet:           44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc
+2025-07-20 09:25:09,316 - IA-Zar-Proxy - INFO -   Pool host:        pool.hashvault.pro
+2025-07-20 09:25:09,316 - IA-Zar-Proxy - INFO -   Pool port:        443
+2025-07-20 09:25:09,316 - IA-Zar-Proxy - INFO -   SHM prefix:       5555
+2025-07-20 09:25:09,316 - IA-Zar-Proxy - INFO -   TLS fingerprint:  420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14
+2025-07-20 09:25:09,316 - IA-Zar-Proxy - INFO -   Listen port:      5555 (local miners)
+2025-07-20 09:25:09,333 - IA-Zar-Proxy - INFO - TLS cert/key found, verifying fingerprint...
+2025-07-20 09:25:10,355 - IA-Zar-Proxy - ERROR - Certificate verification failed: cannot access local variable 'serialization' where it is not associated with a value
+2025-07-20 09:25:10,358 - IA-Zar-Proxy - INFO - Proxy started on port 5555
+2025-07-20 09:25:10,359 - IA-Zar-Proxy - INFO - Starting proxy main loop
+2025-07-20 09:25:10,360 - IA-Zar-Proxy - INFO - Connecting to pool pool.hashvault.pro:443 (attempt 1/10)
+2025-07-20 09:25:11,662 - IA-Zar-Proxy - INFO - Connected to pool, session ID: 5a0da5f2-37cd-480d-a15f-536136ec737d
+2025-07-20 09:25:19,131 - IA-Zar-Proxy - INFO - Received new job from pool: 9e654a00-7b4a-45d4-9a72-05794d34a0c6
+2025-07-20 09:25:32,005 - IA-Zar-Proxy - INFO - Received new job from pool: 9f98e443-4d71-49a0-80ea-6005d77480c5
