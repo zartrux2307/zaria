@@ -4,8 +4,13 @@ import logging
 import struct
 import threading
 import time
+import sys
+import os
+import mmap
+import tempfile
 from typing import Optional, Dict, Any
 from iazar.proxy.shm_channels import JobChannel
+
 logger = logging.getLogger("generator.solutionwriter")
 if not logger.handlers:
     h = logging.StreamHandler()
@@ -26,17 +31,53 @@ def _pad_ascii(s: str, size: int) -> bytes:
         b += b'\0' * (size - len(b))
     return b
 
+class FileBasedSharedMemory:
+    """File-based shared memory emulation for Windows"""
+    def __init__(self, name: str, create: bool, size: int):
+        self._name = name
+        self._size = size
+        self._created = create
+        temp_dir = tempfile.gettempdir()
+        self._filepath = os.path.join(temp_dir, f"sm_{name}")
+        
+        if create:
+            flags = os.O_CREAT | os.O_RDWR | os.O_EXCL
+            try:
+                fd = os.open(self._filepath, flags, 0o666)
+            except FileExistsError:
+                raise FileNotFoundError(f"Shared memory {name} already exists")
+        else:
+            fd = os.open(self._filepath, os.O_RDWR)
+            
+        os.ftruncate(fd, size)
+        self._fd = fd
+        self._mmap = mmap.mmap(fd, size, access=mmap.ACCESS_WRITE)
+        
+    @property
+    def buf(self) -> memoryview:
+        return memoryview(self._mmap)
+    
+    @property
+    def size(self) -> int:
+        return self._size
+    
+    def close(self):
+        if hasattr(self, '_mmap') and self._mmap:
+            self._mmap.close()
+        if hasattr(self, '_fd') and self._fd:
+            os.close(self._fd)
+            
+    def unlink(self):
+        try:
+            os.unlink(self._filepath)
+        except FileNotFoundError:
+            pass
+
 class SharedMemorySolutionWriter:
     """
     Segmento de soluciones (nonce, hash, etc). Soporta método thread-safe write_solution y try_submit.
     """
    
-    def __init__(self, prefix="5555"):
-        self.ch = JobChannel(prefix)
-    
-    def current_job(self):
-        return self.ch.get_job()
-
     def __init__(self, prefix: str = "5555", create_if_missing: bool = True,
                  record_size: int = DEFAULT_RECORD_SIZE, capacity: int = DEFAULT_CAPACITY):
         self.prefix = prefix
@@ -44,7 +85,7 @@ class SharedMemorySolutionWriter:
         self.record_size = record_size
         self.capacity = capacity
         self.version = 1
-        self.solution_shm: Optional[shm.SharedMemory] = None
+        self.solution_shm: Optional[Any] = None
         self._lock = threading.RLock()
         self._standalone = False
         self._open_or_create()
@@ -58,14 +99,21 @@ class SharedMemorySolutionWriter:
     def _open_or_create(self):
         name = self._segment_name()
         try:
-            self.solution_shm = shm.SharedMemory(name=name)
-            logger.info("Attached to existing solution SHM name=%s size=%d", name, self.solution_shm.size)
+            if sys.platform == "win32":
+                self.solution_shm = FileBasedSharedMemory(
+                    name=name, create=False, size=0
+                )
+                logger.info("Attached to file-based SHM name=%s", name)
+                # Actualizar capacidad según tamaño real
+                self.capacity = (self.solution_shm.size - HEADER_SIZE) // self.record_size
+            else:
+                self.solution_shm = shm.SharedMemory(name=name)
+                logger.info("Attached to existing solution SHM name=%s size=%d", name, self.solution_shm.size)
             self._validate_or_init_header(expect_existing=True)
-        except FileNotFoundError:
+        except (FileNotFoundError, OSError):
             if not self.create_if_missing:
                 raise
             
-            # Calcula tamaño y limita a 6GB máximo
             total_size = self._total_size()
             if total_size > MAX_SHM_SIZE:
                 max_capacity = (MAX_SHM_SIZE - HEADER_SIZE) // self.record_size
@@ -80,16 +128,25 @@ class SharedMemorySolutionWriter:
                 self.capacity = max_capacity
                 total_size = self._total_size()
             
-            self.solution_shm = shm.SharedMemory(name=name, create=True, size=total_size)
+            if sys.platform == "win32":
+                self.solution_shm = FileBasedSharedMemory(
+                    name=name, create=True, size=total_size
+                )
+                logger.warning(
+                    "Creada nueva solución FILE-BASED (standalone) name=%s size=%d records=%d",
+                    name, total_size, self.capacity
+                )
+            else:
+                self.solution_shm = shm.SharedMemory(name=name, create=True, size=total_size)
+                logger.warning(
+                    "Creada nueva solución SHM (standalone) name=%s size=%d records=%d",
+                    name, total_size, self.capacity
+                )
             self._standalone = True
-            logger.warning(
-                "Creada nueva solución SHM (standalone) name=%s size=%d records=%d",
-                name, total_size, self.capacity
-            )
             self._validate_or_init_header(expect_existing=False)
 
     def _validate_or_init_header(self, expect_existing: bool):
-        buf = self.solution_shm.buf  # type: ignore
+        buf = self.solution_shm.buf
         if not expect_existing:
             with self._lock:
                 # write_index=0, record_size, capacity, version
@@ -108,13 +165,13 @@ class SharedMemorySolutionWriter:
         return self._standalone
 
     def _next_offset(self) -> int:
-        buf = self.solution_shm.buf  # type: ignore
+        buf = self.solution_shm.buf
         write_index = int.from_bytes(buf[0:4], 'little')
         slot = write_index % self.capacity
         return HEADER_SIZE + slot * self.record_size
 
     def _advance_index(self):
-        buf = self.solution_shm.buf  # type: ignore
+        buf = self.solution_shm.buf
         write_index = int.from_bytes(buf[0:4], 'little')
         write_index += 1
         buf[0:4] = write_index.to_bytes(4, 'little')
@@ -142,7 +199,7 @@ class SharedMemorySolutionWriter:
 
         with self._lock:
             offset = self._next_offset()
-            buf = self.solution_shm.buf  # type: ignore
+            buf = self.solution_shm.buf
             
             # Estructura 160 bytes
             buf[offset:offset+4] = (nonce & 0xFFFFFFFF).to_bytes(4, 'little')
@@ -173,6 +230,8 @@ class SharedMemorySolutionWriter:
         try:
             if self.solution_shm:
                 self.solution_shm.close()
+                if self._standalone and sys.platform == "win32":
+                    self.solution_shm.unlink()
         except Exception:
             pass
 

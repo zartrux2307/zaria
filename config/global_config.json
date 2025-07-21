@@ -1,59 +1,46 @@
 {
-  "name": "zar-shm",
-  "prefix": "5555",
-  "size": 4096,
-  "solution_buffer_size": 4096,
-  "use_sample_data": false,
-
-  "logging": {
-    "level": "INFO",
-    "format": "%(asctime)s - %(levelname)s - %(message)s"
+  "system": {
+    "shm_prefix": "5555",
+    "solution_buffer_size": 1048576,
+    "job_shm_size": 4096,
+    "logging": {
+      "level": "INFO",
+      "format": "%(asctime)s - %(levelname)s - %(name)s - %(message)s"
+    }
   },
 
-  "wallet": "44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc",
-  "pool": {
-    "url": "pool.hashvault.pro:443",
-    "user": "44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc",
-    "pass": "x",
-    "rig-id": null,
-    "nicehash": false,
-    "keepalive": true,
-    "enabled": true,
-    "tls": true,
-    "tls-fingerprint": "420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14",
-    "daemon": false,
-    "self-select": null
+  "mining": {
+    "wallet": "44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc",
+    "pool": {
+      "url": "pool.hashvault.pro:443",
+      "user": "44crWF5Y7gWDLCwhNSH7cbAbCPT6xScpCRFMMYhbCpFijJVUpPwze39GbvRRR1GsRZCvNMKZpU4sPT8bqRY3FY29Loyx1zc",
+      "pass": "x",
+      "tls": true,
+      "tls_fingerprint": "420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14"
+    },
+    "monerod_rpc": {
+      "host": "127.0.0.1",
+      "port": 18081,
+      "path": "/json_rpc"
+    }
   },
 
   "ia": {
-    "feature_columns": ["nonce", "entropy", "uniqueness", "zero_density", "pattern_score", "is_valid"],
-    "proxy_host": "127.0.0.1",
-    "proxy_port": 3333,
-    "worker_name": "x",
-    "generation_strategies": ["range", "ml", "adaptive", "hybrid", "entropy", "sequence"],
     "nonces_per_second": 500,
-    "num_rangos": 10,
-    "top_rangos": 3,
-    "max_nonce": 4294967295,
-    "update_interval": 3600,
-    "min_entropy": 0.85,
-    "min_uniqueness": 0.8,
-    "max_zero_density": 0.15,
-    "min_pattern_score": 0.8,
-    "adaptive_window": 500000,
-    "decay_factor": 0.9,
-    "ml_fallback": true,
-    "quality_filter": true
+    "batch_size": 500,
+    "feature_columns": ["nonce", "entropy", "uniqueness", "zero_density", "pattern_score", "is_valid", "block_height"],
+    "quality_thresholds": {
+      "min_entropy": 4.0,
+      "min_uniqueness": 0.75,
+      "max_zero_density": 0.60,
+      "min_pattern_score": 0.55
+    },
+    "update_interval": 3600
   },
 
   "paths": {
     "data_dir": "C:/zarturxia/src/iazar/data",
-    "config_dir": "C:/zarturxia/src/iazar/config",
-    "model_dir": "C:/zarturxia/src/iazar/models",
-    "sequence_dir": "C:/zarturxia/src/iazar/sequences"
-  },
-
-  "data_paths": {
+    "models_dir": "C:/zarturxia/src/iazar/models",
     "training_data": "C:/zarturxia/src/iazar/data/nonce_training_data.csv",
     "generated_nonces": "C:/zarturxia/src/iazar/data/nonces_exitosos.csv",
     "accepted_nonces": "C:/zarturxia/src/iazar/data/nonces_aceptados.csv"
@@ -61,221 +48,59 @@
 
   "orchestrator": {
     "target_rate": 500,
-    "loop_interval_sec": 1.0,
-    "max_queue": 10000,
-    "merge_max_per_generator": 500,
-    "deduplicate_recent_window": 20000,
-    "backpressure_policy": "drop_oldest",
-    "enable_evaluators": true,
-    "generator_pool": 6,
-    "share_submit_retry": 3,
-    "job_shm_prefix": "5555",
-    "multi_pool": {
-      "strategy": "primary_fallback",
-      "pools": [
-        { "id": "p1", "prefix": "5555", "weight": 1 },
-        { "id": "p2", "prefix": "6666", "weight": 2 }
-      ]
-    }
-  },
-
-  "generator_weights": {
-    "range": 1,
-    "adaptive": 1,
-    "random": 1,
-    "ml": 1,
-    "entropy": 1,
-    "sequence": 1,
-    "hybrid": 1,
-    "grouped": 1
-  },
-
-  "performance_settings": {
-    "rebalance_interval": 300,
-    "performance_window": 1000,
-    "min_weight": 0.05,
-    "max_weight": 0.40
+    "loop_interval": 0.2,
+    "max_queue_size": 10000,
+    "generators": ["range", "ml", "hybrid", "adaptive", "entropy"],
+    "weights": {
+      "range": 0.35,
+      "ml": 0.25,
+      "hybrid": 0.20,
+      "adaptive": 0.15,
+      "entropy": 0.05
+    },
+    "deduplication_window": 20000
   },
 
   "randomx": {
-    "dll_name": "randomx.dll",
     "dll_path": "C:/zarturxia/src/libs/randomx.dll",
     "flags": ["LARGE_PAGES", "HARD_AES", "JIT", "FULL_MEM"],
     "vm_pool_size": 4,
-    "hash_little_endian": true,
-    "verify_mode": "target",
-    "target_hex": "",
-    "difficulty_bits": 0,
-    "auto_dataset": true,
-    "dataset_init_threads": 1,
-    "dataset_mt_threads": 4,
-    "dataset_chunk_size": 0
+    "validation_mode": "light"
   },
 
-  "randomx_params": {
-    "max_zero_run": 6,
-    "min_transition_ratio": 0.5,
-    "pattern_penalties": {
-      "periodic": 0.25,
-      "long_zero": 0.05
+  "generators": {
+    "range": {
+      "ranges": [
+        [1000000, 2000000],
+        [5000000, 6000000],
+        [8000000, 9000000]
+      ],
+      "oversampling": 3.0
     },
-    "transition_bonus": 0.5
-  },
-
-  "sequence_generator": {
-    "initial_weights": { "lcg": 0.4, "xorshift": 0.3, "pcg": 0.3 },
-    "min_entropy_batch": 4.8,
-    "degeneration_threshold": 4.2,
-    "weight_adjust_alpha": 0.06,
-    "internal_factor": 3,
-    "max_internal_factor": 6,
-    "recent_uniqueness_window": 1500,
-    "use_validator": true,
-    "validator_workers": 3
-  },
-
-  "ml_based_generator": {
-    "batch_candidate_factor": 6,
-    "max_candidate_factor": 40,
-    "max_attempt_loops": 8,
-    "recent_training_window": 8000,
-    "min_train_samples": 400,
-    "retrain_interval_samples": 500,
-    "topk_ratio": 0.6,
-    "min_entropy_threshold": 0.0,
-    "pattern_score_min": 0.45,
-    "model_type": "gbrt",
-    "mlp_hidden": [64, 32],
-    "random_state": 1337,
-    "save_checkpoints": true,
-    "validation_workers": 3
-  },
-
-  "hybrid_generator": {
-    "rebalance_interval": 300,
-    "performance_window": 1000,
-    "min_weight": 0.05,
-    "max_weight": 0.40,
-    "circuit_breaker_threshold": 4,
-    "circuit_recovery_time": 600,
-    "write_direct": false,
-    "csv_path": "C:/zarturxia/src/iazar/data/nonces_exitosos.csv"
-  },
-
-  "quality_filter": {
-    "min_entropy": 4.0,
-    "min_pattern_score": 0.55,
-    "max_zero_density": 0.60,
-    "min_uniqueness": 0.75,
-    "quality_threshold": 0.78,
-    "check_interval": 60,
-    "sample_max_rows": 250000,
-    "lock_timeout_sec": 5,
-    "report_interval_sec": 3600,
-    "min_bytes_increment": 1,
-    "score_weights": {
-      "entropy": 0.40,
-      "pattern": 0.25,
-      "uniqueness": 0.20,
-      "balance": 0.15
+    "ml": {
+      "model_type": "gbrt",
+      "model_path": "C:/zarturxia/src/iazar/models/nonce_gbrt_v1.pkl",
+      "workers": 4,
+      "topk_ratio": 0.6
+    },
+    "hybrid": {
+      "rebalance_interval": 300,
+      "circuit_breaker_threshold": 4
+    },
+    "adaptive": {
+      "bins": 48,
+      "workers": 4,
+      "decay_factor": 0.9
+    },
+    "entropy": {
+      "min_entropy": 4.5,
+      "workers": 2
     }
   },
 
-  "entropy_analysis": {
-    "analysis_interval": 300,
-    "read_window_rows": 120000,
-    "sample_max_rows": 80000,
-    "recompute_entropy": false,
-    "accept_entropy_deviation": 0.15,
-    "hist_bins": 32,
-    "outlier_high_q": 0.995,
-    "outlier_low_q": 0.005,
-    "enable_generation": false,
-    "synthetic_batch": 500,
-    "target_entropy_min": 4.5,
-    "target_entropy_max": 5.2,
-    "report_dir": "analysis_results",
-    "kl_reference_bits": 32,
-    "multi_lags": [1, 2, 4, 8],
-    "lock_timeout_sec": 5
-  },
-
-  "distribution_analysis": {
-    "input_csv": "nonces_exitosos.csv",
-    "analysis_interval": 600,
-    "read_window_rows": 150000,
-    "sample_max_rows": 100000,
-    "hist_bins": 64,
-    "outlier_p_low": 0.01,
-    "outlier_p_high": 0.99,
-    "drift_reference_quantile": 0.5,
-    "lock_timeout_sec": 5,
-    "enable_jsd": true,
-    "report_dir": "distribution_reports",
-    "metrics": ["entropy", "uniqueness", "zero_density", "pattern_score"],
-    "store_parquet": true
-  },
-
-  "correlation_analysis": {
-    "input_csv": "nonces_exitosos.csv",
-    "analysis_interval": 900,
-    "read_window_rows": 180000,
-    "sample_max_rows": 100000,
-    "stratified_sample_frac": 0.25,
-    "require_valid_only": true,
-    "lock_timeout_sec": 5,
-    "metrics": ["entropy", "uniqueness", "zero_density", "pattern_score", "quality_score"],
-    "anomaly": {
-      "enabled": true,
-      "n_estimators": 200,
-      "contamination": 0.005,
-      "random_state": 1337
-    },
-    "autocorr_lags": [1, 2, 4, 8],
-    "store_parquet": true,
-    "dump_full_dataframe": false,
-    "report_dir": "correlation_reports",
-    "checkpoint_every": 5,
-    "max_rows_output": 20000
-  },
-
-  "survival_analysis": {
-    "input_csv": "nonces_exitosos.csv",
-    "min_sample_size": 2000,
-    "min_events": 150,
-    "max_correlation": 0.75,
-    "significant_p_value": 0.05,
-    "memory_limit_mb": 8192,
-    "downsample_max_rows": 300000,
-    "entropy_strata_quantiles": [0.25, 0.5, 0.75],
-    "plots": true,
-    "report_dir": "survival_reports",
-    "cox_penalizer": 0.08,
-    "max_covariates": 8
-  },
-
-  "nonce_calculator": {
-    "analysis_interval": 60,
-    "read_window_rows": 120000,
-    "sample_max_rows": 60000,
-    "metrics": ["entropy", "uniqueness", "zero_density", "pattern_score"],
-    "tail_low_q": 0.01,
-    "tail_high_q": 0.99,
-    "recent_drift_window": 5000,
-    "anomaly": {
-      "enabled": true,
-      "n_estimators": 160,
-      "contamination": 0.004,
-      "random_state": 1337
-    },
-    "lock_timeout_sec": 5,
-    "store_parquet": false,
-    "report_dir": "nonce_calc_reports",
-    "checkpoint_every": 10,
-    "top_anomalies": 40
-  },
-
-  "performance": {
-    "max_nonce": 4294967295
+  "evaluation": {
+    "interval": 600,
+    "sample_size": 100000,
+    "metrics": ["entropy", "uniqueness", "zero_density", "pattern_score"]
   }
 }
