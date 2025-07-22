@@ -702,20 +702,22 @@ def main():
             logger.error("Error inicializando RandomXValidator: %s", e)
             sys.exit(1)
         
-        # Warmup mejorado
+        # Warmup mejorado - CORREGIDO: usar calculate_hash en lugar de hash
         if args.rx_warmup > 0:
             logger.info("RandomX warmup: %d hashes dummy...", args.rx_warmup)
-            dummy_seed = b"\x00" * 32
-            dummy_blob = bytearray(b"\x11" * 128)
-            
-            for i in range(args.rx_warmup):
-                nn = i & 0xFFFFFFFF
-                dummy_blob[39:43] = nn.to_bytes(4, "little")
-                try:
-                    rx_validator.hash(bytes(dummy_blob), dummy_seed)
-                except Exception as e:
-                    logger.error("Error en warmup RandomX: %s", e)
-                    break
+            try:
+                for _ in range(args.rx_warmup):
+                    rx_validator.calculate_hash(
+                        blob=os.urandom(76),
+                        target=bytes(32),
+                        seed_hash=bytes(32),
+                        height=0,
+                        nonce=0
+                    )
+            except Exception as e:
+                logger.error(f"Error en warmup RandomX: {e}")
+            else:
+                logger.info("RandomX warmup completado")
         
         share_validator = ShareValidator(rx_validator, sampling=args.rx_sampling)
         logger.info("Validación RandomX activada (sampling=%.2f)", args.rx_sampling)
