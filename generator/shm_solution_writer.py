@@ -35,38 +35,39 @@ class FileBasedSharedMemory:
     """File-based shared memory emulation for Windows"""
     def __init__(self, name: str, create: bool, size: int):
         self._name = name
-        self._size = size
-        self._created = create
         temp_dir = tempfile.gettempdir()
         self._filepath = os.path.join(temp_dir, f"sm_{name}")
-        
         if create:
             flags = os.O_CREAT | os.O_RDWR | os.O_EXCL
             try:
                 fd = os.open(self._filepath, flags, 0o666)
             except FileExistsError:
                 raise FileNotFoundError(f"Shared memory {name} already exists")
+            os.ftruncate(fd, size)
+            self._size = size
         else:
             fd = os.open(self._filepath, os.O_RDWR)
-            
-        os.ftruncate(fd, size)
+            self._size = os.path.getsize(self._filepath)
+            if self._size == 0:
+                os.close(fd)
+                raise ValueError(f"Cannot mmap an empty file: {self._filepath}")
         self._fd = fd
-        self._mmap = mmap.mmap(fd, size, access=mmap.ACCESS_WRITE)
-        
+        self._mmap = mmap.mmap(fd, self._size, access=mmap.ACCESS_WRITE)
+
     @property
     def buf(self) -> memoryview:
         return memoryview(self._mmap)
-    
+
     @property
     def size(self) -> int:
         return self._size
-    
+
     def close(self):
         if hasattr(self, '_mmap') and self._mmap:
             self._mmap.close()
         if hasattr(self, '_fd') and self._fd:
             os.close(self._fd)
-            
+
     def unlink(self):
         try:
             os.unlink(self._filepath)
@@ -77,7 +78,6 @@ class SharedMemorySolutionWriter:
     """
     Segmento de soluciones (nonce, hash, etc). Soporta método thread-safe write_solution y try_submit.
     """
-   
     def __init__(self, prefix: str = "5555", create_if_missing: bool = True,
                  record_size: int = DEFAULT_RECORD_SIZE, capacity: int = DEFAULT_CAPACITY):
         self.prefix = prefix
@@ -100,26 +100,33 @@ class SharedMemorySolutionWriter:
         name = self._segment_name()
         try:
             if sys.platform == "win32":
-                self.solution_shm = FileBasedSharedMemory(
-                    name=name, create=False, size=0
-                )
-                logger.info("Attached to file-based SHM name=%s", name)
-                # Actualizar capacidad según tamaño real
-                self.capacity = (self.solution_shm.size - HEADER_SIZE) // self.record_size
+                # Try to attach to existing file; get its actual size
+                filepath = os.path.join(tempfile.gettempdir(), f"sm_{name}")
+                if os.path.exists(filepath):
+                    size = os.path.getsize(filepath)
+                    if size == 0:
+                        raise ValueError(f"Cannot mmap an empty file: {filepath}")
+                    self.solution_shm = FileBasedSharedMemory(
+                        name=name, create=False, size=size
+                    )
+                    logger.info("Attached to file-based SHM name=%s", name)
+                    self.capacity = (self.solution_shm.size - HEADER_SIZE) // self.record_size
+                else:
+                    raise FileNotFoundError(f"Shared memory file not found: {filepath}")
             else:
                 self.solution_shm = shm.SharedMemory(name=name)
                 logger.info("Attached to existing solution SHM name=%s size=%d", name, self.solution_shm.size)
             self._validate_or_init_header(expect_existing=True)
-        except (FileNotFoundError, OSError):
+        except (FileNotFoundError, OSError, ValueError):
             if not self.create_if_missing:
                 raise
-            
+
             total_size = self._total_size()
             if total_size > MAX_SHM_SIZE:
                 max_capacity = (MAX_SHM_SIZE - HEADER_SIZE) // self.record_size
                 if max_capacity < 1:
                     raise ValueError("El tamaño de registro es demasiado grande para caber en 6GB de memoria compartida")
-                
+
                 logger.warning(
                     "Capacidad solicitada %d (size=%d) supera límite de 6GB. "
                     "Reduciendo capacidad a %d",
@@ -127,7 +134,7 @@ class SharedMemorySolutionWriter:
                 )
                 self.capacity = max_capacity
                 total_size = self._total_size()
-            
+
             if sys.platform == "win32":
                 self.solution_shm = FileBasedSharedMemory(
                     name=name, create=True, size=total_size
@@ -200,7 +207,7 @@ class SharedMemorySolutionWriter:
         with self._lock:
             offset = self._next_offset()
             buf = self.solution_shm.buf
-            
+
             # Estructura 160 bytes
             buf[offset:offset+4] = (nonce & 0xFFFFFFFF).to_bytes(4, 'little')
             buf[offset+4:offset+36] = hash_bytes
@@ -209,7 +216,7 @@ class SharedMemorySolutionWriter:
             buf[offset+76:offset+108] = seed_bytes
             buf[offset+108:offset+112] = (accepted_flag & 0xFFFFFFFF).to_bytes(4, 'little')
             buf[offset+112:offset+160] = b'\0' * 48
-            
+
             self._advance_index()
 
     def try_submit(self, job_id: str, nonce: int, hash_bytes: bytes, valid: bool = True, height: int = 0, seed_hash: str = "") -> bool:
