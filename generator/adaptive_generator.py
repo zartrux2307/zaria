@@ -87,7 +87,7 @@ class AdaptiveGenerator(BaseNonceGenerator):
         "recent_window_uniqueness": 1200,
         "recent_valid_trim_factor": 1.15,
 
-        "validator_workers": 8,
+        "validator_workers": 2,
         "use_validator": True,
 
         "write_direct": False,
